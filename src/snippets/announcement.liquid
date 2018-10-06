@@ -1,0 +1,9 @@
+{% if settings.display_announcement_banner %}
+  {% if settings.link_announcement_banner %}
+    <a class="black no-underline" href="{{ settings.announcement_banner_link }}">
+      {% include 'announcement-bar' %}
+    </a>
+  {% else %}
+    {% include 'announcement-bar' %}
+  {% endif %}
+{% endif %}

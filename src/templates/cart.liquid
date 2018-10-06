@@ -1,0 +1,24 @@
+<div class="main-height bg-black white {% if settings.display_announcement_banner %}banner-showing{% endif %}">
+  <div class="grid pt3 pb5">
+    <div class="main-description mx-auto">
+      <p class="js-sidebar-count white bembo mt0 mb2">0 Items in Cart</p>
+      <p class="js-cart-error hide mt0 mb2 red border border-red p1 h5"></p>
+      <div class="cart-items"></div>
+      <div class="js-shipping flex items-center justify-between mt3 pt1 border-top border-charcoal">
+        <span class="js-shipping-name"></span>
+        <span class="js-shipping-cost bembo"></span>
+      </div>
+      <div class="js-subtotal flex items-center justify-between mt1 pt1 border-top border-charcoal">
+        <span>Subtotal</span>
+        <span class="js-subtotal-cost bembo"></span>
+      </div>
+      <a href="/checkout" class="flex justify-center bg-white hover-opacity-7 py1 px2 mt3 bembo black no-underline">
+        Checkout
+      </a>
+      <div class="flex justify-between mt1 h5">
+        <p class="m0 w60p">Shipping only available within the United States.</p>
+        <a class="white hover-opacity-5" href="{{ pages.terms-and-conditions.url }}">T &amp; C</a>
+      </div>
+    </div>
+  </div>
+</div>

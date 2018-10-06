@@ -1,0 +1,71 @@
+<header class="rounded-bottom js-header fixed z9 l1 r1 bg-black show-md">
+  {% include 'announcement' %}
+  <div class="site-nav h5 text-uppercase apercu-light">
+    <div class="flex items-center h100p px1">
+      <nav class="flex items-center w100p">
+        <div class="flex-1 basis-0">
+          {% for main in linklists.main-menu.links %}
+            <a class="white no-underline p1 hover-opacity-5" href="{{ main.url }}">{{ main.title }}</a>
+          {% endfor %}
+        </div>
+        <h1 class="m0 h0">
+          <a class="no-underline pink" href="/">
+            {% include 'logo' %}
+          </a>
+        </h1>
+        <div class="flex items-center justify-end flex-1 basis-0 text-right">
+          {% if shop.customer_accounts_enabled %}
+            {% if customer %}
+              <a class="no-underline white p1 hover-opacity-5" href="/account">Account</a>
+            {% else %}
+              {% if shop.customer_accounts_optional %}
+                {{ 'Sign Up' | customer_register_link | replace: '<a', '<a class="no-underline white p1 hover-opacity-5"' }}
+              {% endif %}
+              {{ 'Account' | customer_login_link | replace: '<a', '<a class="no-underline white p1 hover-opacity-5"' }}
+            {% endif %}
+          {% endif %}
+          <a class="js-cart-trigger no-underline white p1 hover-opacity-5" href="#">
+            <div class="flex items-center">
+              <span>Cart</span>
+              {% include 'cart-count' %}
+            </div>
+          </a>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+<header class="js-header fixed z9 t0 l0 w100p bg-black hide-md">
+  {% include 'announcement' %}
+  <div class="site-nav h5 text-uppercase apercu-light">
+    <div class="flex items-center h100p px1">
+      <div class="flex-1 w33p">
+        <svg class="js-mobile-nav-open inline-block pointer" xmlns="http://www.w3.org/2000/svg" width="21" viewBox="0 0 33 23">
+          <g fill="white">
+            <rect y="10.2" width="33" height="2.6"/>
+            <rect width="33" height="2.6"/>
+            <rect y="20.4" width="33" height="2.6"/>
+          </g>
+        </svg>
+      </div>
+      <div class="flex-1 w33p text-center">
+        <h1 class="m0 h0">
+          <a class="no-underline pink" href="/">
+            {% include 'logo-m' %}
+          </a>
+        </h1>
+      </div>
+      <div class="flex-1 w33p flex justify-end">
+        <a class="js-cart-trigger no-underline white" href="#">
+          <div class="flex items-center">
+            <span>Cart</span>
+            {% include 'cart-count' %}
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+{% include 'mobile-nav' %}
+
+<div class="pad-header {% if settings.display_announcement_banner %}banner-showing{% endif %}"></div>
