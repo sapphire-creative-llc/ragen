@@ -1,6 +1,6 @@
-<header class="rounded-bottom js-header fixed z9 l1 r1 bg-black show-md">
+<header class="js-header fixed z9 l1 r1 show-lg">
   {% include 'announcement' %}
-  <div class="site-nav h5 text-uppercase apercu-light">
+  <div class="site-nav h5 text-uppercase apercu-light bg-black rounded-bottom">
     <div class="flex items-center h100p px1">
       <nav class="flex items-center w100p">
         <div class="flex-1 basis-0">
@@ -24,9 +24,10 @@
               {{ 'Account' | customer_login_link | replace: '<a', '<a class="no-underline white p1 hover-opacity-5"' }}
             {% endif %}
           {% endif %}
+          <a class="no-underline white p1 hover-opacity-5" href="/help">Help</a>
           <a class="js-cart-trigger no-underline white p1 hover-opacity-5" href="#">
             <div class="flex items-center">
-              <span>Cart</span>
+              {% include 'cart-icon' %}
               {% include 'cart-count' %}
             </div>
           </a>
@@ -35,7 +36,7 @@
     </div>
   </div>
 </header>
-<header class="js-header fixed z9 t0 l0 w100p bg-black hide-md">
+<header class="js-header fixed z9 t0 l0 w100p bg-black hide-lg">
   {% include 'announcement' %}
   <div class="site-nav h5 text-uppercase apercu-light">
     <div class="flex items-center h100p px1">

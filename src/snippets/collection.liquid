@@ -1,24 +1,17 @@
-<div class="index-item border-box">
-  <a href="{{ product.url }}" class="inline-block no-underline black w100p hover-image-wrapper">
-    {% for image in product.images %}
-      {% if forloop.first == true %}
-        <div class="h100p overflow-hidden bg-smoke">
-          <div class="image bg-center bg-cover fade-image" style="padding-top: 125%;" data-img="{{ image | img_url: '750x' }}"></div>
-        </div>
-      {% endif %}
-    {% endfor %}
-    <div class="flex justify-between">
-      <div>
-        <p class="bembo mb0" style="margin-bottom: .25rem;">
-          Concept {% for field in product.metafields.Concepts %}{{ field | last }}{% endfor %}:
-        </p>
-        <p class="m0">{{ product.title }}</p>
+<a href="{{ product.url }}" class="no-underline black w25p hover-image-wrapper px3 pb3 border-box">
+  {% for image in product.images %}
+    {% if forloop.first == true %}
+      <div class="overflow-hidden bg-light-gray">
+        <div class="image bg-center bg-cover fade-image" style="padding-top: 75%;" data-img="{{ image | img_url: '750x' }}"></div>
       </div>
-      {% if product.first_available_variant.available %}
-        <p class="bembo">{{ product.price | money_without_trailing_zeros }}</p>
-      {% else %}
-        <p class="light-gray bembo">Sold Out</p>
-      {% endif %}
-    </div>
-  </a>
-</div>
+    {% endif %}
+  {% endfor %}
+  <div class="text-center">
+    <p class="m0 h5 dark-gray">{{ product.title }}</p>
+    {% if product.first_available_variant.available %}
+      <p class="tag inline-block h6 dark-pink bg-light-pink">{{ product.price | money_without_trailing_zeros }}</p>
+    {% else %}
+      <p class="light-gray">Sold Out</p>
+    {% endif %}
+  </div>
+</a>
