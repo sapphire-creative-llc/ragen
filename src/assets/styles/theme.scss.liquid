@@ -207,10 +207,6 @@ $whitespace: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15;
   .z#{$value} { z-index: #{$value}; }
 }
 
-.height100vh {
-  height: 100vh;
-}
-
 .hover-opacity-5 {
   opacity: 1;
   transition: opacity .2s;
@@ -714,9 +710,19 @@ footer {
 
 .product-details {
   width: 50%;
-  padding: 3rem 0;
   @media screen and (min-width: $break-lg) {
-    width: 40%;
+    width: 30%;
+  }
+  p {
+    padding: 0;
+    font-size: 1rem;
+    color: #666;
+  }
+}
+
+.product-thumbnails {
+  @media screen and (min-width: $break-lg) {
+    width: 10%;
   }
 }
 
