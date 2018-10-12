@@ -3,15 +3,15 @@
   <div class="js-product-wrapper">
     <div class="product-thumbnails left sticky t8 pr1 border-box">
       {% for image in product.images %}
-        <div class="h100p overflow-hidden bg-white border border-smoke rounded mb1">
+        <button class="thumbnail w100p h100p overflow-hidden bg-white border border-smoke rounded mb1 hover-border-black pointer no-outline" data-id="{{ image.id }}">
           <div class="image bg-center bg-cover fade-image" style="padding-top: 100%;" data-img="{{ image | img_url: '300x' }}"></div>
-        </div>
+        </button>
       {% endfor %}
     </div>
     <div class="product-images left">
       {% for image in product.images %}
         <div class="h100p overflow-hidden bg-white border border-smoke rounded mb1">
-          <div class="image bg-center bg-cover fade-image" style="padding-top: 100%;" data-img="{{ image | img_url: '1024x' }}"></div>
+          <div id="{{ image.id }}" class="image bg-center bg-cover fade-image" style="padding-top: 100%;" data-img="{{ image | img_url: '1024x' }}"></div>
         </div>
       {% endfor %}
     </div>

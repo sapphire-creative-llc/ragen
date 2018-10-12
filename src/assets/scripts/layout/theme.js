@@ -400,6 +400,18 @@ import "../../styles/fonts.scss.liquid";
     $(".js-announcement").addClass("hide");
   }
 
+  $(".thumbnail").on("click", e => {
+    const id = $(e.currentTarget).data("id");
+    const offset = $(`#${id}`).offset().top - 145;
+
+    $("html, body").animate(
+      {
+        scrollTop: offset
+      },
+      300
+    );
+  });
+
   const fadeInImage = () => {
     $("div[data-img]").each(function() {
       if (!$(this).hasClass("fade-image")) {
