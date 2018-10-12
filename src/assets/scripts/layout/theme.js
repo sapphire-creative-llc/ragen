@@ -402,14 +402,9 @@ import "../../styles/fonts.scss.liquid";
 
   $(".thumbnail").on("click", e => {
     const id = $(e.currentTarget).data("id");
-    const offset = $(`#${id}`).offset().top - 145;
+    const offset = $(`#${id}`).offset().top - 135;
 
-    $("html, body").animate(
-      {
-        scrollTop: offset
-      },
-      300
-    );
+    $("html, body").animate({ scrollTop: offset }, 300);
   });
 
   const fadeInImage = () => {

@@ -1,10 +1,8 @@
-<div class="border-bottom border-smoke py6">
-  <div class="grid">
-    <h3 class="mt0 mb1 text-normal text-center mb3">Best Sellers</h5>
-    <div class="flex flex-wrap">
-      {% for product in collections.homepage.products %}
-        {% include 'collection' %}
-      {% endfor %}
-    </div>
+<div class="border-bottom border-smoke pt6 pb3">
+  <h3 class="mt0 mb1 text-normal text-center mb3">Best Sellers</h5>
+  <div class="flex flex-wrap">
+    {% for product in collections.homepage.products %}
+      {% include 'collection' %}
+    {% endfor %}
   </div>
 </div>

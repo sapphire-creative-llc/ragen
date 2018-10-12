@@ -12,31 +12,42 @@
   <div class="relative black">
     {% if available %}
       {% for product_option in product.options_with_values %}
-        <label class="h5 block mb1">
-          {% if product_option.name == 'Size' %}
+        {% if product_option.name == 'Size' %}
+          <label class="h5 block mb1">
             <span class="block">Select a size</span>
-          {% elsif product_option.name == 'Color' %}
-            <span class="block">Choose a material</span>
-          {% else %}
-            Nothing
-          {% endif %}
-          <div class="flex">
-            {% for value in product_option.values %}
-            <div class="product-input relative">
-              <input class="absolute t0 l0 r0 b0 w100p h100p pointer m0 o0p z1" type="radio" name="{{ product_option.name }}" value="{{ value }}" {% if product_option.selected_value == value %}checked{% endif %} />
-              <button class="product-option medium-gray product-{{ product_option.name }} border  border-mild-gray rounded apercu-regular h4 m0 flex items-center justify-center {% if product_option.selected_value == value %}black border-black{% endif %}">
-                {% if value == 'Gold' %}
-                  <span class="square gold"></span>
-                {% elsif value == 'Silver' %}
-                  <span class="square silver"></span>
-                {% else %}
-                {% endif %}
-                <span class="relative">{{ value }}</span>
-              </button>
+            <div class="flex">
+              {% for value in product_option.values %}
+              <div class="product-input relative">
+                <input class="absolute t0 l0 r0 b0 w100p h100p pointer m0 o0p z1" type="radio" name="{{ product_option.name }}" value="{{ value }}" {% if product_option.selected_value == value %}checked{% endif %} />
+                <button class="product-option medium-gray product-{{ product_option.name }} border  border-mild-gray rounded apercu-regular h4 m0 flex items-center justify-center {% if product_option.selected_value == value %}black border-black{% endif %}">
+                  <span class="relative">{{ value }}</span>
+                </button>
+              </div>
+              {% endfor %}
             </div>
-            {% endfor %}
-          </div>
-        </label>
+          </label>
+        {% endif %}
+        {% if product_option.name == 'Color' %}
+          <label class="h5 block mb1">
+            <span class="block">Choose a material</span>
+            <div class="flex">
+              {% for value in product_option.values %}
+              <div class="product-input relative">
+                <input class="absolute t0 l0 r0 b0 w100p h100p pointer m0 o0p z1" type="radio" name="{{ product_option.name }}" value="{{ value }}" {% if product_option.selected_value == value %}checked{% endif %} />
+                <button class="product-option medium-gray product-{{ product_option.name }} border  border-mild-gray rounded apercu-regular h4 m0 flex items-center justify-center {% if product_option.selected_value == value %}black border-black{% endif %}">
+                  {% if value == 'Gold' %}
+                    <span class="square gold"></span>
+                  {% elsif value == 'Silver' %}
+                    <span class="square silver"></span>
+                  {% else %}
+                  {% endif %}
+                  <span class="relative">{{ value }}</span>
+                </button>
+              </div>
+              {% endfor %}
+            </div>
+          </label>
+        {% endif %}
       {% endfor %}
     {% else %}
       not available

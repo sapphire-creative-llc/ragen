@@ -1,1 +1,9 @@
-<h1>Collection</h1>
+{% include 'secondary-menu' %}
+<div class="border-bottom border-smoke pt4 pb6">
+  <h3 class="mt0 mb1 text-normal text-center mb3">{{ collection.title }}</h5>
+  <div class="flex flex-wrap">
+    {% for product in collection.products %}
+      {% include 'collection' %}
+    {% endfor %}
+  </div>
+</div>
