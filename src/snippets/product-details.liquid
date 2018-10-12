@@ -7,55 +7,60 @@
   <p class="mt0 mb1 medium-gray">Sold Out</p>
 {% endif %}
 {{ product.description }}
+<span class="pb1 block"></span>
 <form class="js-cart-form" action="/cart/add" method="post" enctype="multipart/form-data">
-  <div class="flex items-center mb1">
-    <div class="relative w50p black {% if available == true %}hover-placeholder{% endif %}">
-      <div class="placeholder border bembo {% if available != true %}gray{% endif %}">
-        <div class="p1 flex items-center justify-center">
-          <span>Size</span>
-          <div class="arrow-down arrow-down-black"></div>
-        </div>
+  <div class="relative black">
+    {% if available %}
+      {% for product_option in product.options_with_values %}
+        <label class="h5 block mb1">
+          {% if product_option.name == 'Size' %}
+            <span class="block">Select a size</span>
+          {% elsif product_option.name == 'Color' %}
+            <span class="block">Choose a material</span>
+          {% else %}
+            Nothing
+          {% endif %}
+          <div class="flex">
+            {% for value in product_option.values %}
+            <div class="product-input relative">
+              <input class="absolute t0 l0 r0 b0 w100p h100p pointer m0 o0p z1" type="radio" name="{{ product_option.name }}" value="{{ value }}" {% if product_option.selected_value == value %}checked{% endif %} />
+              <button class="product-option medium-gray product-{{ product_option.name }} border  border-mild-gray rounded apercu-regular h4 m0 flex items-center justify-center {% if product_option.selected_value == value %}black border-black{% endif %}">
+                {% if value == 'Gold' %}
+                  <span class="square gold"></span>
+                {% elsif value == 'Silver' %}
+                  <span class="square silver"></span>
+                {% else %}
+                {% endif %}
+                <span class="relative">{{ value }}</span>
+              </button>
+            </div>
+            {% endfor %}
+          </div>
+        </label>
+      {% endfor %}
+    {% else %}
+      not available
+    {% endif %}
+  </div>
+  <div class="mb3">
+    <label class="h5 block">Quantity</label>
+    {% if available %}
+      <div class="number-input inline-block rounded border border-mild-gray">
+        <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="13" viewBox="0 0 9 6" fill="#979797">
+            <path d="M4.6 3.8L7.8 0.6 8.6 1.5 5.5 4.7 5.5 4.7 4.6 5.6 0.5 1.4 1.4 0.5 4.6 3.8Z"/>
+          </svg>
+        </button>
+        <input class="text-center h5" min="1" name="quantity" value="1" type="number">
+        <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus">
+          <svg style="transform: rotate(180deg);" xmlns="http://www.w3.org/2000/svg" width="13" viewBox="0 0 9 6" fill="#979797">
+            <path d="M4.6 3.8L7.8 0.6 8.6 1.5 5.5 4.7 5.5 4.7 4.6 5.6 0.5 1.4 1.4 0.5 4.6 3.8Z"/>
+          </svg>
+        </button>
       </div>
-      {% if available %}
-        <select name="id" class="absolute t0 l0 w100p h100p o0p {% if available == true %}pointer{% endif %}">
-          <option value="Size" disabled selected>Size</option>
-          {% for variant in product.variants %}
-            {% if variant.available == true %}
-              <option value="{{ variant.id }}" data-variants-length="{{ variant.inventory_quantity }}">
-                {{ variant.title }}
-              </option>
-            {% else %}
-              <option disabled="disabled">
-                {{ variant.title }} - sold out!
-              </option>
-            {% endif %}
-          {% endfor %}
-        </select>
-      {% else %}
-        <select class="absolute t0 l0 w100p h100p o0p" disabled>
-          <option value="Size" disabled selected>Size</option>
-        </select>
-      {% endif %}
-    </div>
-    <span class="pl1"></span>
-    <div class="relative w50p black {% if available == true %}hover-placeholder{% endif %}">
-      <div class="placeholder p1 border flex items-center justify-center bembo {% if available != true %}gray{% endif %}">
-        <span>Qty</span>
-        <div class="arrow-down"></div>
-      </div>
-      {% if available %}
-        <select name="quantity" class="absolute t0 l0 w100p h100p o0p {% if available == true %}pointer{% endif %}">
-          <option value="Qty" disabled selected>Qty</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-        </select>
-      {% else %}
-        <select class="absolute t0 l0 w100p h100p o0p" disabled>
-          <option value="Qty" disabled selected>Qty</option>
-        </select>
-      {% endif %}
-    </div>
+    {% else %}
+      <input name="quantity" type="number" disabled />
+    {% endif %}
   </div>
   {% if available %}
     <input

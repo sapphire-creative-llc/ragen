@@ -319,6 +319,20 @@ import "../../styles/fonts.scss.liquid";
       .text($select.find("option:selected").text());
   });
 
+  $('input[name="Size"]').on("change", e => {
+    $(".product-Size").removeClass("black border-black");
+    $(e.currentTarget)
+      .siblings(".product-Size")
+      .addClass("black border-black");
+  });
+
+  $('input[name="Color"]').on("change", e => {
+    $(".product-Color").removeClass("black border-black");
+    $(e.currentTarget)
+      .siblings(".product-Color")
+      .addClass("black border-black");
+  });
+
   // Reset generated content margin
   $(".odet-page")
     .find("p")
@@ -385,24 +399,6 @@ import "../../styles/fonts.scss.liquid";
   if (localStorage.showAnnouncement === "false") {
     $(".js-announcement").addClass("hide");
   }
-
-  $productTab.on("click", e => {
-    const tab = $(e.currentTarget).data("tab");
-
-    $(e.currentTarget)
-      .siblings()
-      .removeClass("active");
-    $(e.currentTarget).addClass("active");
-    $productTabs.find("pre").hide();
-    $productTabs.find(`pre[data-tab=${tab}]`).show();
-  });
-
-  $productTabs.each(function() {
-    $(this)
-      .find(".product-tab")
-      .first()
-      .trigger("click");
-  });
 
   const fadeInImage = () => {
     $("div[data-img]").each(function() {
