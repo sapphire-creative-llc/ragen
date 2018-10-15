@@ -11,6 +11,19 @@
 <form class="js-cart-form" action="/cart/add" method="post" enctype="multipart/form-data">
   <div class="relative black">
     {% if available %}
+      <select name="id">
+        {% for variant in product.variants %}
+          {% if variant.available == true %}
+            <option value="{{ variant.id }}" data-variants-length="{{ variant.inventory_quantity }}">
+              {{ variant.title }}
+            </option>
+          {% else %}
+            <option disabled="disabled">
+              {{ variant.title }} - sold out!
+            </option>
+          {% endif %}
+        {% endfor %}
+      </select>
       {% for product_option in product.options_with_values %}
         {% if product_option.name == 'Size' %}
           <label class="h5 block mb1">

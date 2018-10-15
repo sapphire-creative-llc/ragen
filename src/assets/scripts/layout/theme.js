@@ -142,6 +142,10 @@ import "../../styles/fonts.scss.liquid";
     $cart.html(items.map(cartItemToHtml).join("\n"));
   };
 
+  const getProductData = () => {
+    return $.getJSON(`${window.location.href}.json`);
+  };
+
   const appendCartItem = (item, id) => {
     $("<div/>")
       .addClass("append-cart-item")
@@ -234,30 +238,12 @@ import "../../styles/fonts.scss.liquid";
     $cartError.show().text(description);
   };
 
-  const notYetSelected = (fieldName, $form) => {
-    const $placeholder = $form.find(`.placeholder:contains('${fieldName}')`);
-    const placeholderText = $placeholder.text().trim();
-
-    if (placeholderText === fieldName) {
-      setTimeout(() => $placeholder.addClass("flash-select"), 100);
-      setTimeout(() => $placeholder.removeClass("flash-select"), 300);
-
-      return true;
-    }
-
-    return false;
-  };
-
   $cart.on("click", ".remove-from-cart", e => deleteItem(e));
-  $cart.on("change", "select", e => updateQuantity(e));
+  $cart.on("change", "input[name='quantity']", e => updateQuantity(e));
 
   $cartForm.on("submit", e => {
     e.preventDefault();
     const $form = $(e.currentTarget);
-
-    if (notYetSelected("Size", $form) || notYetSelected("Qty", $form)) {
-      return;
-    }
 
     const qty = $("select[name='quantity']")
       .find(":selected")
@@ -320,16 +306,29 @@ import "../../styles/fonts.scss.liquid";
   });
 
   $('input[name="Size"]').on("change", e => {
+    getProductData().then(({ product }) => {
+      const size = e.target.value;
+      const color = $('input[name="Color"]').attr("value");
+      const selectedVariant = product.variants.filter(
+        v => v.option1 === size && v.option2 === color
+      );
+
+      if (selectedVariant.length > 0) {
+        $('select[name="id"]')
+          .val(selectedVariant[0].id)
+          .change();
+      }
+    });
     $(".product-Size").removeClass("black border-black");
     $(e.currentTarget)
-      .siblings(".product-Size")
+      .siblings()
       .addClass("black border-black");
   });
 
   $('input[name="Color"]').on("change", e => {
     $(".product-Color").removeClass("black border-black");
     $(e.currentTarget)
-      .siblings(".product-Color")
+      .siblings()
       .addClass("black border-black");
   });
 

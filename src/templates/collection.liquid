@@ -1,7 +1,22 @@
 {% include 'secondary-menu' %}
-<div class="border-bottom border-smoke pt4 pb6">
-  <h3 class="mt0 mb1 text-normal text-center mb3">{{ collection.title }}</h5>
-  <div class="flex flex-wrap">
+<div class="pt4 pb6">
+  <h3 class="mt0 mb1 text-normal text-center">
+    {{ collection.title }}
+  </h3>
+  <div class="pb3 border-bottom border-smoke flex justify-center">
+    {% for secondary in linklists.secondary-menu.links %}
+      {% if secondary.title == collection.title %}
+        {% if secondary.links != blank %}
+          {% for child_link in secondary.links %}
+            <a href="{{ child_link.url }}" class="inline-block no-underline collection-filter dark-pink border border-dark-pink rounded">
+              {{ child_link.title }}
+            </a>
+          {% endfor %}
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  </div>
+  <div class="flex flex-wrap pt4">
     {% for product in collection.products %}
       {% include 'collection' %}
     {% endfor %}

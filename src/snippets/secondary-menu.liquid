@@ -15,7 +15,7 @@
             <ul class="list-reset bg-white p1 border border-smoke">
               {% for child_link in secondary.links %}
                 <li class="{% if forloop.last != true %}submenu-item{% endif %}">
-                  <a class="flex items-center justify-between medium-gray no-underline h5 hover-opacity-5" href= "{{ child_link.url }}">
+                  <a class="flex items-center justify-between medium-gray no-underline h5 hover-opacity-5" href="{{ child_link.url }}">
                     {{ child_link.title }}
                     <span class="dark-pink">
                       <svg style="transform: rotate(270deg);" xmlns="http://www.w3.org/2000/svg" width="11" viewBox="0 0 9 6" fill="currentColor">
