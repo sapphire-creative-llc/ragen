@@ -305,12 +305,14 @@ import "../../styles/fonts.scss.liquid";
       .text($select.find("option:selected").text());
   });
 
-  $('input[name="Size"]').on("change", e => {
+  $('input[data-position!=""]').on("change", e => {
+    const $this = $(e.currentTarget);
+
     getProductData().then(({ product }) => {
-      const size = e.target.value;
-      const color = $('input[name="Color"]').attr("value");
+      const one = $("input[data-position='1']:checked").val();
+      const two = $("input[data-position='2']:checked").val();
       const selectedVariant = product.variants.filter(
-        v => v.option1 === size && v.option2 === color
+        v => v.option1 === one && v.option2 === two
       );
 
       if (selectedVariant.length > 0) {
@@ -319,18 +321,16 @@ import "../../styles/fonts.scss.liquid";
           .change();
       }
     });
-    $(".product-Size").removeClass("black border-black");
-    $(e.currentTarget)
-      .siblings()
-      .addClass("black border-black");
+
+    $this
+      .closest("label")
+      .find("button")
+      .removeClass("black border-black");
+
+    $this.siblings().addClass("black border-black");
   });
 
-  $('input[name="Color"]').on("change", e => {
-    $(".product-Color").removeClass("black border-black");
-    $(e.currentTarget)
-      .siblings()
-      .addClass("black border-black");
-  });
+  $('select[name="id"]').hide();
 
   // Reset generated content margin
   $(".odet-page")

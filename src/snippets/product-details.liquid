@@ -11,7 +11,7 @@
 <form class="js-cart-form" action="/cart/add" method="post" enctype="multipart/form-data">
   <div class="relative black">
     {% if available %}
-      <select name="id">
+      <select name="id" type="hidden">
         {% for variant in product.variants %}
           {% if variant.available == true %}
             <option value="{{ variant.id }}" data-variants-length="{{ variant.inventory_quantity }}">
@@ -31,7 +31,7 @@
             <div class="flex">
               {% for value in product_option.values %}
               <div class="product-input relative">
-                <input class="absolute t0 l0 r0 b0 w100p h100p pointer m0 o0p z1" type="radio" name="{{ product_option.name }}" value="{{ value }}" {% if product_option.selected_value == value %}checked{% endif %} />
+                <input data-position="{{ product_option.position }}" class="absolute t0 l0 r0 b0 w100p h100p pointer m0 o0p z1" type="radio" name="{{ product_option.name }}" value="{{ value }}" {% if product_option.selected_value == value %}checked{% endif %} />
                 <button class="product-option medium-gray product-{{ product_option.name }} border  border-mild-gray rounded apercu-regular h4 m0 flex items-center justify-center {% if product_option.selected_value == value %}black border-black{% endif %}">
                   <span class="relative">{{ value }}</span>
                 </button>
@@ -46,7 +46,7 @@
             <div class="flex">
               {% for value in product_option.values %}
               <div class="product-input relative">
-                <input class="absolute t0 l0 r0 b0 w100p h100p pointer m0 o0p z1" type="radio" name="{{ product_option.name }}" value="{{ value }}" {% if product_option.selected_value == value %}checked{% endif %} />
+                <input data-position="{{ product_option.position }}" class="absolute t0 l0 r0 b0 w100p h100p pointer m0 o0p z1" type="radio" name="{{ product_option.name }}" value="{{ value }}" {% if product_option.selected_value == value %}checked{% endif %} />
                 <button class="product-option medium-gray product-{{ product_option.name }} border  border-mild-gray rounded apercu-regular h4 m0 flex items-center justify-center {% if product_option.selected_value == value %}black border-black{% endif %}">
                   {% if value == 'Gold' %}
                     <span class="square gold"></span>
