@@ -333,29 +333,14 @@ import "../../styles/fonts.scss.liquid";
   $('select[name="id"]').hide();
 
   // Reset generated content margin
-  $(".odet-page")
+  $(".page")
     .find("p")
     .last()
     .addClass("m0");
 
-  $(".odet-page")
+  $(".page")
     .find("h5")
     .addClass("odet-heading");
-
-  $(".odet-page")
-    .find("img")
-    .each(function() {
-      const $image = $(this);
-      const alt = $image.attr("alt");
-
-      if ($image.parent().is("p")) {
-        $image.unwrap();
-        $image.wrap(
-          '<div class="img-wrapper text-center"><div class="inline-block"></div></div>'
-        );
-        $image.after(`<span class="block text-left mx-auto h5">${alt}</span>`);
-      }
-    });
 
   $mobileNavOpen.on("click", e => {
     $body.addClass("overflow-hidden");

@@ -202,6 +202,10 @@ $whitespace: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15;
   .z#{$value} { z-index: #{$value}; }
 }
 
+.p0_5 {
+  padding: .5rem;
+}
+
 .hover-opacity-5 {
   opacity: 1;
   transition: opacity .2s;
@@ -347,6 +351,7 @@ $whitespace: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15;
 .bg-black { background-color: #1C1C1C; }
 .border-black { border-color: #1C1C1C; }
 .hover-border-black:hover { border-color: #1C1C1C; }
+.focus-border-black:focus { border-color: #1C1C1C; outline: none; }
 
 .red { color: #ED5A5A }
 .bg-red { background-color: #ED5A5A; }
@@ -379,16 +384,9 @@ $whitespace: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15;
 
 p a,
 pre a,
-.odet-page a,
+.page a,
 .link-with-underline {
-  color: #222222;
-  display: inline-block;
-  border-bottom-width: 1px;
-  border-bottom-style: solid;
-  border-bottom-color: #D7DBDF;
-  text-decoration: none;
-  -webkit-transition: border-bottom-color .2s;
-  transition: border-bottom-color .2s;
+  color: #CE9A88;
   -webkit-transform: translate3d(0,0,0);
   &:hover {
     border-bottom-color: #222;
@@ -636,29 +634,21 @@ footer {
   }
 }
 
-.odet-page {
+.page {
   text-align: center;
-  p, ul {
+  .page-content {
     text-align: left;
     max-width: 500px;
     margin: 0 auto;
-    padding: 0;
-  }
-  img {
-    zoom: 50%;
-  }
-  .img-wrapper {
-    color: #B2B2B2;
-    margin: 3rem 0 1rem;
-    @media screen and (min-width: $break-md) {
-      margin: 9rem auto 6rem;
-      width: 63.15%;
+    p, ul, h1, h2, h3, h4, h5 {
+      margin: 0 auto 30px;
+      padding: 0;
     }
-    span {
-      padding-left: .5rem;
-      @media screen and (min-width: $break-md) {
-        padding-left: 0;
-      }
+    img {
+      margin: 0 0 2rem;
+      width: 100%;
+      border: 2px solid #eee;
+      display: block;
     }
   }
 }

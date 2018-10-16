@@ -2,22 +2,23 @@
 
 {{ form.errors | default_errors }}
 
-<div>
-  <label for="first_name">First Name</label>
-  <input type="text" value="" name="customer[first_name]" size="30" />
+<div class="grid page pt3 pb8">
+  <div class="page-content">
+    <div class="text-center">
+      <h5>Sign Up</h5>
+    </div>
+    <div>
+      <label class="h5 text-uppercase" for="first_name">First Name</label>
+      <input class="border border-smoke focus-border-black w100p p0_5 h4 mb1" type="text" value="" name="customer[first_name]" size="30" />
+      <label class="h5 text-uppercase" for="last_name">Last Name</label>
+      <input class="border border-smoke focus-border-black w100p p0_5 h4 mb1" type="text" value="" name="customer[last_name]" size="30" />
+      <label class="h5 text-uppercase" for="email">Email Address</label>
+      <input class="border border-smoke focus-border-black w100p p0_5 h4 mb1" type="email" value="" name="customer[email]" size="30" />
+      <label class="h5 text-uppercase" for="password">Password</label>
+      <input class="border border-smoke focus-border-black w100p p0_5 h4 mb1" type="password" value="" name="customer[password]" />
+      <input class="button h5 block mx-auto text-uppercase bg-black rounded white no-border mt1" type="submit" value="Create Account" />
+    </div>
+  </div>
 </div>
-<div>
-  <label for="last_name">Last Name</label>
-  <input type="text" value="" name="customer[last_name]" size="30" />
-</div>
-<div>
-  <label for="email">Email Address</label>
-  <input type="email" value="" name="customer[email]" size="30" />
-</div>
-<div>
-  <label for="password">Password</label>
-  <input type="password" value="" name="customer[password]" size="30" />
-</div>
-<input type="submit" value="Create" />
 
 {% endform %}
