@@ -10,6 +10,7 @@
         </div>
         <h1 class="m0 h0">
           <a class="no-underline pink" href="/">
+            {% assign logo_width = 180 %}
             {% include 'logo' %}
           </a>
         </h1>
@@ -27,6 +28,7 @@
           <a class="no-underline white p1 hover-opacity-5" href="/help">Help</a>
           <a class="js-cart-trigger no-underline white p1 hover-opacity-5" href="#">
             <div class="flex items-center">
+              {% assign cart_icon_width = 22 %}
               {% include 'cart-icon' %}
               {% include 'cart-count' %}
             </div>
@@ -40,7 +42,7 @@
   {% include 'announcement' %}
   <div class="site-nav h5 text-uppercase apercu-light">
     <div class="flex items-center h100p px1">
-      <div class="flex-1 w33p">
+      <div class="flex-1 w33p h0">
         <svg class="js-mobile-nav-open inline-block pointer" xmlns="http://www.w3.org/2000/svg" width="21" viewBox="0 0 33 23">
           <g fill="white">
             <rect y="10.2" width="33" height="2.6"/>
@@ -52,6 +54,7 @@
       <div class="flex-1 w33p text-center">
         <h1 class="m0 h0">
           <a class="no-underline pink" href="/">
+            {% assign logo_width = 120 %}
             {% include 'logo-m' %}
           </a>
         </h1>
@@ -59,7 +62,8 @@
       <div class="flex-1 w33p flex justify-end">
         <a class="js-cart-trigger no-underline white" href="#">
           <div class="flex items-center">
-            <span>Cart</span>
+            {% assign cart_icon_width = 18 %}
+            {% include 'cart-icon' %}
             {% include 'cart-count' %}
           </div>
         </a>
