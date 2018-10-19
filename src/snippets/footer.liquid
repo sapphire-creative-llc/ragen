@@ -63,3 +63,62 @@
     © 2018 Ragen Jewels. All rights reserved.
   </p>
 </footer>
+<footer class="site-footer rounded-top hide-md bg-light-pink black px1">
+  <nav class="py1">
+    <p class="m0 pb1">Ragen</p>
+    {% for ragen in linklists.ragen-menu.links %}
+      <a class="h5 inline-block no-underline dark-pink hover-opacity-5" href="{{ ragen.url }}">
+        {{ ragen.title }}
+      </a><br />
+    {% endfor %}
+    <span class="pb1 block"></span>
+    <p class="m0 pb1">Help</p>
+    {% for help in linklists.help-menu.links %}
+      <a class="h5 inline-block no-underline dark-pink hover-opacity-5" href="{{ help.url }}">
+        {{ help.title }}
+      </a><br />
+    {% endfor %}
+    <span class="pb1 block"></span>
+    <p class="m0 pb1">Account</p>
+    {% for account in linklists.account-menu.links %}
+      <a class="h5 inline-block no-underline dark-pink hover-opacity-5" href="{{ account.url }}">
+        {{ account.title }}
+      </a><br />
+    {% endfor %}
+  </nav>
+  <div class="overflow-hidden pt1 pb2">
+    <div class="mb1">
+      <a class="inline-block dark-pink mr1 hover-opacity-5" href="https://www.instagram.com/ragenjewels/?hl=en" target="_blank">
+        {% include 'instagram-icon' %}
+      </a>
+      <a class="inline-block dark-pink mr1 hover-opacity-5" href="https://www.facebook.com/ragenjewels/" target="_blank">
+        {% include 'facebook-icon' %}
+      </a>
+      <a class="inline-block dark-pink mr1 hover-opacity-5" href="https://www.pinterest.com/ragenjewels/" target="_blank">
+        {% include 'pinterest-icon' %}
+      </a>
+      <a class="inline-block dark-pink hover-opacity-5" href="https://twitter.com/ragenjewels" target="_blank">
+        {% include 'twitter-icon' %}
+      </a>
+    </div>
+    {% form 'customer' %}
+      <input id="contact_tags" name="contact[tags]" type="hidden" value="prospect,newsletter" />
+      <div class="newsletter-signup">
+        <label class="block medium-gray h5">
+          Be an insider! Enter your email for 15% off your first purchase:
+        </label>
+        <div class="relative">
+          <input id="contact_email" class="w100p" placeholder="Subscribe" name="contact[email]" type="text" />
+          <div class="absolute flex items-center t0 r0 b0">
+            <button type="submit" class="h3">
+              &rarr;
+            </button>
+          </div>
+        </div>
+      </div>
+    {% endform %}
+  </div>
+  <p class="medium-gray h6 pb2 mb0">
+    © 2018 Ragen Jewels. All rights reserved.
+  </p>
+</footer>

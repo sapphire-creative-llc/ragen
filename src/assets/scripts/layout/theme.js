@@ -415,6 +415,10 @@ import "../../styles/fonts.scss.liquid";
     });
   };
 
+  $(".secondary-trigger").on("click", () => {
+    $(".secondary-nav").toggleClass("hide");
+  });
+
   $(window).on("scroll", () => {
     fadeInImage();
   });

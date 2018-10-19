@@ -62,46 +62,33 @@
           </label>
         {% endif %}
       {% endfor %}
-    {% else %}
-      not available
-    {% endif %}
-  </div>
-  <div class="mb3">
-    <label class="h5 block">Quantity</label>
-    {% if available %}
-      <div class="number-input inline-block rounded border border-mild-gray">
-        <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-          <svg xmlns="http://www.w3.org/2000/svg" width="13" viewBox="0 0 9 6" fill="#979797">
-            <path d="M4.6 3.8L7.8 0.6 8.6 1.5 5.5 4.7 5.5 4.7 4.6 5.6 0.5 1.4 1.4 0.5 4.6 3.8Z"/>
-          </svg>
-        </button>
-        <input class="text-center h5" min="1" name="quantity" value="1" type="number">
-        <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus">
-          <svg style="transform: rotate(180deg);" xmlns="http://www.w3.org/2000/svg" width="13" viewBox="0 0 9 6" fill="#979797">
-            <path d="M4.6 3.8L7.8 0.6 8.6 1.5 5.5 4.7 5.5 4.7 4.6 5.6 0.5 1.4 1.4 0.5 4.6 3.8Z"/>
-          </svg>
-        </button>
+      <div class="mb3">
+        <label class="h5 block">Quantity</label>
+        {% if available %}
+          <div class="number-input inline-block rounded border border-mild-gray">
+            <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" viewBox="0 0 9 6" fill="#979797">
+                <path d="M4.6 3.8L7.8 0.6 8.6 1.5 5.5 4.7 5.5 4.7 4.6 5.6 0.5 1.4 1.4 0.5 4.6 3.8Z"/>
+              </svg>
+            </button>
+            <input class="text-center h5" min="1" name="quantity" value="1" type="number">
+            <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus">
+              <svg style="transform: rotate(180deg);" xmlns="http://www.w3.org/2000/svg" width="13" viewBox="0 0 9 6" fill="#979797">
+                <path d="M4.6 3.8L7.8 0.6 8.6 1.5 5.5 4.7 5.5 4.7 4.6 5.6 0.5 1.4 1.4 0.5 4.6 3.8Z"/>
+              </svg>
+            </button>
+          </div>
+        {% else %}
+          <input name="quantity" type="number" disabled />
+        {% endif %}
       </div>
-    {% else %}
-      <input name="quantity" type="number" disabled />
+      <input
+        type="submit"
+        name="add"
+        id="add"
+        value="Add to Jewel Bag"
+        class="button h5 text-uppercase bg-black rounded white no-border"
+      />
     {% endif %}
   </div>
-  {% if available %}
-    <input
-      type="submit"
-      name="add"
-      id="add"
-      value="Add to Jewel Bag"
-      class="button h5 text-uppercase bg-black rounded white no-border"
-    />
-  {% else %}
-    <input
-      type="submit"
-      name="add"
-      id="add"
-      value="Add to Jewel Bag"
-      class="button h5 text-uppercase bg-black rounded white no-border"
-      disabled
-    />
-  {% endif %}
 </form>
