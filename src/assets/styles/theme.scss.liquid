@@ -431,7 +431,7 @@ pre a,
 }
 
 .main-height {
-  min-height: calc(100vh - 3rem);
+  min-height: auto;
   @media screen and (min-width: $break-md) {
     min-height: calc(100vh - 23rem);
     &.banner-showing {
@@ -837,7 +837,7 @@ footer {
     }
   }
   .mobile-item {
-    padding: .5rem 0;
+    padding: .5rem 1rem;
     border-top: 1px solid #eee;
   }
 }
@@ -955,5 +955,13 @@ input[type=number]::-webkit-outer-spin-button {
       width: 100%;
       padding: 0;
     }
+  }
+}
+
+.hover-hide {
+  transition: opacity .2s;
+  opacity: 1;
+  &:hover {
+    opacity: 0;
   }
 }

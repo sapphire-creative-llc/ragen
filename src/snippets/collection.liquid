@@ -1,11 +1,18 @@
 <a href="{{ product.url }}" class="no-underline black w25p hover-image-wrapper px3 pb3 border-box" data-type="{{ product.type }}">
-  {% for image in product.images %}
-    {% if forloop.first == true %}
-      <div class="overflow-hidden bg-light-gray">
-        <div class="image bg-center bg-cover fade-image" style="padding-top: 100%;" data-img="{{ image | img_url: '750x' }}"></div>
-      </div>
-    {% endif %}
-  {% endfor %}
+  <div class="relative">
+    {% for image in product.images %}
+      {% if forloop.first == true %}
+        <div class="overflow-hidden bg-light-gray relative z1 hover-hide">
+          <div class="image bg-center bg-cover fade-image" style="padding-top: 100%;" data-img="{{ image | img_url: '750x' }}"></div>
+        </div>
+      {% endif %}
+      {% if forloop.index == 2 %}
+        <div class="absolute t0 l0 overflow-hidden bg-light-gray w100p">
+          <div class="image bg-center bg-cover fade-image" style="padding-top: 100%;" data-img="{{ image | img_url: '750x' }}"></div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
   <div class="text-center">
     <p class="mt1 mb0 h5 dark-gray">{{ product.title }}</p>
     {% if product.first_available_variant.available %}
