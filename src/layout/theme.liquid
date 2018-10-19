@@ -25,7 +25,7 @@
 <body>
   <div class="flex flex-column items-between min-h100vh {% if settings.display_announcement_banner %}banner-showing{% endif %}">
     {% include 'header' %}
-    <div class="pt3 px1 border-box site-wrapper main-height flex-1 {% if settings.display_announcement_banner %}banner-showing{% endif %}">
+    <div class="{% if template.name != 'index' %}pt3{% endif %} px1 border-box site-wrapper main-height flex-1 {% if settings.display_announcement_banner %}banner-showing{% endif %}">
       {{ content_for_layout }}
     </div>
     {% include 'footer' %}

@@ -3,12 +3,12 @@
     {% for image in product.images %}
       {% if forloop.first == true %}
         <div class="overflow-hidden bg-light-gray relative z1 hover-hide">
-          <div class="image bg-center bg-cover fade-image" style="padding-top: 100%;" data-img="{{ image | img_url: '750x' }}"></div>
+          <div class="image bg-center bg-cover fade-image" style="padding-top: 100%;" data-img="{{ image | img_url: '500x' }}"></div>
         </div>
       {% endif %}
       {% if forloop.index == 2 %}
         <div class="absolute t0 l0 overflow-hidden bg-light-gray w100p">
-          <div class="image bg-center bg-cover fade-image" style="padding-top: 100%;" data-img="{{ image | img_url: '750x' }}"></div>
+          <div class="image bg-center bg-cover fade-image" style="padding-top: 100%;" data-img="{{ image | img_url: '500x' }}"></div>
         </div>
       {% endif %}
     {% endfor %}
