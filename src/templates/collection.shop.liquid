@@ -1,11 +1,20 @@
 <div>
+  <div class="text-center pt4 hide-lg">
+    {% for secondary in linklists.secondary-menu.links %}
+      <a href="#" data-id="{{ secondary.title | handleize }}" class="thumbnail inline-block no-underline collection-filter dark-pink border border-dark-pink rounded">
+        {{ secondary.title }}
+      </a>
+    {% endfor %}
+  </div>
   {% for secondary in linklists.secondary-menu.links %}
     {% for collection in collections %}
       {% if collection.title == secondary.title %}
-        <div class="border-bottom border-smoke py4">
-          <h5 class="m0 text-normal text-center">
-            {{ collection.title }}
-          </h5>
+        <div id="{{ secondary.title | handleize }}" class="border-bottom border-smoke py4">
+          <div class="text-center">
+            <h5 class="m0 heading text-normal">
+              {{ collection.title }}
+            </h5>
+          </div>
           <div class="flex-md flex-wrap pt4">
             {% for product in collection.products limit: 4 %}
               {% include 'collection'%}

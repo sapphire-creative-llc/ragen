@@ -16,7 +16,14 @@
   <div class="text-center">
     <p class="mt1 mb0 h5 dark-gray">{{ product.title }}</p>
     {% if product.first_available_variant.available %}
-      <p class="tag inline-block h6 dark-pink bg-light-pink">{{ product.price | money_without_trailing_zeros }}</p>
+      <p class="tag inline-block h6 dark-pink bg-light-pink">
+        {{ product.price | money_without_trailing_zeros }}
+      </p>
+      {% if product.compare_at_price_max > 0 %}
+        <strike class="strike dark-pink h6">
+          <span class="mild-gray">{{ product.compare_at_price_max | money_without_trailing_zeros }}</span>
+        </strike>
+      {% endif %}
     {% else %}
       <p class="light-gray">Sold Out</p>
     {% endif %}

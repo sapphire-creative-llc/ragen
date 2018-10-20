@@ -64,37 +64,35 @@ import "../../styles/fonts.scss.liquid";
     quantity,
     price
   }) => {
+    const formattedPrice = priceToCurrency(price);
+    const variantTitle = variant_title || "";
+
     return `
       <div class="cart-item w100p pb1" data-id="${variant_id}">
         <div class="flex w100p">
-          <div class="width-4 height-5 bg-center bg-cover" style="background-image: url(${image})"></div>
-          <div class="flex-1 flex flex-column justify-between px1">
-            <div>
-              <p class="m0">${product_title}</p>
-              <p class="m0 h5">${variant_title} ${product_type}</p>
+          <div class="width-5 height-5 bg-center bg-cover" style="background-image: url(${image})"></div>
+          <div class="flex-1 px1">
+            <p class="m0 h4">${product_title}</p>
+            <p class="m0 h5">${variantTitle} ${product_type} - ${formattedPrice}</p>
+            <div class="number-input inline-block rounded border border-charcoal">
+              <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" viewBox="0 0 9 6" fill="#979797">
+                  <path d="M4.6 3.8L7.8 0.6 8.6 1.5 5.5 4.7 5.5 4.7 4.6 5.6 0.5 1.4 1.4 0.5 4.6 3.8Z"/>
+                </svg>
+              </button>
+              <input class="text-center white" min="1" name="quantity" value="${quantity}" type="number">
+              <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus">
+                <svg style="transform: rotate(180deg);" xmlns="http://www.w3.org/2000/svg" width="13" viewBox="0 0 9 6" fill="#979797">
+                  <path d="M4.6 3.8L7.8 0.6 8.6 1.5 5.5 4.7 5.5 4.7 4.6 5.6 0.5 1.4 1.4 0.5 4.6 3.8Z"/>
+                </svg>
+              </button>
             </div>
-            <span class="h5">
-              ${priceToCurrency(price)}
-            </span>
           </div>
-          <div class="flex flex-column justify-between">
-            <div class="hover-placeholder-dark relative">
-              <div class="p1 flex items-center justify-center">
-                ${quantity} <div class="arrow-down arrow-down-white"></div>
-              </div>
-              <select class="absolute t0 l0 w100p h100p o0p pointer">
-                ${quantityOptions.map(
-                  ({ value, label }) =>
-                    `<option value="${value}" ${
-                      quantity === value ? "selected=selected" : ""
-                    }>
-                    ${label}
-                  </option>`
-                )}
-              </select>
-            </div>
-            <a class="h5 white no-underline remove-from-cart hover-opacity-5" href="#">
-              Remove
+          <div>
+            <a class="h5 no-underline rounded border border-dark-pink block remove-from-cart hover-opacity-5" href="#">
+              <svg class="pointer dark-pink block" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 15 15">
+                <polygon points="7.5 8.5 1 14.9 0 13.9 6.5 7.5 0 1 1 0 7.5 6.5 14 0 15 1 8.5 7.5 15 14 14 15" fill="currentColor"/>
+              </svg>
             </a>
           </div>
         </div>
@@ -340,7 +338,7 @@ import "../../styles/fonts.scss.liquid";
 
   $(".page")
     .find("h5")
-    .addClass("odet-heading");
+    .addClass("heading");
 
   $mobileNavOpen.on("click", e => {
     $body.addClass("overflow-hidden");
@@ -385,6 +383,7 @@ import "../../styles/fonts.scss.liquid";
   }
 
   $(".thumbnail").on("click", e => {
+    e.preventDefault();
     const id = $(e.currentTarget).data("id");
     const offset = $(`#${id}`).offset().top - 135;
 

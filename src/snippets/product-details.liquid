@@ -2,7 +2,14 @@
 
 <h2 class="text-normal mt0 mb1">{{ product.title }}</h2>
 {% if available %}
-  <p class="mt0 mb1 medium-gray">{{ product.price | money_without_trailing_zeros }}</p>
+  <span class="mt0 h4 mb1 dark-pink">
+    {{ product.price | money_without_trailing_zeros }}
+    {% if product.compare_at_price_max > 0 %}
+      <strike class="strike dark-pink">
+        <span class="mild-gray">{{ product.compare_at_price_max | money_without_trailing_zeros }}</span>
+      </strike>
+    {% endif %}
+  </span>
 {% else %}
   <p class="mt0 mb1 medium-gray">Sold Out</p>
 {% endif %}
@@ -71,15 +78,13 @@
                 <path d="M4.6 3.8L7.8 0.6 8.6 1.5 5.5 4.7 5.5 4.7 4.6 5.6 0.5 1.4 1.4 0.5 4.6 3.8Z"/>
               </svg>
             </button>
-            <input class="text-center h5" min="1" name="quantity" value="1" type="number">
+            <input class="text-center" min="1" name="quantity" value="1" type="number">
             <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus">
               <svg style="transform: rotate(180deg);" xmlns="http://www.w3.org/2000/svg" width="13" viewBox="0 0 9 6" fill="#979797">
                 <path d="M4.6 3.8L7.8 0.6 8.6 1.5 5.5 4.7 5.5 4.7 4.6 5.6 0.5 1.4 1.4 0.5 4.6 3.8Z"/>
               </svg>
             </button>
           </div>
-        {% else %}
-          <input name="quantity" type="number" disabled />
         {% endif %}
       </div>
       <input
