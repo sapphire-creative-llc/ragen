@@ -49,11 +49,21 @@ import "../../styles/fonts.scss.liquid";
     return `$${price / 100}`;
   };
 
-  const quantityOptions = [
-    { value: 1, label: "1" },
-    { value: 2, label: "2" },
-    { value: 3, label: "3" }
-  ];
+  $(document).on("click", "button.decrement-cart-quantity", e => {
+    const $input = $(e.currentTarget).siblings("input");
+    const val = parseFloat($input.val());
+
+    if (val > 1) {
+      $input.val(val - 1).change();
+    }
+  });
+
+  $(document).on("click", "button.increment-cart-quantity", e => {
+    const $input = $(e.currentTarget).siblings("input");
+    const val = parseFloat($input.val());
+
+    $input.val(val + 1).change();
+  });
 
   const cartItemToHtml = ({
     image,
@@ -75,13 +85,13 @@ import "../../styles/fonts.scss.liquid";
             <p class="m0 h4">${product_title}</p>
             <p class="m0 h5">${variantTitle} ${product_type} - ${formattedPrice}</p>
             <div class="number-input inline-block rounded border border-charcoal">
-              <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+              <button class="decrement-cart-quantity" type="button">
                 <svg xmlns="http://www.w3.org/2000/svg" width="13" viewBox="0 0 9 6" fill="#979797">
                   <path d="M4.6 3.8L7.8 0.6 8.6 1.5 5.5 4.7 5.5 4.7 4.6 5.6 0.5 1.4 1.4 0.5 4.6 3.8Z"/>
                 </svg>
               </button>
               <input class="text-center white" min="1" name="quantity" value="${quantity}" type="number">
-              <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus">
+              <button class="increment-cart-quantity plus" type="button">
                 <svg style="transform: rotate(180deg);" xmlns="http://www.w3.org/2000/svg" width="13" viewBox="0 0 9 6" fill="#979797">
                   <path d="M4.6 3.8L7.8 0.6 8.6 1.5 5.5 4.7 5.5 4.7 4.6 5.6 0.5 1.4 1.4 0.5 4.6 3.8Z"/>
                 </svg>
