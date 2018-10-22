@@ -317,8 +317,16 @@ import "../../styles/fonts.scss.liquid";
     const $this = $(e.currentTarget);
 
     getProductData().then(({ product }) => {
-      const one = $("input[data-position='1']:checked").val();
-      const two = $("input[data-position='2']:checked").val();
+      const one = $this
+        .closest("form")
+        .find("input[data-position='1']:checked")
+        .val();
+
+      const two = $this
+        .closest("form")
+        .find("input[data-position='2']:checked")
+        .val();
+
       const selectedVariant = product.variants.filter(
         v =>
           v.option2 ? v.option1 === one && v.option2 === two : v.option1 === one

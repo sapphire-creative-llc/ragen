@@ -7,7 +7,7 @@
       {% if secondary.title == collection.title %}
         {% if secondary.links != blank %}
           {% for child_link in secondary.links %}
-            <a href="{{ child_link.url }}" class="inline-block no-underline collection-filter dark-pink border border-dark-pink rounded">
+            <a href="{{ child_link.url }}" class="inline-block no-underline collection-filter dark-pink border border-dark-pink rounded text-center">
               {{ child_link.title }}
             </a>
           {% endfor %}
@@ -15,7 +15,7 @@
       {% endif %}
     {% endfor %}
   </div>
-  <div class="flex flex-wrap pt4">
+  <div class="flex-md flex-wrap pt4">
     {% for product in collection.products %}
       {% include 'collection' %}
     {% endfor %}
