@@ -522,7 +522,7 @@ pre a,
   a {
     line-height: 1.4;
   }
-  @media screen and (min-width: $break-md) {
+  @media screen and (min-width: $break-lg) {
     height: 3.5rem;
   }
 }
@@ -543,8 +543,7 @@ pre a,
 .announcement,
 .site-wrapper,
 .site-footer,
-.site-nav,
-.secondary-menu {
+.site-nav {
   transform: translateX(0);
   -webkit-transition: transform .2s;
   transition: transform .2s;
@@ -554,8 +553,7 @@ pre a,
   .announcement,
   .site-wrapper,
   .site-footer,
-  .site-nav,
-  .secondary-menu {
+  .site-nav {
     transform: translateX(-90%);
     @media screen and (min-width: $break-md) {
       transform: translateX(-50%);
@@ -773,19 +771,6 @@ footer {
   &.active {
     color: #222;
     border-color: #222;
-  }
-}
-
-.pad-header {
-  padding-top: 2.5rem;
-  &.banner-showing {
-    padding-top: 5rem;
-  }
-  @media screen and (min-width: $break-md) {
-    padding-top: 3.5rem;
-    &.banner-showing {
-      padding-top: 5.5rem;
-    }
   }
 }
 
