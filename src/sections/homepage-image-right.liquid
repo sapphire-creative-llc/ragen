@@ -1,9 +1,5 @@
 <div class="grid">
-  <div class="image-module left-module flex items-center">
-    <div class="visual overflow-hidden bg-light-gray w100p">
-      <div class="rounded image bg-center bg-cover fade-image" style="padding-top: 100%;" data-img="{{ section.settings.image | img_url: '1440x768' }}"></div>
-    </div>
-    <span class="space"></span>
+  <div class="image-module right-module flex items-center">
     <div class="description border-box">
       <h3 class="mt0 mb1">{{ section.settings.title }}</h3>
       <p class="m0 dark-gray apercu-light">{{ section.settings.description }}</p>
@@ -11,12 +7,16 @@
         {{ section.settings.button_text }}
       </button>
     </div>
+    <span class="space"></span>
+    <div class="visual overflow-hidden bg-light-gray w100p">
+      <div class="rounded image bg-center bg-cover fade-image" style="padding-top: 100%;" data-img="{{ section.settings.image | img_url: '1440x768' }}"></div>
+    </div>
   </div>
 </div>
 
 {% schema %}
   {
-    "name": "Image Left",
+    "name": "Image Right",
     "settings": [
       {
         "id": "title",
