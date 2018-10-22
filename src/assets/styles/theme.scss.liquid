@@ -675,21 +675,10 @@ footer {
   }
 }
 
-.cart-padding {
-  padding-left: 2rem;
-  padding-right: 2rem;
-  @media screen and (min-width: $break-md) {
-    padding-left: 3rem;
-    padding-right: 3rem;
-  }
+.pad-cart-close {
+  padding: 1.5rem;
 }
 
-.pad-cart-close {
-  padding: 1rem;
-  @media screen and (min-width: $break-md) {
-    padding: 1.5rem 2rem;
-  }
-}
 .pad-index-numbers {
   padding: 1rem;
   @media screen and (min-width: $break-md) {
@@ -721,7 +710,10 @@ footer {
 }
 
 .product-details {
-  width: 50%;
+  width: 100%;
+  @media screen and (min-width: $break-md) {
+    width: 50%;
+  }
   @media screen and (min-width: $break-lg) {
     width: 30%;
   }

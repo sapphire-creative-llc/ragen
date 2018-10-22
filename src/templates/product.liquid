@@ -27,7 +27,7 @@
       <div class="image bg-center bg-cover fade-image" style="padding-top: 100%;" data-img="{{ image | img_url: '1024x' }}"></div>
     </div>
   {% endfor %}
-  <div class="grid pt1 pb3">
+  <div class="grid pt1 pb3 product-details">
     {% include 'product-details' %}
   </div>
   {% for image in product.images offset:1 %}

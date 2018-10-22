@@ -99,8 +99,8 @@ import "../../styles/fonts.scss.liquid";
             </div>
           </div>
           <div>
-            <a class="h5 no-underline rounded border border-dark-pink block remove-from-cart hover-opacity-5" href="#">
-              <svg class="pointer dark-pink block" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 15 15">
+            <a class="h5 no-underline rounded border border-charcoal block remove-from-cart hover-opacity-5" href="#">
+              <svg class="pointer medium-gray block" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 15 15">
                 <polygon points="7.5 8.5 1 14.9 0 13.9 6.5 7.5 0 1 1 0 7.5 6.5 14 0 15 1 8.5 7.5 15 14 14 15" fill="currentColor"/>
               </svg>
             </a>
@@ -320,7 +320,8 @@ import "../../styles/fonts.scss.liquid";
       const one = $("input[data-position='1']:checked").val();
       const two = $("input[data-position='2']:checked").val();
       const selectedVariant = product.variants.filter(
-        v => v.option1 === one && v.option2 === two
+        v =>
+          v.option2 ? v.option1 === one && v.option2 === two : v.option1 === one
       );
 
       if (selectedVariant.length > 0) {
