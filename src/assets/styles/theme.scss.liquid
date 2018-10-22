@@ -56,6 +56,7 @@ select { -webkit-appearance: menulist-button; }
   border: 0;
   font-size: 1rem;
   cursor: pointer;
+  -webkit-appearance: none;
   background-color: transparent;
   padding: .75rem 1rem;
   outline: none;
@@ -532,11 +533,8 @@ pre a,
   transform: translateX(100%);
   -webkit-transition: transform .2s;
   transition: transform .2s;
-  @media screen and (min-width: $break-md) {
-    width: 50%;
-  }
   @media screen and (min-width: $break-lg) {
-    width: calc(30% - .75rem);
+    width: calc(40%);
   }
 }
 
@@ -554,17 +552,18 @@ pre a,
   .site-wrapper,
   .site-footer,
   .site-nav {
-    transform: translateX(-90%);
-    @media screen and (min-width: $break-md) {
-      transform: translateX(-50%);
-    }
+    transform: translateX(-100%);
     @media screen and (min-width: $break-lg) {
-      transform: translateX(-30%);
+      transform: translateX(-41%);
     }
   }
   .cart-wrapper {
     transform: translateX(0);
   }
+}
+
+.cart-item {
+  margin-bottom: 1.5rem;
 }
 
 .append-cart-item {
@@ -673,8 +672,29 @@ footer {
   }
 }
 
+.cart-padding {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  @media screen and (min-width: $break-md) {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+.cart-image {
+  width: 4rem;
+  height: 4rem;
+  @media screen and (min-width: $break-md) {
+    width: 5rem;
+    height: 5rem;
+  }
+}
+
 .pad-cart-close {
-  padding: 1.5rem;
+  padding: 1rem;
+  @media screen and (min-width: $break-md) {
+    padding: 1.5rem;
+  }
 }
 
 .pad-index-numbers {

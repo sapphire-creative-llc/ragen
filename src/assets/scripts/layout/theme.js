@@ -40,9 +40,23 @@ import "../../styles/fonts.scss.liquid";
   $trigger.on("click", e => {
     e.preventDefault();
 
-    $body.hasClass("cart-open")
-      ? $body.removeClass("cart-open")
-      : $body.addClass("cart-open");
+    const openCart = () => {
+      const bp = breakpoint()
+        .replace(/"/g, " ")
+        .trim();
+
+      if (bp === "sm") {
+        $body.addClass("overflow-hidden");
+      }
+
+      $body.addClass("cart-open");
+    };
+
+    const closeCart = () => {
+      $body.removeClass("cart-open overflow-hidden");
+    };
+
+    $body.hasClass("cart-open") ? closeCart() : openCart();
   });
 
   const priceToCurrency = price => {
@@ -78,9 +92,9 @@ import "../../styles/fonts.scss.liquid";
     const variantTitle = variant_title || "";
 
     return `
-      <div class="cart-item w100p pb1" data-id="${variant_id}">
+      <div class="cart-item w100p" data-id="${variant_id}">
         <div class="flex w100p">
-          <div class="width-5 height-5 bg-center bg-cover" style="background-image: url(${image})"></div>
+          <div class="cart-image bg-center bg-cover" style="background-image: url(${image})"></div>
           <div class="flex-1 px1">
             <p class="m0 h4">${product_title}</p>
             <p class="m0 h5">${variantTitle} ${product_type} - ${formattedPrice}</p>
