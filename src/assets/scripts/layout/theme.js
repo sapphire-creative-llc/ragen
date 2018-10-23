@@ -80,7 +80,6 @@ import "../../styles/fonts.scss.liquid";
   });
 
   const cartItemToHtml = item => {
-    console.log(item);
     const {
       image,
       variant_id,
