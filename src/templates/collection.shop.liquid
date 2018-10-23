@@ -1,14 +1,3 @@
-{% for collection in collections %}
-  {% for product in collection.products %}
-    {% for product_options in product.options_with_values %}
-      {% if product_options.name == 'Color' %}
-        {% for value in product_options.values %}
-          {{ value | handleize }}
-        {% endfor %}
-      {% endif %}
-    {% endfor %}
-  {% endfor %}
-{% endfor %}
 <div>
   <div class="text-center pt4 hide-lg">
     {% for secondary in linklists.secondary-menu.links %}
