@@ -1,35 +1,33 @@
 <!doctype html>
 <html lang="{{ shop.locale }}">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="google-site-verification" content="PuVPeDl_UrP5iGyWDSmsZSKYJDsx4BgmjGyasqha7K8" />
-  <meta name="theme-color" content="">
-  <link rel="canonical" href="{{ canonical_url }}">
-  <link rel="shortcut icon" href="" />
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="canonical" href="{{ canonical_url }}">
+    <link rel="shortcut icon" href="" />
 
-  <title>{{ shop.name }} - {{ page_title }}</title>
+    <title>{{ shop.name }} - {{ page_title }}</title>
 
-  <meta name="description" content="{{ shop.description }}">
+    <meta name="description" content="{{ shop.description }}">
 
-  {% include 'style-tags', layout: 'theme' %}
+    {% include 'style-tags', layout: 'theme' %}
 
-  {{ '//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js' | script_tag }}
+    {{ '//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js' | script_tag }}
 
-  {% include 'script-tags', layout: 'theme' %}
+    {% include 'script-tags', layout: 'theme' %}
 
-  {{ content_for_header }}
-</head>
+    {{ content_for_header }}
+  </head>
 
-<body>
-  <div class="flex flex-column items-between min-h100vh {% if settings.display_announcement_banner %}banner-showing{% endif %}">
-    {% include 'header' %}
-    <div class="mx1 border-box site-wrapper main-height flex-1 {% if settings.display_announcement_banner %}banner-showing{% endif %}">
-      {{ content_for_layout }}
+  <body>
+    <div class="site flex flex-column items-between min-h100vh {% if settings.display_announcement_banner %}banner-showing{% endif %}">
+      {% include 'header' %}
+      <div class="mx1 border-box site-wrapper main-height flex-1 {% if settings.display_announcement_banner %}banner-showing{% endif %}">
+        {{ content_for_layout }}
+      </div>
+      {% include 'footer' %}
     </div>
-    {% include 'footer' %}
-  </div>
-  {% include 'cart' %}
-</body>
+    {% include 'cart' %}
+  </body>
 </html>

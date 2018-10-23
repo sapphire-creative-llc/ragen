@@ -206,6 +206,7 @@ $whitespace: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15;
   .mb#{$value} { margin-bottom: #{$value}rem; }
   .ml#{$value} { margin-left: #{$value}rem; }
   .mx#{$value} { margin-left: #{$value}rem; margin-right: #{$value}rem; }
+  .mx-#{$value} { margin-left: -#{$value}rem; margin-right: -#{$value}rem; }
   .my#{$value} { margin-top: #{$value}rem; margin-bottom: #{$value}rem; }
 
   .width-#{$value} { width: #{$value}rem; }
@@ -534,27 +535,21 @@ pre a,
   -webkit-transition: transform .2s;
   transition: transform .2s;
   @media screen and (min-width: $break-lg) {
-    width: calc(40%);
+    width: 33%;
   }
 }
 
-.announcement,
-.site-wrapper,
-.site-footer,
-.site-nav {
+.site {
   transform: translateX(0);
   -webkit-transition: transform .2s;
   transition: transform .2s;
 }
 
 .cart-open {
-  .announcement,
-  .site-wrapper,
-  .site-footer,
-  .site-nav {
+  .site {
     transform: translateX(-100%);
     @media screen and (min-width: $break-lg) {
-      transform: translateX(-41%);
+      transform: translateX(-33%);
     }
   }
   .cart-wrapper {
@@ -739,7 +734,7 @@ footer {
   .product-input {
     margin: .5rem .65rem .5rem 0;
     .product-option {
-      height: 2.3rem;
+      height: 2rem;
       padding: 0 .75rem 0 0;
       span {
         top: 1px;
@@ -747,8 +742,8 @@ footer {
         padding-left: .75rem;
       }
       .square {
-        height: 2.1rem;
-        width: 1.6rem;
+        height: 1.8rem;
+        width: 1.4rem;
         &.gold {
           background-color: #F7E2B6;
         }
@@ -758,7 +753,7 @@ footer {
       }
     }
     .product-Size {
-      width: 2.4rem;
+      width: 2rem;
     }
     .product-Color {
       top: 2px;
@@ -893,7 +888,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 .number-input {
   margin-top: .5rem;
-  height: 1.6rem;
+  height: 1.8rem;
   input {
     width: 1.2rem;
     font-family: inherit;
@@ -901,7 +896,7 @@ input[type=number]::-webkit-outer-spin-button {
     height: 100%;
     border: none;
     background: none;
-    height: 1.4rem;
+    height: 1.6rem;
     position: relative;
     top: 1px;
   }

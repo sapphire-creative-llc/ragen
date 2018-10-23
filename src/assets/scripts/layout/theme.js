@@ -265,41 +265,12 @@ import "../../styles/fonts.scss.liquid";
 
   $cartForm.on("submit", e => {
     e.preventDefault();
-    const $form = $(e.currentTarget);
 
-    const qty = $("select[name='quantity']")
-      .find(":selected")
-      .text()
-      .replace("Qty", "")
-      .trim();
-
-    const size = $("select[name='id']")
-      .find(":selected")
-      .text()
-      .replace("Size", "")
-      .trim();
-
-    const variantsAvailable = $("select[name='id']")
-      .find(":selected")
-      .filter(":enabled")
-      .data("variants-length");
-
-    if (qty > variantsAvailable) {
-      $addToCartError
-        .show()
-        .text(
-          variantsAvailable === 1
-            ? `There is only ${variantsAvailable} item left in ${size} size.`
-            : `There are only ${variantsAvailable} items left in ${size} size.`
-        );
-      return;
-    }
-
-    $addToCartError.hide();
     $body.addClass("cart-open");
 
-    const serializedData = $(e.currentTarget).serialize();
-    const serializedJSON = $(e.currentTarget).serializeArray();
+    const $form = $(e.currentTarget);
+    const serializedData = $form.serialize();
+    const serializedJSON = $form.serializeArray();
 
     const id = serializedJSON[0].value;
     const alreadyInCart = findItemById(id).length === 1;
@@ -318,39 +289,33 @@ import "../../styles/fonts.scss.liquid";
     }
   });
 
-  $cartForm.find("select").on("change", e => {
-    const $select = $(e.currentTarget);
-
-    $select
-      .siblings(".placeholder")
-      .find("span")
-      .text($select.find("option:selected").text());
-  });
-
   $('input[data-position!=""]').on("change", e => {
     const $this = $(e.currentTarget);
+    const one = $this
+      .closest("form")
+      .find("input[data-position='1']:checked")
+      .val();
+    const two = $this
+      .closest("form")
+      .find("input[data-position='2']:checked")
+      .val();
 
     getProductData().then(({ product }) => {
-      const one = $this
-        .closest("form")
-        .find("input[data-position='1']:checked")
-        .val();
+      $.getJSON(`/products/${product.handle}.js`).then(({ variants }) => {
+        const cool = variants.filter(v => v.option2 === two);
+        console.log(cool);
+        const selectedVariant = variants.filter(v => {
+          return v.option2
+            ? v.option1 === one && v.option2 === two
+            : v.option1 === one;
+        });
 
-      const two = $this
-        .closest("form")
-        .find("input[data-position='2']:checked")
-        .val();
-
-      const selectedVariant = product.variants.filter(
-        v =>
-          v.option2 ? v.option1 === one && v.option2 === two : v.option1 === one
-      );
-
-      if (selectedVariant.length > 0) {
-        $('select[name="id"]')
-          .val(selectedVariant[0].id)
-          .change();
-      }
+        if (selectedVariant.length > 0) {
+          $('select[name="id"]')
+            .val(selectedVariant[0].id)
+            .change();
+        }
+      });
     });
 
     $this
