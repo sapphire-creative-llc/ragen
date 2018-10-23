@@ -357,6 +357,7 @@ $whitespace: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15;
 .dark-gray { color: #666; }
 .bg-dark-gray { background-color: #666; }
 .border-dark-gray { border-color: #666; }
+.hover-border-dark-gray:hover { border-color: #666; }
 
 .smoke { color: #eee; }
 .bg-smoke { background-color: #eee; }
@@ -733,13 +734,16 @@ footer {
   }
   .product-input {
     margin: .5rem .65rem .5rem 0;
+    &:hover input:not([disabled]):not(:checked) + button {
+      color: #666;
+      border-color: #666;
+    }
     .product-option {
       height: 2rem;
-      padding: 0 .75rem 0 0;
+      padding: 0 .75rem;
       span {
         top: 1px;
         display: block;
-        padding-left: .75rem;
       }
       .square {
         height: 1.8rem;

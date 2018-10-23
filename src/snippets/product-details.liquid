@@ -32,19 +32,21 @@
         {% endfor %}
       </select>
       {% for product_option in product.options_with_values %}
-        <label class="h5 block mb1">
-          <span class="block">Select a {{ product_option.name | downcase }}</span>
-          <div class="flex">
-            {% for value in product_option.values %}
-            <div class="product-input relative">
-              <input data-position="{{ product_option.position }}" class="absolute t0 l0 r0 b0 w100p h100p pointer m0 o0p z1" type="radio" name="{{ product_option.name }}" value="{{ value }}" {% if product_option.selected_value == value %}checked{% endif %} />
-              <button class="product-option medium-gray product-{{ product_option.name }} border border-mild-gray rounded apercu-regular h4 m0 flex items-center justify-center bg-white {% if product_option.selected_value == value %}black border-black{% endif %}">
-                <span class="relative">{{ value }}</span>
-              </button>
+        {% if product_option.name != 'Title' %}
+          <label class="h5 block mb1">
+            <span class="block">Select a {{ product_option.name | downcase }}</span>
+            <div class="flex">
+              {% for value in product_option.values %}
+              <div class="product-input relative">
+                <input data-option-value="{{ value }}" data-position="{{ product_option.position }}" class="absolute t0 l0 r0 b0 w100p h100p pointer m0 o0p z1" type="radio" name="{{ product_option.name }}" value="{{ value }}" {% if product_option.selected_value == value %}checked{% endif %} />
+                <button type="button" class="product-option medium-gray product-{{ product_option.name }} border border-mild-gray rounded apercu-regular h4 m0 flex items-center justify-center bg-white {% if product_option.selected_value == value %}black border-black{% endif %}">
+                  <span class="relative">{{ value }}</span>
+                </button>
+              </div>
+              {% endfor %}
             </div>
-            {% endfor %}
-          </div>
-        </label>
+          </label>
+        {% endif %}
       {% endfor %}
       <input
         type="submit"

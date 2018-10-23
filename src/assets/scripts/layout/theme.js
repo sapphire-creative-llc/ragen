@@ -79,15 +79,17 @@ import "../../styles/fonts.scss.liquid";
     $input.val(val + 1).change();
   });
 
-  const cartItemToHtml = ({
-    image,
-    variant_id,
-    variant_title,
-    product_title,
-    product_type,
-    quantity,
-    price
-  }) => {
+  const cartItemToHtml = item => {
+    console.log(item);
+    const {
+      image,
+      variant_id,
+      variant_title,
+      product_title,
+      product_type,
+      quantity,
+      price
+    } = item;
     const formattedPrice = priceToCurrency(price);
     const variantTitle = variant_title || "";
 
@@ -291,6 +293,7 @@ import "../../styles/fonts.scss.liquid";
 
   $('input[data-position!=""]').on("change", e => {
     const $this = $(e.currentTarget);
+    const position = $this.data("position");
     const one = $this
       .closest("form")
       .find("input[data-position='1']:checked")
@@ -302,8 +305,6 @@ import "../../styles/fonts.scss.liquid";
 
     getProductData().then(({ product }) => {
       $.getJSON(`/products/${product.handle}.js`).then(({ variants }) => {
-        const cool = variants.filter(v => v.option2 === two);
-        console.log(cool);
         const selectedVariant = variants.filter(v => {
           return v.option2
             ? v.option1 === one && v.option2 === two
@@ -315,6 +316,8 @@ import "../../styles/fonts.scss.liquid";
             .val(selectedVariant[0].id)
             .change();
         }
+
+        disableUnavailableVariants(variants);
       });
     });
 
@@ -324,6 +327,68 @@ import "../../styles/fonts.scss.liquid";
       .removeClass("black border-black");
 
     $this.siblings().addClass("black border-black");
+  });
+
+  const disableUnavailableVariants = variants => {
+    const selectedOption1 = $("form")
+      .find("input[data-position='1']:checked")
+      .val();
+
+    const selectedOption2 = $("form")
+      .find("input[data-position='2']:checked")
+      .val();
+
+    $(`input[data-option-value]`)
+      .prop("disabled", false)
+      .css("cursor", "pointer")
+      .siblings("button")
+      .find("span")
+      .removeClass("strike");
+
+    variants.filter(v => v.option1 === selectedOption1).map(v => {
+      if (!v.available) {
+        $(`input[data-option-value='${v.option2}']`)
+          .prop("disabled", true)
+          .css("cursor", "default")
+          .siblings("button")
+          .find("span")
+          .addClass("strike");
+      }
+    });
+
+    variants.filter(v => v.option2 === selectedOption2).map(v => {
+      if (!v.available) {
+        $(`input[data-option-value='${v.option1}']`)
+          .prop("disabled", true)
+          .css("cursor", "default")
+          .siblings("button")
+          .find("span")
+          .addClass("strike");
+      }
+    });
+  };
+
+  getProductData().then(({ product }) => {
+    $.getJSON(`/products/${product.handle}.js`).then(({ variants }) => {
+      /**
+       * Set the first available variant on load
+       */
+      const firstAvailableVariant = variants.filter(v => v.available)[0];
+
+      $('select[name="id"]')
+        .val(firstAvailableVariant.id)
+        .change();
+
+      $(`input[data-option-value='${firstAvailableVariant.option1}']`)
+        .siblings()
+        .addClass("black border-black");
+
+      $(`input[data-option-value='${firstAvailableVariant.option2}']`)
+        .siblings()
+        .addClass("black border-black");
+
+      disableUnavailableVariants(variants);
+    });
   });
 
   $('select[name="id"]').hide();
