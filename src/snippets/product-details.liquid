@@ -32,17 +32,67 @@
         {% endfor %}
       </select>
       {% for product_option in product.options_with_values %}
+        {% if product_option.name == 'Color' %}
+          {% style %}
+            .option-color::before {
+              content: '';
+              width: 1rem;
+              height: 1rem;
+              border-radius: 3px;
+              display: inline-block;
+              margin-right: .5rem;
+              position: relative;
+              top: 2px;
+            }
+            {% for value in product_option.values %}
+              {% if value == 'Gold' %}
+                .bg-option-{{ value | handleize }}::before { background-color: gold }
+              {% endif %}
+              {% if value == 'Silver' or value == 'Sillver' %}
+                .bg-option-{{ value | handleize }}::before { background-color: silver }
+              {% endif %}
+              {% if value == 'Blue' %}
+                .bg-option-{{ value | handleize }}::before { background-color: slateblue }
+              {% endif %}
+              {% if value == 'Red' %}
+                .bg-option-{{ value | handleize }}::before { background-color: crimson }
+              {% endif %}
+              {% if value == 'Rose Gold' %}
+                .bg-option-{{ value | handleize }}::before { background-color: mistyrose }
+              {% endif %}
+              {% if value == 'Rhodium' %}
+                .bg-option-{{ value | handleize }}::before { background-color: gainsboro }
+              {% endif %}
+              {% if value == 'Black' %}
+                .bg-option-{{ value | handleize }}::before { background-color: black }
+              {% endif %}
+              {% if value == 'Navy' %}
+                .bg-option-{{ value | handleize }}::before { background-color: navy }
+              {% endif %}
+              {% if value == 'Teal' %}
+                .bg-option-{{ value | handleize }}::before { background-color: teal }
+              {% endif %}
+              {% if value == 'Pink' %}
+                .bg-option-{{ value | handleize }}::before { background-color: pink }
+              {% endif %}
+            {% endfor %}
+          {% endstyle %}
+        {% endif %}
+
         {% if product_option.name != 'Title' %}
           <label class="h5 block mb1">
             <span class="block">Select a {{ product_option.name | downcase }}</span>
             <div class="flex">
               {% for value in product_option.values %}
-              <div class="product-input relative">
-                <input data-option-value="{{ value }}" data-position="{{ product_option.position }}" class="absolute t0 l0 r0 b0 w100p h100p pointer m0 o0p z1" type="radio" name="{{ product_option.name }}" value="{{ value }}" {% if product_option.selected_value == value %}checked{% endif %} />
-                <button type="button" class="product-option medium-gray product-{{ product_option.name }} border border-mild-gray rounded apercu-regular h4 m0 flex items-center justify-center bg-white {% if product_option.selected_value == value %}black border-black{% endif %}">
-                  <span class="relative">{{ value }}</span>
-                </button>
-              </div>
+                <div class="product-input relative">
+                  <input data-option-value="{{ value }}" data-position="{{ product_option.position }}" class="absolute t0 l0 r0 b0 w100p h100p pointer m0 o0p z1" type="radio" name="{{ product_option.name }}" value="{{ value }}" {% if product_option.selected_value == value %}checked{% endif %} />
+                  <button type="button" class="product-option medium-gray product-{{ product_option.name }} border border-mild-gray rounded apercu-regular h4 m0 flex items-center justify-center bg-white {% if product_option.selected_value == value %}black border-black{% endif %}">
+                    {% if product_option.name == 'Color' %}
+                      <div class="option-color bg-option-{{ value | handleize }}"></div>
+                    {% endif %}
+                    <span class="relative">{{ value }}</span>
+                  </button>
+                </div>
               {% endfor %}
             </div>
           </label>
