@@ -3,14 +3,11 @@
   .bg-header-color { background-color: {{ section.settings.text_color }} }
 {% endstyle %}
 <div class="rounded-top mt1 bg-light-pink home-hero {% if settings.display_announcement_banner %}banner-showing{% endif %}">
-  <div class="rounded-top image w100p h100p bg-cover bg-center bg-no-repeat fade-image flex items-center justify-center text-center" data-img="{{ section.settings.image | img_url: '2000x' }}">
-    <div class="header-color px1">
-      <h1 class="m0 text-normal">{{ section.settings.title }}</h1>
-      <p class="m0 text-normal">{{ section.settings.description}}</p>
-      <a href="{{ section.settings.button_link }}" class="button black h5 text-uppercase rounded no-underline no-border inline-block mt1 bg-header-color">
-        {{ section.settings.button_text }}
-      </a>
-    </div>
+  <div class="rounded-top h100p w100p image bg-cover bg-center bg-no-repeat fade-image show-md" data-img="{{ section.settings.image_desktop | img_url: '2000x' }}">
+    {% include 'homepage-header' %}
+  </div>
+  <div class="rounded-top h100p w100p image bg-cover bg-center bg-no-repeat fade-image hide-md" data-img="{{ section.settings.image_mobile | img_url: '1000x' }}">
+    {% include 'homepage-header' %}
   </div>
 </div>
 
@@ -29,9 +26,14 @@
         "label": "Description"
       },
       {
-        "id": "image",
+        "id": "image_desktop",
         "type": "image_picker",
-        "label": "Image"
+        "label": "Image on desktop (landscape)"
+      },
+      {
+        "id": "image_mobile",
+        "type": "image_picker",
+        "label": "Image on mobile (portrait)"
       },
       {
         "id": "button_text",
