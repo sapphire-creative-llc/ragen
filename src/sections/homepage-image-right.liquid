@@ -3,9 +3,9 @@
     <div class="description border-box">
       <h3 class="mt0 mb1">{{ section.settings.title }}</h3>
       <p class="m0 dark-gray apercu-light">{{ section.settings.description }}</p>
-      <button class="button h5 text-uppercase bg-dark-pink rounded white no-border mt2">
+      <a href="{{ section.settings.button_url }}" class="button h5 text-uppercase bg-dark-pink rounded white no-border inline-block no-underline mt2">
         {{ section.settings.button_text }}
-      </button>
+      </a>
     </div>
     <span class="space"></span>
     <div class="visual overflow-hidden bg-light-gray w100p">
@@ -37,6 +37,11 @@
         "id": "button_text",
         "type": "text",
         "label": "Button text"
+      },
+      {
+        "id": "button_url",
+        "type": "url",
+        "label": "Button link"
       }
     ]
   }

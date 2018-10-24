@@ -83,6 +83,7 @@ select { -webkit-appearance: menulist-button; }
 .flex-column { flex-direction: column; }
 .flex-wrap { flex-wrap: wrap; }
 .items-center { align-items: center; }
+.items-end { align-items: flex-end; }
 .justify-center { justify-content: center; }
 .justify-between { justify-content: space-between; }
 .justify-end { justify-content: flex-end; }
@@ -440,9 +441,9 @@ pre a,
     height: calc(100vh - 9rem);
   }
   @media screen and (min-width: $break-md) {
-    height: calc(100vh - 10rem);
+    height: calc(100vh - 8rem);
     &.banner-showing {
-      height: calc(100vh - 12rem);
+      height: calc(100vh - 10rem);
     }
   }
 }

@@ -1,8 +1,6 @@
 {% assign collection = collections['homepage'] %}
 
-<div class="rounded-top mt1 bg-light-pink home-hero {% if settings.display_announcement_banner %}banner-showing{% endif %}">
-  <div class="rounded-top image w100p h100p bg-cover bg-center bg-no-repeat fade-image" data-img="{{ collection.image | img_url: '1440x768' }}"></div>
-</div>
+{% section 'homepage-header' %}
 <div class="bg-light-pink dark-pink py2">
   <div class="tagline mx-auto text-center">
     <img class="retina" src="https://bit.ly/2QtwLEm" />
