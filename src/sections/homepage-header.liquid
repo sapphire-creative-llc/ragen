@@ -3,7 +3,7 @@
   .bg-header-color { background-color: {{ section.settings.text_color }} }
 {% endstyle %}
 <div class="rounded-top mt1 bg-light-pink home-hero {% if settings.display_announcement_banner %}banner-showing{% endif %}">
-  <div class="rounded-top image w100p h100p bg-cover bg-center bg-no-repeat fade-image flex items-center justify-center text-center" data-img="{{ section.settings.image | img_url: '1440x768' }}">
+  <div class="rounded-top image w100p h100p bg-cover bg-center bg-no-repeat fade-image flex items-center justify-center text-center" data-img="{{ section.settings.image | img_url: '2000x' }}">
     <div class="header-color px1">
       <h1 class="m0 text-normal">{{ section.settings.title }}</h1>
       <p class="m0 text-normal">{{ section.settings.description}}</p>
