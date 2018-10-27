@@ -827,6 +827,9 @@ footer {
   @media screen and (min-width: $break-md) {
     top: 3.5rem;
   }
+  .secondart-trigger {
+    padding: .75rem 0;
+  }
   a:hover ~ .submenu, .submenu:hover {
     opacity: 1;
     visibility: visible;
@@ -850,7 +853,7 @@ footer {
     }
   }
   .mobile-item {
-    padding: .5rem 1rem;
+    padding: .5rem 0;
     border-top: 1px solid #eee;
   }
 }
@@ -965,9 +968,11 @@ input[type=number]::-webkit-outer-spin-button {
 
 .insta-famous {
   overflow: hidden;
-  margin: 0 -.5rem;
   @media screen and (min-width: $break-md) {
     margin: 0;
+  }
+  .negative-margin {
+    margin: 0 -.5rem;
   }
   .image-wrapper {
     width: 50%;
