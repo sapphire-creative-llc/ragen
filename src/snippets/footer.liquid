@@ -42,22 +42,10 @@
             {% include 'twitter-icon' %}
           </a>
         </div>
-        {% form 'customer' %}
-          <input id="contact_tags" name="contact[tags]" type="hidden" value="prospect,newsletter" />
-          <div class="newsletter-signup">
-            <label class="block medium-gray h5">
-              Be an insider! Enter your email for 15% off your first purchase:
-            </label>
-            <div class="relative">
-              <input id="contact_email" class="w100p" placeholder="Subscribe" name="contact[email]" type="text" />
-              <div class="absolute flex items-center t0 r0 b0">
-                <button type="submit" class="h3">
-                  &rarr;
-                </button>
-              </div>
-            </div>
-          </div>
-        {% endform %}
+        <label class="block medium-gray h5" for="mce-EMAIL">
+          Be an insider! Sign up for the Ragen newsletter:
+        </label>
+        {% include 'footer-signup' %}
       </div>
     </div>
     <p class="medium-gray h6 pb2 mb0">
@@ -103,22 +91,10 @@
         {% include 'twitter-icon' %}
       </a>
     </div>
-    {% form 'customer' %}
-      <input id="contact_tags" name="contact[tags]" type="hidden" value="prospect,newsletter" />
-      <div class="newsletter-signup">
-        <label class="block medium-gray h5">
-          Be an insider! Enter your email for 15% off your first purchase:
-        </label>
-        <div class="relative">
-          <input id="contact_email" class="w100p" placeholder="Subscribe" name="contact[email]" type="text" />
-          <div class="absolute flex items-center t0 r0 b0">
-            <button type="submit" class="h3">
-              &rarr;
-            </button>
-          </div>
-        </div>
-      </div>
-    {% endform %}
+    <label class="block medium-gray h5" for="mce-EMAIL">
+      Be an insider! Sign up for the Ragen newsletter:
+    </label>
+    {% include 'footer-signup' %}
   </div>
   <p class="medium-gray h6 pb2 mb0">
     © 2018 Ragen Jewels. All rights reserved.

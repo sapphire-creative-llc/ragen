@@ -444,6 +444,19 @@ import "../../styles/fonts.scss.liquid";
     $(".js-announcement").addClass("hide");
   }
 
+  $(".js-close-popup").on("click", e => {
+    e.preventDefault();
+
+    $(".js-popup").addClass("hidden");
+    localStorage.setItem("showPopup", "false");
+  });
+
+  if (localStorage.showPopup !== "false") {
+    setTimeout(() => {
+      $(".js-popup").removeClass("hidden");
+    }, 5000);
+  }
+
   $(".thumbnail").on("click", e => {
     e.preventDefault();
     const id = $(e.currentTarget).data("id");

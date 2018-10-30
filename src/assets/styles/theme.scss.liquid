@@ -88,6 +88,8 @@ select { -webkit-appearance: menulist-button; }
 .justify-between { justify-content: space-between; }
 .justify-end { justify-content: flex-end; }
 .flex-1 { flex-grow: 1; }
+.flex-2 { flex-grow: 2; }
+.flex-3 { flex-grow: 3; }
 .flex-4 { flex-grow: 4; }
 .basis-0 { flex-basis: 0; }
 
@@ -458,8 +460,8 @@ pre a,
   }
 }
 
-.newsletter-signup {
-  button {
+.footer-signup {
+  input[type="submit"] {
     border: none;
     outline: 0;
     background-color: #F2E0D9;
@@ -467,7 +469,7 @@ pre a,
     height: 100%;
     cursor: pointer;
   }
-  input {
+  input[type="email"] {
     outline: 0;
     padding: 1rem 1.25rem;
     background-color: #F2E0D9;
@@ -490,6 +492,79 @@ pre a,
   }
   label {
     margin-bottom: .5rem;
+  }
+}
+
+.popup-signup {
+  input[type="submit"] {
+    border: none;
+    outline: 0;
+    background-color: transparent;
+    padding: .85rem;
+    height: 100%;
+    cursor: pointer;
+  }
+  input[type="email"] {
+    outline: 0;
+    padding: 1rem 1.25rem;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 1px 4px rgba(0,0,0,.12);
+    border-radius: 4px;
+    font-family: "Apercu Regular";
+    font-size: 1rem;
+    color: #666;
+    &::-webkit-input-placeholder {
+     font-family: "Apercu Regular";
+    }
+    ::-moz-placeholder {
+     font-family: "Apercu Regular";
+    }
+    :-ms-input-placeholder {
+     font-family: "Apercu Regular";
+    }
+    :-moz-placeholder {
+     font-family: "Apercu Regular";
+    }
+  }
+  label {
+    margin-bottom: .5rem;
+  }
+}
+
+.newsletter-popup {
+  background: rgba(200,200,200,.8);
+  visibility: visible;
+  opacity: 1;
+  transition: all .2s;
+  &.hidden {
+    visibility: hidden;
+    opacity: 0;
+  }
+  .popup-box {
+    max-width: 48rem;
+    flex-direction: column;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    @media screen and (min-width: $break-md) {
+      margin-left: auto;
+      margin-right: auto;
+      flex-direction: row;
+    }
+    .popup-image {
+      height: 10rem;
+      @media screen and (min-width: $break-md) {
+        height: auto;
+        width: 40%;
+      }
+    }
+    .popup-content {
+      padding: 2rem;
+      @media screen and (min-width: $break-md) {
+        padding: 3rem;
+        width: 60%;
+      }
+    }
   }
 }
 
