@@ -454,7 +454,7 @@ import "../../styles/fonts.scss.liquid";
   if (localStorage.showPopup !== "false") {
     setTimeout(() => {
       $(".js-popup").removeClass("hidden");
-    }, 5000);
+    }, 7500);
   }
 
   $(".thumbnail").on("click", e => {
