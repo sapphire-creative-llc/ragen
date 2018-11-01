@@ -1,2 +1,22 @@
-<h1>{{ page.title }}</h1>
-<pre>{{ page.content }}</pre>
+<div class="grid page pt3 pb8">
+  <div>
+    <h5>{{ page.title }}</h5>
+  </div>
+  <div class="page-content break-word text-left pt2">
+    {{ page.content }}
+  </div>
+  <div class="pt3">
+    <a class="inline-block dark-pink mr1 hover-opacity-5" href="https://www.instagram.com/ragenjewels/?hl=en" target="_blank">
+      {% include 'instagram-icon' %}
+    </a>
+    <a class="inline-block dark-pink mr1 hover-opacity-5" href="https://www.facebook.com/ragenjewels/" target="_blank">
+      {% include 'facebook-icon' %}
+    </a>
+    <a class="inline-block dark-pink mr1 hover-opacity-5" href="https://www.pinterest.com/ragenjewels/" target="_blank">
+      {% include 'pinterest-icon' %}
+    </a>
+    <a class="inline-block dark-pink hover-opacity-5" href="https://twitter.com/ragenjewels" target="_blank">
+      {% include 'twitter-icon' %}
+    </a>
+  </div>
+</div>
