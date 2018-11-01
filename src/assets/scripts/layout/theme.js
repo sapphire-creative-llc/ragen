@@ -290,7 +290,7 @@ import "../../styles/fonts.scss.liquid";
     }
   });
 
-  $('input[data-position!=""]').on("change", e => {
+  $("input[data-position='1'], input[data-position='2']").on("change", e => {
     const $this = $(e.currentTarget);
     const position = $this.data("position");
     const one = $this
@@ -319,7 +319,7 @@ import "../../styles/fonts.scss.liquid";
         disableUnavailableVariants(variants);
       });
     });
-
+    console.log("here", $this);
     $this
       .closest("label")
       .find("button")
