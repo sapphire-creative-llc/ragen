@@ -1,0 +1,44 @@
+<div class="insta-famous text-center py6 w100p">
+  <h3 class="mt0 mb1 text-normal">Insta Famous</h5>
+  <p class="mt0 h5 dark-gray mb3">Tag us on Instagram with @ragenjewels to be featured on our site!</p>
+  <div class="flex-md negative-margin">
+    <div class="image-wrapper flex-1"><img class="rounded" src="{{ section.settings.image1 | img_url: '800x' }}" /></div>
+    <span class="block pl1"></span>
+    <div class="image-wrapper flex-1"><img class="rounded" src="{{ section.settings.image2 | img_url: '800x' }}" /></div>
+    <span class="block pl1 show-md"></span>
+    <div class="image-wrapper flex-1"><img class="rounded" src="{{ section.settings.image3 | img_url: '800x' }}" /></div>
+    <span class="block pl1"></span>
+    <div class="image-wrapper flex-1"><img class="rounded" src="{{ section.settings.image4 | img_url: '800x' }}" /></div>
+  </div>
+  <a href="https://www.instagram.com/explore/tags/ragenjewels/" target="_blank" class="button h5 no-underline text-uppercase bg-dark-pink rounded white no-border mt3 inline-block">
+    See all photos
+  </a>
+</div>
+
+{% schema %}
+  {
+    "name": "Instagram Photos",
+    "settings": [
+      {
+        "id": "image1",
+        "type": "image_picker",
+        "label": "Image 1"
+      },
+      {
+        "id": "image2",
+        "type": "image_picker",
+        "label": "Image 2"
+      },
+      {
+        "id": "image3",
+        "type": "image_picker",
+        "label": "Image 3"
+      },
+      {
+        "id": "image4",
+        "type": "image_picker",
+        "label": "Image 4"
+      }
+    ]
+  }
+{% endschema %}
