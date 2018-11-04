@@ -12,16 +12,10 @@
         </a>
       {% endfor %}
       {% if shop.customer_accounts_enabled %}
-        {% if customer %}
-          <a class="dark-pink no-underline h2 block mb1" href="/account">Account</a>
-        {% else %}
-          {% if shop.customer_accounts_optional %}
-            {{ 'Sign Up' | customer_register_link | replace: '<a', '<a class="dark-pink no-underline h2 block mb1"' }}
-          {% endif %}
-          {{ 'Account' | customer_login_link | replace: '<a', '<a class="dark-pink no-underline h2 block mb1"' }}
-        {% endif %}
+        {% for right in linklists.header-right-menu.links %}
+          <a class="dark-pink no-underline h2 block mb1" href="{{ right.url }}">{{ right.title }}</a>
+        {% endfor %}
       {% endif %}
-      <a class="dark-pink no-underline h2 block mb1" href="/help">Help</a>
     </nav>
   </div>
   <div class="js-mobile-nav-close w30p h100p left"></div>
