@@ -1,7 +1,11 @@
 <div class="bg-light-gray rounded py4 text-center">
   <div class="grid">
     <div class="quote-width mx-auto">
-      <p class="apercu-light dark-gray mt0 mb2"><span class="medium-gray">“</span>I want to design jewelry that accompanies you in your quest for happiness, all of the pieces have to be soulful and symbolic of what brings you joy.<span class="medium-gray">”</span></p>
+      <p class="apercu-light dark-gray mt0 mb2">
+        <span class="medium-gray">“</span>
+        {{ section.settings.quote_text }}
+        <span class="medium-gray">”</span>
+      </p>
       <div class="flex justify-center">
         <div class="flex items-center">
           <img class="circle retina" src="https://bit.ly/2E9gKCf" />
@@ -14,3 +18,16 @@
     </div>
   </div>
 </div>
+
+{% schema %}
+  {
+    "name": "Quote",
+    "settings": [
+      {
+        "id": "quote_text",
+        "type": "text",
+        "label": "Quote text"
+      }
+    ]
+  }
+{% endschema %}
