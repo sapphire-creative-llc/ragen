@@ -15,7 +15,7 @@
               {{ collection.title }}
             </h5>
           </div>
-          <div class="flex-md flex-wrap pt4">
+          <div class="flex flex-wrap pt4">
             {% for product in collection.products limit: 4 %}
               {% include 'collection'%}
             {% endfor %}
