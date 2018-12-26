@@ -2,6 +2,8 @@ import "../../styles/theme.scss";
 import "../../styles/theme.scss.liquid";
 import "../../styles/fonts.scss.liquid";
 
+import jsonp from "jsonp";
+
 ($ => {
   const $body = $("body");
   const $siteNav = $(".site-nav");
@@ -491,6 +493,40 @@ import "../../styles/fonts.scss.liquid";
 
   $(".secondary-trigger").on("click", () => {
     $(".secondary-nav").toggleClass("hide");
+  });
+
+  $(".mc-form-footer, .mc-form-popup").on("submit", function(e) {
+    e.preventDefault();
+    const form = $(this).serialize();
+    $("svg.loading").show();
+    $(this)
+      .find('input[type="submit"]')
+      .hide();
+
+    jsonp(
+      `//ragenjewels.us13.list-manage.com/subscribe/post-json?u=d69b64f1a08553838add1bcfc&id=c207b39bd8&${form}`,
+      { param: "c" },
+      (err, data) => {
+        if (data.result === "success") {
+          $(this)
+            .find('input[type="email"]')
+            .val("");
+          $(this)
+            .find(".success")
+            .text(data.msg)
+            .removeClass("hide");
+          $("svg.loading").hide();
+          $(this)
+            .find('input[type="submit"]')
+            .show();
+          setTimeout(() => {
+            $(this)
+              .find(".success")
+              .text("");
+          }, 3000);
+        }
+      }
+    );
   });
 
   $(window).on("scroll", () => {

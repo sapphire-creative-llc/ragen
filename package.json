@@ -24,5 +24,7 @@
     "deploy": "slate-tools build && slate-tools deploy",
     "zip": "slate-tools build && slate-tools zip"
   },
-  "dependencies": {}
+  "dependencies": {
+    "jsonp": "^0.2.1"
+  }
 }
