@@ -1,5 +1,5 @@
 {% assign available = product.first_available_variant.available %}
-
+{{collection.name}}
 <h2 class="text-normal mt0 mb1">{{ product.title }}</h2>
 {% if available %}
   <span class="mt0 h4 mb1 dark-pink">
@@ -95,6 +95,17 @@
                   </button>
                 </div>
               {% endfor %}
+            </div>
+            <div>
+              {% if product_option.name == 'Size' %}
+                {% for collection in product.collections %}
+                  {% if collection.title == 'Rings' %}
+                  <a class="sizing-chart-trigger h6 dark-pink no-underline" href="#">
+                      See sizing chart
+                    </a>
+                  {% endif %}
+                {% endfor %}
+              {% endif %}
             </div>
           </label>
         {% endif %}

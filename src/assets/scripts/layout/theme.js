@@ -455,9 +455,14 @@ import jsonp from "jsonp";
 
   if (localStorage.showPopup !== "false") {
     setTimeout(() => {
-      $(".js-popup").removeClass("hidden");
+      $(".js-popup.newsletter-popup").removeClass("hidden");
     }, 7500);
   }
+
+  $(".sizing-chart-trigger").on("click", e => {
+    e.preventDefault();
+    $(".js-popup.sizing-chart-popup").removeClass("hidden");
+  });
 
   $(".thumbnail").on("click", e => {
     e.preventDefault();

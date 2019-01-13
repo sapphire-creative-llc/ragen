@@ -515,7 +515,7 @@ pre a,
   }
 }
 
-.newsletter-popup {
+.popup {
   background: rgba(200,200,200,.8);
   visibility: visible;
   opacity: 1;
@@ -548,6 +548,12 @@ pre a,
         width: 60%;
       }
     }
+  }
+}
+
+.popup.sizing-chart-popup {
+  .popup-box {
+    max-width: 32rem;
   }
 }
 
@@ -1134,4 +1140,18 @@ input[type=number]::-webkit-outer-spin-button {
 
 .option-color {
   margin: -.1rem 0 0 -.3rem;
+}
+
+.sizing-text {
+  font-size: 1rem;
+  @media screen and (min-width: $break-md) {
+    font-size: 1.5rem;
+  }
+}
+
+.sizing-chart-padding {
+  padding: 1rem;
+  @media screen and (min-width: $break-md) {
+    padding: 2rem;
+  }
 }
