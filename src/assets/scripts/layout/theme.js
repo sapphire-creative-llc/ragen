@@ -534,6 +534,69 @@ import jsonp from "jsonp";
     );
   });
 
+  const token = "391279626.1677ed0.e912fb31c7d341b49212c5ff36347dfa";
+
+  let instagrams = [];
+
+  const renderPhoto = photo => {
+    instagrams.push(photo);
+
+    $(".ig-photos").append(`
+      <div class="image-wrapper mb1">
+        <div class="ig-photo image bg-center bg-cover fade-image rounded" style="padding-top: 100%;" data-id="${
+          photo.id
+        }" data-img="${photo.image}"></div>
+      </div>
+    `);
+  };
+
+  $.ajax({
+    url: `https://api.instagram.com/v1/users/self/media/recent/?access_token=${token}`,
+    dataType: "jsonp",
+    type: "GET",
+    success: function(data) {
+      data.data.filter((photo, i) => Boolean(i < 8)).map(photo => {
+        $.ajax({
+          url: `https://api.instagram.com/v1/media/${
+            photo.id
+          }/comments?access_token=${token}`,
+          dataType: "jsonp",
+          type: "GET",
+          success: function(comments) {
+            renderPhoto({
+              id: photo.id,
+              link: photo.link,
+              likesCount: photo.likes.count,
+              commentsCount: photo.comments.count,
+              username: photo.user.username,
+              image: photo.images.standard_resolution.url,
+              avatar: photo.user.profile_picture,
+              caption: photo.caption.text,
+              comments
+            });
+          }
+        });
+      });
+    }
+  });
+
+  $(".ig-photos").on("click", ".ig-photo", e => {
+    e.preventDefault();
+
+    const pluralize = (count, noun, suffix = "s") =>
+      `${count} ${noun}${count !== 1 ? suffix : ""}`;
+
+    const photo = instagrams.find(ig => ig.id === e.target.dataset.id);
+
+    $(".ig-popup").removeClass("hidden");
+    $(".ig-img").attr("src", photo.image);
+    $(".ig-avatar").css("background-image", `url(${photo.avatar})`);
+    $(".ig-username").text(photo.username);
+    $(".ig-likes").text(pluralize(photo.likesCount, "like"));
+    $(".ig-comments").text(pluralize(photo.commentsCount, "comment"));
+    $(".ig-link").attr("href", photo.link);
+  });
+
   $(window).on("scroll", () => {
     fadeInImage();
   });
