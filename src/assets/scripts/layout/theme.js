@@ -543,7 +543,7 @@ import jsonp from "jsonp";
     instagrams.push(photo);
 
     $(".ig-photos").append(`
-      <div class="image-wrapper mb1">
+      <div class="image-wrapper mb1 pointer hover-opacity-5">
         <div class="ig-photo image bg-center bg-cover fade-image rounded" style="padding-top: 100%;" data-id="${
           photo.id
         }" data-img="${photo.image}"></div>
