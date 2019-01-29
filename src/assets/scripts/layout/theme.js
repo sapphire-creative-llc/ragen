@@ -450,6 +450,7 @@ import jsonp from "jsonp";
     e.preventDefault();
 
     $(".js-popup").addClass("hidden");
+    $body.removeClass("overflow-hidden");
     localStorage.setItem("showPopup", "false");
   });
 
@@ -587,14 +588,30 @@ import jsonp from "jsonp";
       `${count} ${noun}${count !== 1 ? suffix : ""}`;
 
     const photo = instagrams.find(ig => ig.id === e.target.dataset.id);
+    console.log(photo);
 
+    $body.addClass("overflow-hidden");
     $(".ig-popup").removeClass("hidden");
     $(".ig-img").attr("src", photo.image);
     $(".ig-avatar").css("background-image", `url(${photo.avatar})`);
     $(".ig-username").text(photo.username);
-    $(".ig-likes").text(pluralize(photo.likesCount, "like"));
-    $(".ig-comments").text(pluralize(photo.commentsCount, "comment"));
+    $(".ig-likes-count").text(pluralize(photo.likesCount, "like"));
+    $(".ig-comments-count").text(pluralize(photo.commentsCount, "comment"));
     $(".ig-link").attr("href", photo.link);
+    $(".ig-comments")
+      .css({
+        "overflow-y": "scroll",
+        height: $(".ig-image").height() - 210
+      })
+      .append(
+        photo.comments.data
+          .map(comment => {
+            return `<li class="h5"><span class="black apercu-medium">${
+              comment.from.username
+            }</span> <span class="dark-gray">${comment.text}</span></li>`;
+          })
+          .join("")
+      );
   });
 
   $(window).on("scroll", () => {
