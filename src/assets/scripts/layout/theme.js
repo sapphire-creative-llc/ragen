@@ -566,7 +566,8 @@ import jsonp from "jsonp";
           success: function(comments) {
             renderPhoto({
               id: photo.id,
-              link: photo.link,
+              photoLink: photo.link,
+              accountLink: `https://www.instagram.com/${photo.user.username}`,
               likesCount: photo.likes.count,
               commentsCount: photo.comments.count,
               username: photo.user.username,
@@ -597,7 +598,8 @@ import jsonp from "jsonp";
     $(".ig-username").text(photo.username);
     $(".ig-likes-count").text(pluralize(photo.likesCount, "like"));
     $(".ig-comments-count").text(pluralize(photo.commentsCount, "comment"));
-    $(".ig-link").attr("href", photo.link);
+    $(".ig-photo-link").attr("href", photo.photoLink);
+    $(".ig-account-link").attr("href", photo.accountLink);
     $(".ig-comments")
       .css({
         "overflow-y": "scroll",
