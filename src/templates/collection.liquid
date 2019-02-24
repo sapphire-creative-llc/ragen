@@ -15,9 +15,14 @@
       {% endif %}
     {% endfor %}
   </div>
-  <div class="flex flex-wrap pt4">
-    {% for product in collection.products %}
-      {% include 'collection' %}
-    {% endfor %}
-  </div>
+  {% paginate collection.products by 36 %}
+    <div class="flex flex-wrap pt4">
+      {% for product in collection.products %}
+        {% include 'collection' %}
+      {% endfor %}
+    </div>
+    <div class="pagination text-center h5 flex items-center justify-center">
+      {{ paginate | default_pagination }}
+    </div>
+  {% endpaginate %}
 </div>
