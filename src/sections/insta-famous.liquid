@@ -4,7 +4,52 @@
   <div class="negative-margin">
     <div class="ig-photos flex-md flex-wrap"></div>
   </div>
+  <div class="static-insta hide flex-md">
+    <div class="image-wrapper flex-1">
+      <div class="image bg-center bg-cover fade-image rounded" style="padding-top: 100%;" data-img="{{ section.settings.image1 | img_url: '800x' }}"></div>
+    </div>
+    <span class="block pl1"></span>
+    <div class="image-wrapper flex-1">
+      <div class="image bg-center bg-cover fade-image rounded" style="padding-top: 100%;" data-img="{{ section.settings.image2 | img_url: '800x' }}"></div>
+    </div>
+    <span class="block pl1 show-md"></span>
+    <div class="image-wrapper flex-1">
+      <div class="image bg-center bg-cover fade-image rounded" style="padding-top: 100%;" data-img="{{ section.settings.image3 | img_url: '800x' }}"></div>
+    </div>
+    <span class="block pl1"></span>
+    <div class="image-wrapper flex-1">
+      <div class="image bg-center bg-cover fade-image rounded" style="padding-top: 100%;" data-img="{{ section.settings.image4 | img_url: '800x' }}"></div>
+    </div>
+  </div>
   <a href="https://www.instagram.com/ragenjewels/" target="_blank" class="button h5 no-underline text-uppercase bg-dark-pink rounded white no-border mt3 inline-block">
     See all photos
   </a>
 </div>
+
+{% schema %}
+  {
+    "name": "Instagram Photos",
+    "settings": [
+      {
+        "id": "image1",
+        "type": "image_picker",
+        "label": "Image 1"
+      },
+      {
+        "id": "image2",
+        "type": "image_picker",
+        "label": "Image 2"
+      },
+      {
+        "id": "image3",
+        "type": "image_picker",
+        "label": "Image 3"
+      },
+      {
+        "id": "image4",
+        "type": "image_picker",
+        "label": "Image 4"
+      }
+    ]
+  }
+{% endschema %}

@@ -579,6 +579,11 @@ import jsonp from "jsonp";
           }
         });
       });
+    },
+    error: function(xhr) {
+      if (xhr.statusText === "error") {
+        $(".static-insta").removeClass("hide");
+      }
     }
   });
 
