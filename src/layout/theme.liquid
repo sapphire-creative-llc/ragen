@@ -7,6 +7,8 @@
     <link rel="canonical" href="{{ canonical_url }}">
     <link rel="shortcut icon" href="https://bit.ly/2PxtuHi" />
 
+    {% assign featured_image = '//cdn.shopify.com/s/files/1/0055/8193/0563/files/Nov27-5_2000x.jpg?v=1543289160' %}
+
     {%- capture seo_title -%}
       {{ page_title }}
       {%- if current_tags -%}
@@ -42,22 +44,21 @@
         {% assign src = article.content | split: 'src="' %}
         {% assign src = src[1] | split: '"' | first | remove: 'https:' | remove: 'http:' %}
         {% if src %}
-      <meta property="og:image" content="http:{{ src }}">
-      <meta property="og:image:secure_url" content="https:{{ src }}">
+          <meta property="og:image" content="http:{{ src }}">
+          <meta property="og:image:secure_url" content="https:{{ src }}">
         {% endif %}
       {% endif %}
     {% else %}
       <meta property="og:type" content="website">
       <meta property="og:title" content="{{ page_title | escape }}">
+      <meta property="og:image" content="http:{{ featured_image }}">
+      <meta property="og:image:secure_url" content="https:{{ featured_image }}">
     {% endif %}
     {% if page_description and template != 'product' %}
       <meta property="og:description" content="{{ page_description | escape }}">
     {% endif %}
-      {% assign featured_image = '//cdn.shopify.com/s/files/1/0055/8193/0563/files/Nov27-5_2000x.jpg' %}
       <meta property="og:url" content="{{ canonical_url }}">
       <meta property="og:site_name" content="{{ shop.name }}">
-      <meta property="og:image" content="http:{{ featured_image }}">
-      <meta property="og:image:secure_url" content="https:{{ featured_image }}">
 
     {%- if page_description -%}
       <meta name="description" content="{{ page_description | escape }}">
