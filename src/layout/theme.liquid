@@ -51,7 +51,10 @@
       <meta property="og:title" content="{{ page_title | escape }}">
     {% endif %}
     {% if page_description and template != 'product' %}
+      {% assign featured_image = '//cdn.shopify.com/s/files/1/0055/8193/0563/files/Nov27-5_2000x.jpg?v=1543289160' %}
       <meta property="og:description" content="{{ page_description | escape }}">
+      <meta property="og:image" content="http:{{ featured_image }}">
+      <meta property="og:image:secure_url" content="https:{{ featured_image }}">
     {% endif %}
       <meta property="og:url" content="{{ canonical_url }}">
       <meta property="og:site_name" content="{{ shop.name }}">
