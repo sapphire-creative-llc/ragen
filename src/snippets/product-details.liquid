@@ -83,7 +83,7 @@
         {% if product_option.name != 'Title' %}
           <label class="h5 block mb1">
             <span class="block">Select a {{ product_option.name | downcase }}</span>
-            <div class="flex">
+            <div class="flex flex-wrap">
               {% for value in product_option.values %}
                 <div class="product-input relative">
                   <input data-option-value="{{ value }}" data-position="{{ product_option.position }}" class="absolute t0 l0 r0 b0 w100p h100p pointer m0 o0p z1" type="radio" name="{{ product_option.name }}" value="{{ value }}" {% if product_option.selected_value == value %}checked{% endif %} />
