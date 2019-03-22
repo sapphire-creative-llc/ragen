@@ -576,7 +576,7 @@ import jsonp from 'jsonp';
         type: 'GET',
         success: function(data) {
           const photos = data.data
-            .filter((photo, i) => Boolean(i < 1))
+            .filter((photo, i) => Boolean(i < 8))
             .map(photo => ({
               id: photo.id,
               photoLink: photo.link,
