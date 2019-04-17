@@ -1,0 +1,29 @@
+<div class="py4">
+  <h3 class="m0 text-normal text-center">
+    {% if search.performed %}
+      {% if search.results_count == 0 %}
+        No results for '{{ search.terms | escape }}'
+      {% else %}
+        {{ search.results_count }} results for '{{ search.terms | escape }}'
+      {% endif %}
+    {% else %}
+      Search Ragen Jewels
+    {% endif %}
+  </h3>
+  {% if search.performed %}
+    {% if search.results_count > 0 %}
+      {% paginate search.results by 36 %}
+        <div class="flex flex-wrap pt4">
+          {% for product in search.results %}
+            {% include 'collection' %}
+          {% endfor %}
+        </div>
+        {% if paginate.pages > 1 %}
+          <div class="pagination text-center h5 flex items-center justify-center">
+            {{ paginate | default_pagination }}
+          </div>
+        {% endif %}
+      {% endpaginate %}
+    {% endif %}
+  {% endif %}
+</div>

@@ -2,10 +2,24 @@
 <header class="js-header site-nav sticky t0 mx1 l1 r1 show-lg z9 h5 text-uppercase apercu-light bg-black rounded-bottom">
   <div class="flex items-center h100p px1">
     <nav class="flex items-center w100p">
-      <div class="flex-1 basis-0">
+      <div class="flex items-center flex-1 basis-0">
         {% for main in linklists.main-menu.links %}
           <a class="white no-underline p1 hover-opacity-5" href="{{ main.url }}">{{ main.title }}</a>
         {% endfor %}
+        <div class="site-search inline relative">
+          <a class="search-trigger white no-underline p1 hover-opacity-5 flex items-center" href="#">
+            {% include 'icon-search' %}
+            <span class="search-text">Search</span>
+          </a>
+          <div class="search-box absolute t0 z2">
+            <div class="bg-white p1 border border-smoke">
+              <form class="search" action="/search" autocomplete="off">
+                <input type="text" placeholder="Search" name="q" value="{{ search.terms | escape }}"  />
+                <input type="submit" value="Search" />
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
       <h1 class="m0 h0">
         <a class="no-underline pink" href="/">

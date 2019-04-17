@@ -664,6 +664,11 @@ import jsonp from 'jsonp';
       );
   });
 
+  $('.search-trigger').on('click', e => {
+    e.preventDefault();
+    $('.search-box').toggleClass('showing');
+  });
+
   $(window).on('scroll', () => {
     fadeInImage();
   });
