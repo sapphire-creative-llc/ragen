@@ -8,14 +8,21 @@
         {% endfor %}
         <div class="site-search inline relative">
           <a class="search-trigger white no-underline p1 hover-opacity-5 flex items-center" href="#">
+            {% assign search_width = 18 %}
             {% include 'icon-search' %}
             <span class="search-text">Search</span>
           </a>
           <div class="search-box absolute t0 z2">
             <div class="bg-white p1 border border-smoke">
               <form class="search" action="/search" autocomplete="off">
-                <input type="text" placeholder="Search" name="q" value="{{ search.terms | escape }}"  />
-                <input type="submit" value="Search" />
+                <input type="hidden" name="type" value="product" />
+                <label class="hide">Search:</label>
+                <div class="relative">
+                  <input type="text" placeholder="e.g. charms" name="q" required  value="{{ search.terms | escape }}" class="apercu-regular required email w100p border-box" />
+                  <div class="absolute flex items-center t0 r0 b0 r0">
+                    <input type="submit" value="→" class="h3 dark-pink">
+                  </div>
+                </div>
               </form>
             </div>
           </div>
@@ -50,16 +57,21 @@
 
 <header class="js-header z9 t0 bg-black hide-lg site-nav sticky h5 text-uppercase apercu-light">
   <div class="flex items-center h100p px1">
-    <div class="flex-1 w20p h0">
-      <svg class="js-mobile-nav-open inline-block pointer" xmlns="http://www.w3.org/2000/svg" width="21" viewBox="0 0 33 23">
+    <div class="flex-1 w30p flex items-center">
+      <svg class="js-mobile-nav-open inline-block pointer h0" xmlns="http://www.w3.org/2000/svg" width="21" viewBox="0 0 33 23">
         <g fill="white">
           <rect y="10.2" width="33" height="2.6"/>
           <rect width="33" height="2.6"/>
           <rect y="20.4" width="33" height="2.6"/>
         </g>
       </svg>
+      <a class="mobile-search white no-underline hover-opacity-5 flex items-center h6" href="/search">
+        {% assign search_width = 15 %}
+        {% include 'icon-search' %}
+        <span class="search-text" style="margin-left: 3px">Search</span>
+      </a>
     </div>
-    <div class="flex-1 w60p text-center">
+    <div class="flex-1 w40p text-center">
       <h1 class="m0 h0">
         <a class="no-underline pink" href="/">
           {% assign logo_width = 120 %}
@@ -67,7 +79,7 @@
         </a>
       </h1>
     </div>
-    <div class="flex-1 w20p flex justify-end">
+    <div class="flex-1 w30p flex justify-end">
       <a class="js-cart-trigger no-underline white" href="#">
         <div class="flex items-center">
           {% assign cart_icon_width = 18 %}

@@ -1,15 +1,29 @@
 <div class="py4">
-  <h3 class="m0 text-normal text-center">
-    {% if search.performed %}
+  {% if search.performed %}
+    <h3 class="m0 text-normal text-center">
       {% if search.results_count == 0 %}
         No results for '{{ search.terms | escape }}'
       {% else %}
         {{ search.results_count }} results for '{{ search.terms | escape }}'
       {% endif %}
-    {% else %}
-      Search Ragen Jewels
-    {% endif %}
-  </h3>
+    </h3>
+  {% else %}
+    <div class="site-search">
+      <h3 class="mt0 mb1 text-normal text-center">Search Ragen Jewels</h3>
+      <div class="width-15 mx-auto">
+        <form class="search" action="/search" autocomplete="off">
+          <input type="hidden" name="type" value="product" />
+          <label class="hide">Search:</label>
+          <div class="relative">
+            <input type="text" placeholder="e.g. charms" required name="q" value="{{ search.terms | escape }}" class="apercu-regular required email w100p border-box" />
+            <div class="absolute flex items-center t0 r0 b0 r0">
+              <input type="submit" value="→" class="h3 dark-pink">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  {% endif %}
   {% if search.performed %}
     {% if search.results_count > 0 %}
       {% paginate search.results by 36 %}

@@ -2,7 +2,7 @@
   <div class="js-product-wrapper">
     <div class="product-thumbnails left sticky t8 pr1 border-box show-lg">
       {% for image in product.images %}
-        <button class="thumbnail w100p h100p overflow-hidden bg-white border border-smoke rounded mb1 hover-border-black pointer no-outline" data-id="{{ image.id }}">
+        <button class="thumbnail w100p h100p overflow-hidden bg-white border border-smoke rounded mb1 hover-border-black pointer no-outline p0" data-id="{{ image.id }}">
           <div class="image bg-center bg-cover fade-image" style="padding-top: 100%;" data-img="{{ image | img_url: '300x' }}"></div>
         </button>
       {% endfor %}

@@ -666,7 +666,18 @@ import jsonp from 'jsonp';
 
   $('.search-trigger').on('click', e => {
     e.preventDefault();
+    e.stopPropagation();
     $('.search-box').toggleClass('showing');
+  });
+
+  $('.search-box').on('click', e => {
+    e.stopPropagation();
+  });
+
+  $(document).on('click', e => {
+    if ($('.search-box').hasClass('showing')) {
+      $('.search-box').removeClass('showing');
+    }
   });
 
   $(window).on('scroll', () => {

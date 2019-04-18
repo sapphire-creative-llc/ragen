@@ -1204,13 +1204,17 @@ input[type=number]::-webkit-outer-spin-button {
   }
 }
 
+.mobile-search {
+  padding: .75rem 1.25rem;
+}
+
 .site-search {
   .search-text {
     padding-left: .35rem
   }
   .search-box {
     opacity: 0;
-    width: 14rem;
+    width: 16rem;
     visibility: hidden;
     transform: translateX(-50%);
     backface-visibility: hidden;
@@ -1219,6 +1223,44 @@ input[type=number]::-webkit-outer-spin-button {
     &.showing {
       opacity: 1;
       visibility: visible;
+    }
+  }
+  input[type="submit"] {
+    border: none;
+    outline: 0;
+    background-color: transparent;
+    height: 100%;
+    cursor: pointer;
+    padding: 0 .75rem;
+  }
+  input[type="text"] {
+    outline: 0;
+    padding: .65rem;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 1px 4px rgba(0,0,0,.12);
+    border-radius: 4px;
+    font-family: "Apercu Regular";
+    font-size: .75rem;
+    color: #666;
+    &::-webkit-input-placeholder {
+     font-family: "Apercu Regular";
+     color: #aaa;
+    }
+    &::-moz-placeholder {
+     font-family: "Apercu Regular";
+     color: #aaa;
+    }
+    &:-ms-input-placeholder {
+     font-family: "Apercu Regular";
+     color: #aaa;
+    }
+    &:-moz-placeholder {
+     font-family: "Apercu Regular";
+     color: #aaa;
+    }
+    &:focus {
+      border: 1px solid #222;
     }
   }
 }
