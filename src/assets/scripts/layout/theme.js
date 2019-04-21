@@ -536,7 +536,7 @@ import jsonp from 'jsonp';
   });
 
   const base = 'https://api.instagram.com';
-  const token = '391279626.1677ed0.e912fb31c7d341b49212c5ff36347dfa';
+  const token = '391279626.1677ed0.072a275eeb154b26b4d969989a175c4e';
 
   const renderInstagramPhotos = stringifiedPhotoData => {
     const photos = JSON.parse(stringifiedPhotoData);
