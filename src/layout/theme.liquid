@@ -88,14 +88,25 @@
     </script>
     
     <!-- Global site tag (gtag.js) - Google Ads: 775499909 -->
-      <script async src="https://www.googletagmanager.com/gtag/js?id=AW-775499909"></script>
-      <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-775499909"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-        gtag('config', 'AW-775499909');
-      </script>
+      gtag('config', 'AW-775499909');
+    </script>
+
+    <script>
+      gtag('event', 'page_view', {
+        'send_to': 'AW-775499909',
+        'ecomm_pagetype': '{% if template contains 'collection' %}category{% elsif template contains 'product' %}product{% elsif template contains 'search' %}searchresults{% elsif template contains 'index' %}home{% endif %}',
+        {% if template contains 'product' %}
+        'ecomm_prodid': 'shopify_US_{{ product.id }}_{% if product.variants.first.id %}{{ product.variants.first.id }}',{% else %}{{ product.variants.id }}',{% endif %}
+        {% endif %}
+        {% if template contains 'product' %}'ecomm_totalvalue': {{ product.price_min | money_without_currency | remove:',' }}{% endif %}
+      });
+    </script>
 
   </head>
 
