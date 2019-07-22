@@ -62,7 +62,8 @@ import jsonp from 'jsonp';
   });
 
   const priceToCurrency = price => {
-    return `$${price / 100}`;
+    const cost = price / 100;
+    return `$${cost.toFixed(2)}`;
   };
 
   $(document).on('click', 'button.decrement-cart-quantity', e => {
@@ -100,7 +101,7 @@ import jsonp from 'jsonp';
           <div class="cart-image bg-center bg-cover" style="background-image: url(${image})"></div>
           <div class="flex-1 px1">
             <p class="m0 h4">${product_title}</p>
-            <p class="m0 h5">${variantTitle} ${product_type} - ${formattedPrice}</p>
+            <p class="m0 h5">${variantTitle} ${product_type} ${formattedPrice}</p>
             <div class="number-input inline-block rounded border border-charcoal">
               <button class="decrement-cart-quantity" type="button">
                 <svg xmlns="http://www.w3.org/2000/svg" width="13" viewBox="0 0 9 6" fill="#979797">
@@ -152,6 +153,7 @@ import jsonp from 'jsonp';
   };
 
   const createCartItem = data => {
+    console.log(data);
     return $.post('/cart/add.js', data);
   };
 
