@@ -538,7 +538,7 @@ import jsonp from 'jsonp';
   });
 
   const base = 'https://api.instagram.com';
-  const token = '391279626.1677ed0.70021915913a4b348810f4fc0ac928c5';
+  const token = '391279626.1677ed0.9afc81c2b00e44289308c90d1e603987';
 
   const renderInstagramPhotos = stringifiedPhotoData => {
     const photos = JSON.parse(stringifiedPhotoData);
@@ -577,6 +577,7 @@ import jsonp from 'jsonp';
         dataType: 'jsonp',
         type: 'GET',
         success: function(data) {
+          console.log(data);
           const photos = data.data
             .filter((photo, i) => Boolean(i < 8))
             .map(photo => ({
