@@ -2,7 +2,7 @@ import '../../styles/theme.scss';
 import '../../styles/theme.scss.liquid';
 import '../../styles/fonts.scss.liquid';
 
-import jsonp from 'jsonp';
+import subscribe from 'klaviyo-subscribe';
 
 ($ => {
   const $body = $('body');
@@ -511,30 +511,30 @@ import jsonp from 'jsonp';
       .find('input[type="submit"]')
       .hide();
 
-    jsonp(
-      `//ragenjewels.us13.list-manage.com/subscribe/post-json?u=d69b64f1a08553838add1bcfc&id=c207b39bd8&${form}`,
-      { param: 'c' },
-      (err, data) => {
-        if (data.result === 'success') {
-          $(this)
-            .find('input[type="email"]')
-            .val('');
+    const email = $(this)
+      .find('input[type="email"]')
+      .val();
+
+    subscribe('Lh2NxM', email).then(response => {
+      if (response.success) {
+        $(this)
+          .find('input[type="email"]')
+          .val('');
+        $(this)
+          .find('.success')
+          .text('Thanks for subscribing!')
+          .removeClass('hide');
+        $('svg.loading').hide();
+        $(this)
+          .find('input[type="submit"]')
+          .show();
+        setTimeout(() => {
           $(this)
             .find('.success')
-            .text(data.msg)
-            .removeClass('hide');
-          $('svg.loading').hide();
-          $(this)
-            .find('input[type="submit"]')
-            .show();
-          setTimeout(() => {
-            $(this)
-              .find('.success')
-              .text('');
-          }, 3000);
-        }
+            .text('');
+        }, 3000);
       }
-    );
+    });
   });
 
   const base = 'https://api.instagram.com';
