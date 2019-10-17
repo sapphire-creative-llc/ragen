@@ -14,17 +14,20 @@
     "url": "https://github.com/sapphire-creative-llc/ragen"
   },
   "devDependencies": {
-    "@shopify/slate-tools": ">=1.0.0-beta.5",
-    "prettier": "^1.14.2"
+    "@shopify/slate-tools": "1.0.0-beta.15",
+    "babel-preset-shopify": "^16.2.0"
+  },
+  "dependencies": {
+    "klaviyo-subscribe": "^0.0.3",
+    "jquery": "^3.2.1"
   },
   "scripts": {
     "start": "slate-tools start",
     "watch": "slate-tools start --skipFirstDeploy",
     "build": "slate-tools build",
     "deploy": "slate-tools build && slate-tools deploy",
-    "zip": "slate-tools build && slate-tools zip"
-  },
-  "dependencies": {
-    "klaviyo-subscribe": "^0.0.3"
+    "zip": "slate-tools build && slate-tools zip",
+    "lint": "slate-tools lint",
+    "format": "slate-tools format"
   }
 }
