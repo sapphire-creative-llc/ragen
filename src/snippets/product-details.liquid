@@ -1,8 +1,14 @@
+{% style %}
+.product-input button * {
+  margin-top: -1px;
+}
+{% endstyle %}
+
 {% assign available = product.first_available_variant.available %}
 {{collection.name}}
-<h2 class="text-normal mt0 mb1">{{ product.title }}</h2>
+<h2 class="bold mt0 mb1">{{ product.title }}</h2>
 {% if available %}
-  <span class="mt0 h4 mb1 dark-pink">
+  <span class="mt0 h5 mb1 dark-pink">
     {{ product.price | money_without_trailing_zeros }}
     {% if product.compare_at_price_max > 0 %}
       <strike class="strike dark-pink">
@@ -10,11 +16,15 @@
       </strike>
     {% endif %}
   </span>
-  {% include 'product-quadpay' %}
+  <div class="mb1">
+    {% include 'product-quadpay' %}
+  </div>
 {% else %}
   <p class="mt0 mb1 medium-gray">Sold Out</p>
 {% endif %}
-{{ product.description }}
+<div class="charcoal h5">
+  {{ product.description }}
+</div>
 <span class="pb1 block"></span>
 <form class="js-cart-form" action="/cart/add" method="post" enctype="multipart/form-data">
   <div class="relative black">
@@ -87,11 +97,11 @@
               {% for value in product_option.values %}
                 <div class="product-input relative">
                   <input data-option-value="{{ value }}" data-position="{{ product_option.position }}" class="absolute t0 l0 r0 b0 w100p h100p pointer m0 o0p z1" type="radio" name="{{ product_option.name }}" value="{{ value }}" {% if product_option.selected_value == value %}checked{% endif %} />
-                  <button type="button" class="product-option medium-gray product-{{ product_option.name }} border border-mild-gray rounded apercu-regular h4 m0 flex items-center justify-center bg-white {% if product_option.selected_value == value %}black border-black{% endif %}">
+                  <button type="button" class="product-option medium-gray product-{{ product_option.name }} border border-mild-gray rounded apercu-regular m0 flex items-center justify-center bg-white {% if product_option.selected_value == value %}black border-black{% endif %}">
                     {% if product_option.name == 'Color' %}
                       <div class="option-color bg-option-{{ value | handleize }}"></div>
                     {% endif %}
-                    <span class="relative">{{ value }}</span>
+                    <span class="h5 relative">{{ value }}</span>
                   </button>
                 </div>
               {% endfor %}
@@ -100,7 +110,7 @@
               {% if product_option.name == 'Size' %}
                 {% for collection in product.collections %}
                   {% if collection.title == 'Rings' %}
-                  <a class="sizing-chart-trigger h6 dark-pink no-underline" href="#">
+                    <a class="sizing-chart-trigger h6 dark-pink no-underline" href="#">
                       See sizing chart
                     </a>
                   {% endif %}
@@ -115,7 +125,7 @@
         name="add"
         id="add"
         value="Add to Jewel Bag"
-        class="button mt1 h5 text-uppercase bg-black rounded white no-border"
+        class="button mt1 bg-black white"
       />
     {% endif %}
   </div>
