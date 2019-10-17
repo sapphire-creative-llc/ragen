@@ -2,18 +2,19 @@
 
 {{ form.errors | default_errors }}
 
-<div class="grid page pt2 pb3">
-  <div class="page-content">
-    <div class="text-center">
-      <h5>Account</h5>
-    </div>
-    <div>
-      <label class="h5 text-uppercase" for="first_name">Email Address</label>
-      <input class="border border-smoke focus-border-black w100p p0_5 h4 mb1 border-box" type="email" name="customer[email]" />
-      <label class="h5 text-uppercase" for="last_name">Password</label>
-      <input class="border border-smoke focus-border-black w100p p0_5 h4 mb1 border-box" type="password" name="customer[password]" />
-      <input class="button h5 block mx-auto text-uppercase bg-black rounded white no-border mt1" type="submit" value="Sign In" />
-    </div>
+<div class="grid pt2 pb3">
+  <div class="text-center">
+    <h3 class="m0 mb1 bold text-normal">Account</h3>
+  </div>
+  <div class="mx-auto" style="max-width: 640px">
+    <label class="h5" for="first_name">Email Address</label>
+    <input class="border border-smoke focus-border-black w100p p0_5 h4 mb1 border-box" type="email" name="customer[email]" />
+    <label class="h5" for="last_name">Password</label>
+    <input class="border border-smoke focus-border-black w100p p0_5 h4 mb1 border-box" type="password" name="customer[password]" />
+    <input class="button block mx-auto bg-black white mt1" type="submit" value="Sign In" />
+    <p class="mt2 text-center h5">
+      Don’t have an account? <a class="black" href="/account/register">Register here</a>
+    </p>
   </div>
 </div>
 

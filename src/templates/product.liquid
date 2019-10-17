@@ -1,6 +1,6 @@
-<div class="show-md py2 min-h100vh">
+<div class="show-md grid py2 min-h100vh">
   <div class="js-product-wrapper">
-    <div class="product-thumbnails left sticky t8 pr1 border-box show-lg">
+    <div class="product-thumbnails left sticky t5 pr1 border-box show-lg">
       {% for image in product.images %}
         <button class="thumbnail w100p h100p overflow-hidden bg-white border border-smoke rounded mb1 hover-border-black pointer no-outline p0" data-id="{{ image.id }}">
           <div class="image bg-center bg-cover fade-image" style="padding-top: 100%;" data-img="{{ image | img_url: '300x' }}"></div>
@@ -14,14 +14,14 @@
         </div>
       {% endfor %}
     </div>
-    <div class="product-details right sticky t8 pb1">
+    <div class="product-details right sticky t5 pb1">
       <div class="w80p mx-auto">
         {% include 'product-details' %}
       </div>
     </div>
   </div>
 </div>
-<div class="hide-md">
+<div class="hide-md px1">
   {% for image in product.images limit:1 %}
     <div class="h100p overflow-hidden bg-smoke mb1">
       <div class="image bg-center bg-cover fade-image" style="padding-top: 100%;" data-img="{{ image | img_url: '1024x' }}"></div>

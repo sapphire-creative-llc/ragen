@@ -9,19 +9,19 @@
   {% for secondary in linklists.secondary-menu.links %}
     {% for collection in collections %}
       {% if collection.title == secondary.title %}
-        <div id="{{ secondary.title | handleize }}" class="border-bottom border-smoke py4">
+        <div id="{{ secondary.title | handleize }}" class="grid py3">
           <div class="text-center">
-            <h5 class="m0 heading text-normal">
+            <h3 class="m0 bold text-normal">
               {{ collection.title }}
-            </h5>
+            </h3>
           </div>
-          <div class="flex flex-wrap pt4">
+          <div class="flex flex-wrap pt2">
             {% for product in collection.products limit: 4 %}
               {% include 'collection'%}
             {% endfor %}
           </div>
-          <div class="text-center">
-            <a href="{{ collection.url }}" class="button h5 no-underline inline-block text-uppercase bg-black rounded white no-border">
+          <div class="text-center mt2">
+            <a href="{{ collection.url }}" class="button no-underline bg-black white">
               See all {{ collection.title }}
             </a>
           </div>

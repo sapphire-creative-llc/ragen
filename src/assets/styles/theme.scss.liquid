@@ -20,7 +20,7 @@ html, body {
   margin: 0;
   padding: 0!important;
   box-sizing: border-box;
-  font-family: 'Questa Sans', "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-family: 'montserratregular', "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 1.125rem;
   line-height: 1.25;
   height: 100%;
@@ -48,17 +48,23 @@ img { max-width: 100%; }
 
 select { -webkit-appearance: menulist-button; }
 
+svg { display: block; }
+
 #preview-bar-iframe {
   display: none;
 }
 
 .button {
   border: 0;
+  font: inherit;
   font-size: 1rem;
   cursor: pointer;
   -webkit-appearance: none;
   background-color: transparent;
-  padding: .75rem 1rem;
+  display: inline-block;
+  border-radius: 500px;
+  padding: .75rem 1.25rem;
+  font-size: .875rem;
   outline: none;
 }
 
@@ -109,6 +115,7 @@ select { -webkit-appearance: menulist-button; }
 .no-outline { outline: none; }
 .break-word { word-wrap: break-word; }
 .pre-line { white-space:pre-line; }
+.bold { font-family: 'montserratbold'; }
 
 .strike {
   position: relative;
@@ -163,6 +170,7 @@ select { -webkit-appearance: menulist-button; }
 .scroll-y { overflow-y: scroll; }
 
 .circle { border-radius: 50%; }
+.pill { border-radius: 500px; }
 
 .left { float: left; }
 .right { float: right; }
@@ -267,27 +275,14 @@ $whitespace: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15;
 .min-h0 { min-height: 0; }
 
 .grid {
-  width: 85%;
+  width: 94%;
   margin: 0 auto;
   box-sizing: border-box;
   @media screen and (min-width: $break-md) {
     width: 100%;
-    max-width: 1440px;
-    padding-left: 150px;
-    padding-right: 150px;
-  }
-}
-
-.collection-item {
-  width: 50%;
-  padding: 0 3%;
-  margin-bottom: 2rem;
-  @media screen and (min-width: $break-md) {
-    width: 33.3%;
-    margin-bottom: 4rem;
-  }
-  @media screen and (min-width: $break-lg) {
-    width: 25%;
+    max-width: 80rem;
+    padding-left: 75px;
+    padding-right: 75px;
   }
 }
 
@@ -381,9 +376,9 @@ $whitespace: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15;
   }
 }
 
-.charcoal { color: #4e4e4e; }
-.bg-charcoal { background-color: #4e4e4e; }
-.border-charcoal { border-color: #4e4e4e; }
+.charcoal { color: #333; }
+.bg-charcoal { background-color: #333; }
+.border-charcoal { border-color: #333; }
 
 .link {
   color: #1C1C1C;
@@ -443,35 +438,63 @@ pre a,
   }
 }
 
+button[type="submit"] {
+  cursor: pointer;
+  background: none;
+  border: 0;
+  outline: 0;
+}
+
+input[type="email"],
+input[type="text"],
+input[type="password"] {
+  outline: 0;
+  padding: .75rem 1rem;
+  background-color: #fff;
+  font: 'inherit';
+  font-size: .875rem;
+  border: 1px solid #ccc;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+  border-radius: 4px;
+  color: #666;
+}
+
+.collection-item {
+  border-right: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  width: 50%;
+  padding: 1rem 3%;
+}
+.collection-item:nth-child(2n + 2) {
+  border-right: 0;
+}
+@media screen and (min-width: 768px) {
+  .collection-item {
+    width: 33.3%;
+  }
+  .collection-item:nth-child(2n + 2) {
+    border-right: 1px solid #eee;
+  }
+  .collection-item:nth-child(3n + 3) {
+    border-right: 0;
+  }
+}
+@media screen and (min-width: 1048px) {
+  .collection-item {
+    width: 25%;
+  }
+  .collection-item:nth-child(2n + 2) {
+    border-right: 1px solid #eee;
+  }
+  .collection-item:nth-child(3n + 3) {
+    border-right: 1px solid #eee;
+  }
+  .collection-item:nth-child(4n + 4) {
+    border-right: 0;
+  }
+}
+
 .footer-signup {
-  input[type="submit"] {
-    border: none;
-    outline: 0;
-    background-color: #F2E0D9;
-    height: 100%;
-    cursor: pointer;
-  }
-  input[type="email"] {
-    outline: 0;
-    padding: 1rem 1.25rem;
-    background-color: #F2E0D9;
-    font-family: 'Questa Sans', "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-    font-size: 1rem;
-    border: none;
-    color: #666;
-    &::-webkit-input-placeholder {
-     font-family: 'Questa Sans', "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-    }
-    ::-moz-placeholder {
-     font-family: 'Questa Sans', "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-    }
-    :-ms-input-placeholder {
-     font-family: 'Questa Sans', "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-    }
-    :-moz-placeholder {
-     font-family: 'Questa Sans', "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-    }
-  }
   label {
     margin-bottom: .5rem;
   }
@@ -484,29 +507,6 @@ pre a,
     background-color: transparent;
     height: 100%;
     cursor: pointer;
-  }
-  input[type="email"] {
-    outline: 0;
-    padding: 1rem 1.25rem;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    box-shadow: 0 1px 4px rgba(0,0,0,.12);
-    border-radius: 4px;
-    font-family: 'Questa Sans', "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-    font-size: 1rem;
-    color: #666;
-    &::-webkit-input-placeholder {
-     font-family: 'Questa Sans', "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-    }
-    ::-moz-placeholder {
-     font-family: 'Questa Sans', "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-    }
-    :-ms-input-placeholder {
-     font-family: 'Questa Sans', "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-    }
-    :-moz-placeholder {
-     font-family: 'Questa Sans', "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-    }
   }
   label {
     margin-bottom: .5rem;
@@ -584,10 +584,11 @@ pre a,
 }
 
 .cart-count {
-  width: 1.3rem;
-  height: 1.3rem;
-  margin: 0 0 0 .5rem;
-  line-height: 1.6;
+  width: .9rem;
+  height: .9rem;
+  line-height: 1.4;
+  right: .2rem;
+  top: .2rem;
 }
 
 .arrow-down {
@@ -745,7 +746,7 @@ footer {
   text-align: center;
   .page-content {
     text-align: left;
-    max-width: 500px;
+    max-width: 640px;
     margin: 0 auto;
     p, ul, h1, h2, h3, h4, h5 {
       margin: 0 auto 30px;
@@ -795,12 +796,6 @@ footer {
   }
 }
 
-.announcement {
-  margin: 0;
-  @media screen and (min-width: $break-lg) {
-    margin: 0 1rem;
-  }
-}
 .pad-announcement {
   background-color: #1C1C1C;
   transition: background-color .2s;
@@ -858,15 +853,8 @@ footer {
       top: 2px;
     }
   }
-
-  p {
-    font-size: .9rem;
-    color: #666;
-  }
   ul {
-    padding: 0 0 0 1.5rem;
-    font-size: .875rem;
-    color: #888;
+    padding: 0;
     li {
       margin-bottom: .25rem;
     }
@@ -916,51 +904,9 @@ footer {
   zoom: 50%;
 }
 
-.secondary-menu {
-  top: 2.5rem;
-  @media screen and (min-width: $break-lg) {
-    top: 3.5rem;
-  }
-  .secondart-trigger {
-    padding: .75rem 0;
-  }
-  a:hover ~ .submenu, .submenu:hover {
-    opacity: 1;
-    visibility: visible;
-  }
-  .submenu-down-arrow {
-    padding-left: .25rem;
-    position: relative;
-    top: -1px;
-  }
-  .submenu {
-    opacity: 0;
-    width: 14rem;
-    visibility: hidden;
-    transform: translateX(-50%);
-    padding-top: 1.75rem;
-    left: 50%;
-    .submenu-item {
-      border-bottom: 1px solid #eee;
-      padding-bottom: .6rem;
-      margin-bottom: .6rem;
-    }
-  }
-  .mobile-item {
-    padding: .5rem 0;
-    border-top: 1px solid #eee;
-  }
-}
-
 .tag {
   margin-top: .5rem;
   padding: .3rem .7rem;
-}
-
-.grid {
-  margin: 0 auto;
-  max-width: 90rem;
-  width: 100%;
 }
 
 .quote-width {
@@ -1164,10 +1110,6 @@ input[type=number]::-webkit-outer-spin-button {
   padding: .18rem;
 }
 
-.option-color {
-  margin: -.1rem 0 0 -.3rem;
-}
-
 .sizing-text {
   font-size: 1rem;
   @media screen and (min-width: $break-md) {
@@ -1189,15 +1131,16 @@ input[type=number]::-webkit-outer-spin-button {
 
 .pagination {
   a {
-    color: #CE9A88;
+    color: #1c1c1c;
+    text-decoration: none;
   }
   .page, .deco, .next {
     padding: 0 .5rem;
   }
   .current {
-    color: #CE9A88;
+    color: #1c1c1c;
     padding: .25rem .5rem;
-    border: 2px solid #CE9A88;
+    border: 2px solid #1c1c1c;
   }
 }
 
@@ -1206,16 +1149,13 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .site-search {
-  .search-text {
-    padding-left: .35rem
-  }
   .search-box {
     opacity: 0;
     width: 16rem;
     visibility: hidden;
     transform: translateX(-50%);
     backface-visibility: hidden;
-    top: 3.25rem;
+    top: 3rem;
     left: 50%;
     &.showing {
       opacity: 1;
@@ -1237,23 +1177,19 @@ input[type=number]::-webkit-outer-spin-button {
     border: 1px solid #ccc;
     box-shadow: 0 1px 4px rgba(0,0,0,.12);
     border-radius: 4px;
-    font-family: 'Questa Sans', "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font: 'inherit';
     font-size: .75rem;
     color: #666;
     &::-webkit-input-placeholder {
-     font-family: 'Questa Sans', "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
      color: #aaa;
     }
     &::-moz-placeholder {
-     font-family: 'Questa Sans', "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
      color: #aaa;
     }
     &:-ms-input-placeholder {
-     font-family: 'Questa Sans', "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
      color: #aaa;
     }
     &:-moz-placeholder {
-     font-family: 'Questa Sans', "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
      color: #aaa;
     }
     &:focus {

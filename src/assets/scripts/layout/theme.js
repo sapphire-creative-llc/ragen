@@ -153,7 +153,6 @@ import subscribe from 'klaviyo-subscribe';
   };
 
   const createCartItem = data => {
-    console.log(data);
     return $.post('/cart/add.js', data);
   };
 
@@ -187,17 +186,16 @@ import subscribe from 'klaviyo-subscribe';
   };
 
   const updateCountUI = count => {
+    $headerCount.show().text(count);
     if (count > 0) {
       $viewCart.show();
       $shopCollection.hide();
-      $headerCount.show().text(count);
       $sidebarCount.text(
         `${count} ${count === 1 ? 'Item in Cart' : 'Items in Cart'}`
       );
     } else {
       $viewCart.hide();
       $shopCollection.show();
-      $headerCount.hide();
       $sidebarCount.text('0 Items in Cart');
     }
   };
@@ -323,7 +321,7 @@ import subscribe from 'klaviyo-subscribe';
         disableUnavailableVariants(variants);
       });
     });
-    console.log('here', $this);
+
     $this
       .closest('label')
       .find('button')
@@ -508,7 +506,7 @@ import subscribe from 'klaviyo-subscribe';
     const form = $(this).serialize();
     $('svg.loading').show();
     $(this)
-      .find('input[type="submit"]')
+      .find('button[type="submit"]')
       .hide();
 
     const email = $(this)
@@ -526,7 +524,7 @@ import subscribe from 'klaviyo-subscribe';
           .removeClass('hide');
         $('svg.loading').hide();
         $(this)
-          .find('input[type="submit"]')
+          .find('button[type="submit"]')
           .show();
         setTimeout(() => {
           $(this)
@@ -577,7 +575,11 @@ import subscribe from 'klaviyo-subscribe';
         dataType: 'jsonp',
         type: 'GET',
         success: function(data) {
-          console.log(data);
+          if (data.meta.error_message) {
+            $('.static-insta').removeClass('hide');
+            return reject();
+          }
+
           const photos = data.data
             .filter((photo, i) => Boolean(i < 8))
             .map(photo => ({

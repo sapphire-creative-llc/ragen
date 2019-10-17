@@ -1,31 +1,40 @@
 <a href="{{ product.url }}" class="block collection-item no-underline black border-box" data-type="{{ product.type }}">
-  <div class="relative">
-    {% for image in product.images %}
-      {% if forloop.first == true %}
-        <div class="overflow-hidden bg-light-gray relative z1 hover-hide">
-          <div class="image bg-center bg-cover fade-image" style="padding-top: 100%;" data-img="{{ image | img_url: '750x' }}"></div>
-        </div>
-      {% endif %}
-      {% if forloop.index == 2 %}
-        <div class="absolute t0 l0 overflow-hidden bg-light-gray w100p">
-          <div class="image bg-center bg-cover fade-image" style="padding-top: 100%;" data-img="{{ image | img_url: '750x' }}"></div>
-        </div>
-      {% endif %}
-    {% endfor %}
-  </div>
-  <div class="text-center">
-    <p class="mt1 mb0 h5 dark-gray">{{ product.title }}</p>
-    {% if product.first_available_variant.available %}
-      <p class="tag inline-block h6 dark-pink bg-light-pink">
-        {{ product.price | money_without_trailing_zeros }}
-      </p>
-      {% if product.compare_at_price_max > 0 %}
-        <strike class="strike dark-pink h6">
-          <span class="mild-gray">{{ product.compare_at_price_max | money_without_trailing_zeros }}</span>
-        </strike>
-      {% endif %}
-    {% else %}
-      <p class="h6 medium-gray inline-block">Sold Out</p>
-    {% endif %}
+  <div class="flex flex-column h100p justify-between">
+    <div class="relative">
+      {% for image in product.images %}
+        {% if forloop.first == true %}
+          <div class="overflow-hidden bg-light-gray relative z1 hover-hide">
+            <div class="image bg-center bg-cover fade-image" style="padding-top: 100%;" data-img="{{ image | img_url: '750x' }}"></div>
+          </div>
+        {% endif %}
+        {% if forloop.index == 2 %}
+          <div class="absolute t0 l0 overflow-hidden bg-light-gray w100p">
+            <div class="image bg-center bg-cover fade-image" style="padding-top: 100%;" data-img="{{ image | img_url: '750x' }}"></div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+    <div class="flex items-end mt1">
+      <div class="flex-1">
+        <p class="m0 h6 black">{{ product.title }}</p>
+        {% if product.first_available_variant.available %}
+          <p class="m0 inline-block h5 bold">
+            {{ product.price | money_without_trailing_zeros }}
+          </p>
+          {% if product.compare_at_price_max > 0 %}
+            <strike class="strike dark-pink h6">
+              <span class="mild-gray">{{ product.compare_at_price_max | money_without_trailing_zeros }}</span>
+            </strike>
+          {% endif %}
+        {% else %}
+          <p class="h6 medium-gray inline-block">Sold Out</p>
+        {% endif %}
+      </div>
+      <div class="">
+        <svg width="18" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M13 11h11v2H13v11h-2V13H0v-2h11V0h2v11z"/>
+        </svg>
+      </div>
+    </div>
   </div>
 </a>
