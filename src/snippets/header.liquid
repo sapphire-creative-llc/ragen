@@ -89,20 +89,21 @@
       </a>
     </div>
     <div class="flex-1 w40p text-center">
-      <h1 class="m0 h0">
+      <h1 class="m0 h0" style="margin-top: -4px">
         <a class="no-underline pink" href="/">
-          {% assign logo_width = 120 %}
+          {% assign logo_width = 100 %}
           {% include 'logo' %}
         </a>
       </h1>
     </div>
     <div class="flex-1 w30p flex justify-end">
-      <a class="js-cart-trigger no-underline white" href="#">
-        <div class="flex items-center">
-          {% assign cart_icon_width = 18 %}
-          {% include 'cart-icon' %}
-          {% include 'cart-count' %}
-        </div>
+      <a class="js-cart-trigger no-underline white relative" href="#">
+        <svg width="18" viewBox="0 0 20 20">
+          <path fill="none" stroke="currentColor" stroke-width="1.4" d="M15 8.333H5v-2.5a5 5 0 1 1 10 0v2.5zm-14.167 0v10.834h18.334V8.333H15v-2.5a5 5 0 0 0-10 0v2.5H.833z"/>
+        </svg>
+        <span class="js-header-count cart-count circle text-center bg-pink black h6 block absolute">
+          {{ cart.items.length }}
+        </span>
       </a>
     </div>
   </div>
