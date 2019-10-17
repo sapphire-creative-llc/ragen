@@ -69,50 +69,54 @@
   </footer>
 
   <footer class="footer grid grid hide-md black px1">
-    <nav class="py1">
-      <p class="m0 pb1">Ragen</p>
+    <nav class="py1 h6">
+      <p class="m0 bold">Ragen</p>
       {% for ragen in linklists.ragen-menu.links %}
-        <a class="h5 inline-block no-underline dark-pink hover-opacity-5" href="{{ ragen.url }}">
+        <a class="inline-block no-underline black hover-opacity-5" href="{{ ragen.url }}">
           {{ ragen.title }}
         </a><br />
       {% endfor %}
       <span class="pb1 block"></span>
-      <p class="m0 pb1">Help</p>
+      <p class="m0 bold">Help</p>
       {% for help in linklists.help-menu.links %}
-        <a class="h5 inline-block no-underline dark-pink hover-opacity-5" href="{{ help.url }}">
+        <a class="h5 inline-block no-underline black hover-opacity-5" href="{{ help.url }}">
           {{ help.title }}
         </a><br />
       {% endfor %}
       <span class="pb1 block"></span>
-      <p class="m0 pb1">Account</p>
+      <p class="m0 bold">Account</p>
       {% for account in linklists.account-menu.links %}
-        <a class="h5 inline-block no-underline dark-pink hover-opacity-5" href="{{ account.url }}">
+        <a class="h5 inline-block no-underline black hover-opacity-5" href="{{ account.url }}">
           {{ account.title }}
         </a><br />
       {% endfor %}
     </nav>
     <div class="overflow-hidden pt1 pb2">
       <div class="mb1">
-        <a class="inline-block dark-pink mr1 hover-opacity-5" href="https://www.instagram.com/ragenjewels/?hl=en" target="_blank">
+        <a class="inline-block black mr1 hover-opacity-5" href="https://www.instagram.com/ragenjewels/?hl=en" target="_blank">
           {% include 'instagram-icon' %}
         </a>
-        <a class="inline-block dark-pink mr1 hover-opacity-5" href="https://www.facebook.com/ragenjewels/" target="_blank">
+        <a class="inline-block black mr1 hover-opacity-5" href="https://www.facebook.com/ragenjewels/" target="_blank">
           {% include 'facebook-icon' %}
         </a>
-        <a class="inline-block dark-pink mr1 hover-opacity-5" href="https://www.pinterest.com/ragenjewels/" target="_blank">
+        <a class="inline-block black mr1 hover-opacity-5" href="https://www.pinterest.com/ragenjewels/" target="_blank">
           {% include 'pinterest-icon' %}
         </a>
-        <a class="inline-block dark-pink hover-opacity-5" href="https://twitter.com/ragenjewels" target="_blank">
+        <a class="inline-block black hover-opacity-5" href="https://twitter.com/ragenjewels" target="_blank">
           {% include 'twitter-icon' %}
         </a>
       </div>
-      <label class="block medium-gray h5" for="mce-EMAIL" style="margin-bottom: .5rem;">
+      <label class="block black h6" for="mce-EMAIL" style="margin-bottom: .5rem;">
         Be an insider! Sign up for the Ragen newsletter:
       </label>
       {% include 'footer-signup' %}
     </div>
-    <p class="medium-gray h6 pb2 mb0">
-      © {{ 'now' | date: "%Y" }} Ragen Jewels. All rights reserved.
-    </p>
+    <div class="text-center">
+      {% assign logo_width = 123 %}
+      {% include 'logo' %}
+      <p class="medium-gray h6 pb2 mb0">
+        © {{ 'now' | date: "%Y" }} Ragen Jewels.<br />All rights reserved.
+      </p>
+    </div>
   </footer>
 </div>

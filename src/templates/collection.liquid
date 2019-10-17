@@ -1,8 +1,8 @@
 <div class="pt4 pb6">
-  <h3 class="mt0 mb1 text-normal text-center">
+  <h3 class="mt0 text-normal bold text-center">
     {{ collection.title }}
   </h3>
-  <div class="pb3 border-bottom border-smoke flex flex-wrap justify-center">
+  <div class="flex flex-wrap justify-center">
     {% for secondary in linklists.secondary-menu.links %}
       {% if secondary.title == collection.title %}
         {% if secondary.links != blank %}
@@ -16,12 +16,12 @@
     {% endfor %}
   </div>
   {% paginate collection.products by 36 %}
-    <div class="flex flex-wrap pt4">
+    <div class="grid flex flex-wrap pt2">
       {% for product in collection.products %}
         {% include 'collection' %}
       {% endfor %}
     </div>
-    <div class="pagination text-center h5 flex items-center justify-center">
+    <div class="pagination text-center h5 flex items-center justify-center mt3">
       {{ paginate | default_pagination }}
     </div>
   {% endpaginate %}
