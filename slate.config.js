@@ -5,12 +5,4 @@
 
 const path = require('path');
 
-module.exports = {
-  'webpack.extend': {
-    resolve: {
-      alias: {
-        jquery: path.resolve('./node_modules/jquery')
-      }
-    }
-  }
-};
+module.exports = {};
