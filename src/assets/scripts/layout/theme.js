@@ -506,7 +506,7 @@ import subscribe from 'klaviyo-subscribe';
     const form = $(this).serialize();
     $('svg.loading').show();
     $(this)
-      .find('input[type="submit"]')
+      .find('button[type="submit"]')
       .hide();
 
     const email = $(this)
@@ -524,7 +524,7 @@ import subscribe from 'klaviyo-subscribe';
           .removeClass('hide');
         $('svg.loading').hide();
         $(this)
-          .find('input[type="submit"]')
+          .find('button[type="submit"]')
           .show();
         setTimeout(() => {
           $(this)
