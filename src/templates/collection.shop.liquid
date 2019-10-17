@@ -9,7 +9,7 @@
   {% for secondary in linklists.secondary-menu.links %}
     {% for collection in collections %}
       {% if collection.title == secondary.title %}
-        <div id="{{ secondary.title | handleize }}" class="grid py4">
+        <div id="{{ secondary.title | handleize }}" class="grid py3">
           <div class="text-center">
             <h3 class="m0 bold text-normal">
               {{ collection.title }}
