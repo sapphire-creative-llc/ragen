@@ -14,7 +14,7 @@
         {% endif %}
       {% endfor %}
     </div>
-    <div class="flex items-end mt1">
+    <div class="flex items-end p1">
       <div class="flex-1">
         <p class="m0 h6 black">{{ product.title }}</p>
         {% if product.first_available_variant.available %}
@@ -30,8 +30,8 @@
           <p class="h6 medium-gray inline-block">Sold Out</p>
         {% endif %}
       </div>
-      <div class="">
-        <svg width="18" viewBox="0 0 24 24">
+      <div class="plus-sign">
+        <svg width="14" viewBox="0 0 24 24">
           <path fill="currentColor" d="M13 11h11v2H13v11h-2V13H0v-2h11V0h2v11z"/>
         </svg>
       </div>
