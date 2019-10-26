@@ -537,7 +537,7 @@ import Siema from 'siema';
   });
 
   const base = 'https://api.instagram.com';
-  const token = '391279626.1677ed0.9afc81c2b00e44289308c90d1e603987';
+  const token = '391279626.1677ed0.99f88a45d4d54f568ba1b083bf218339';
 
   const renderInstagramPhotos = stringifiedPhotoData => {
     const photos = JSON.parse(stringifiedPhotoData);
