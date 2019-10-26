@@ -662,7 +662,7 @@ import Siema from 'siema';
       .append(
         photo.comments.data
           .map(comment => {
-            return `<li class="h5"><span class="black">${comment.from.username}</span> <span class="dark-gray">${comment.text}</span></li>`;
+            return `<li class="h6"><span class="black bold">${comment.from.username}</span> <span class="dark-gray">${comment.text}</span></li>`;
           })
           .join('')
       );
