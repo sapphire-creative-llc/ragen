@@ -1,4 +1,4 @@
-<a href="{{ product.url }}" class="block collection-item no-underline black border-box" data-type="{{ product.type }}">
+<a href="{{ product.url }}" class="block collection-item no-underline black border-box" data-type="{{ product.type }}" data-handle="{{ product.handle }}" data-img="{{ product | img_url: '300x' }}">
   <div class="flex flex-column h100p justify-between">
     <div class="relative">
       {% for image in product.images %}

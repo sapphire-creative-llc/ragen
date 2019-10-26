@@ -18,7 +18,8 @@
     "babel-preset-shopify": "^16.2.0"
   },
   "dependencies": {
-    "klaviyo-subscribe": "^0.0.3"
+    "klaviyo-subscribe": "^0.0.3",
+    "siema": "^1.5.1"
   },
   "scripts": {
     "start": "slate-tools start",

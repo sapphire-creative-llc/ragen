@@ -3,6 +3,7 @@ import '../../styles/theme.scss.liquid';
 import '../../styles/fonts.scss.liquid';
 
 import subscribe from 'klaviyo-subscribe';
+import Siema from 'siema';
 
 ($ => {
   const $body = $('body');
@@ -346,27 +347,31 @@ import subscribe from 'klaviyo-subscribe';
       .find('span')
       .removeClass('strike');
 
-    variants.filter(v => v.option1 === selectedOption1).map(v => {
-      if (!v.available) {
-        $(`input[data-option-value='${v.option2}']`)
-          .prop('disabled', true)
-          .css('cursor', 'default')
-          .siblings('button')
-          .find('span')
-          .addClass('strike');
-      }
-    });
+    variants
+      .filter(v => v.option1 === selectedOption1)
+      .map(v => {
+        if (!v.available) {
+          $(`input[data-option-value='${v.option2}']`)
+            .prop('disabled', true)
+            .css('cursor', 'default')
+            .siblings('button')
+            .find('span')
+            .addClass('strike');
+        }
+      });
 
-    variants.filter(v => v.option2 === selectedOption2).map(v => {
-      if (!v.available) {
-        $(`input[data-option-value='${v.option1}']`)
-          .prop('disabled', true)
-          .css('cursor', 'default')
-          .siblings('button')
-          .find('span')
-          .addClass('strike');
-      }
-    });
+    variants
+      .filter(v => v.option2 === selectedOption2)
+      .map(v => {
+        if (!v.available) {
+          $(`input[data-option-value='${v.option1}']`)
+            .prop('disabled', true)
+            .css('cursor', 'default')
+            .siblings('button')
+            .find('span')
+            .addClass('strike');
+        }
+      });
   };
 
   getProductData().then(({ product }) => {
@@ -496,10 +501,6 @@ import subscribe from 'klaviyo-subscribe';
       }
     });
   };
-
-  $('.secondary-trigger').on('click', () => {
-    $('.secondary-nav').toggleClass('hide');
-  });
 
   $('.mc-form-footer, .mc-form-popup').on('submit', function(e) {
     e.preventDefault();
@@ -661,28 +662,168 @@ import subscribe from 'klaviyo-subscribe';
       .append(
         photo.comments.data
           .map(comment => {
-            return `<li class="h5"><span class="black apercu-medium">${
-              comment.from.username
-            }</span> <span class="dark-gray">${comment.text}</span></li>`;
+            return `<li class="h5"><span class="black">${comment.from.username}</span> <span class="dark-gray">${comment.text}</span></li>`;
           })
           .join('')
       );
   });
 
-  $('.search-trigger').on('click', e => {
+  $('.customizer__left a').on('click', function(e) {
     e.preventDefault();
-    e.stopPropagation();
-    $('.search-box').toggleClass('showing');
+
+    const $product = $(this);
+
+    $('.js-popup.quick-shop-popup').removeClass('hidden');
+    $body.addClass('overflow-hidden');
+
+    const handle = $product.data('handle');
+    $.getJSON(`/products/${handle}`).then(({ product }) => {
+      $('.js-quick-shop-options').empty();
+      $('.js-quick-shop-title').text(product.title);
+      $('.js-quick-shop-description').html(product.body_html);
+
+      product.images.forEach(img => {
+        $('<img />')
+          .attr('src', img.src)
+          .appendTo('.js-quick-shop-gallery');
+      });
+
+      const gallery = new Siema({
+        selector: '.js-quick-shop-gallery',
+        loop: true
+      });
+
+      $('.js-quick-shop-prev').on('click', () => {
+        gallery.prev();
+      });
+
+      $('.js-quick-shop-next').on('click', () => {
+        gallery.next();
+      });
+
+      const addVariantToStack = variant => {
+        const $slots = $product
+          .closest('.customizer__left')
+          .siblings('.customizer__right');
+
+        const $completed = $slots.find('.customizer__right--slot[style]');
+
+        const $nextSlot = $slots
+          .find('.customizer__right--slot:not([style])')
+          .first();
+
+        $nextSlot
+          .css('background-image', `url(${$product.data('img')})`)
+          .data('id', variant.id);
+
+        if ($completed.length === 2) {
+          $slots.find('button').prop('disabled', false);
+        }
+
+        $('.js-close-popup').trigger('click');
+      };
+
+      product.options.forEach(option => {
+        if (product.variants.length === 1) {
+          addVariantToStack(product.variants[0]);
+        }
+
+        if (option.name !== 'Title') {
+          const $wrapper = $('<div />').addClass('mb1');
+          const $label = $('<label />')
+            .text(option.name)
+            .addClass('h6');
+          const $selectWrapper = $('<div />').addClass('relative');
+
+          const $select = $('<select />')
+            .addClass('pointer o0p absolute t0 l0 w100p h100p')
+            .data('position', `option${option.position}`);
+
+          const $activeValue = $('<div />')
+            .addClass('select h6')
+            .text(option.values[0]);
+
+          option.values.forEach(v => {
+            $('<option />')
+              .text(v)
+              .val(v)
+              .appendTo($select);
+          });
+
+          $('.js-quick-shop-options').append(
+            $wrapper
+              .append($label)
+              .append($selectWrapper.append($select).append($activeValue))
+          );
+
+          $('.js-quick-shop-options select').on('change', function(e) {
+            $(this)
+              .siblings('div')
+              .text(e.target.value);
+          });
+
+          $('.js-add-to-stack').on('click', () => {
+            let filters = [];
+            $('.js-quick-shop-options select').each(function() {
+              filters = [
+                ...filters,
+                {
+                  position: $(this).data('position'),
+                  value: $(this).val()
+                }
+              ];
+            });
+
+            const variant = product.variants.find(v => {
+              if (filters.length === 1) {
+                return v[filters[0].position] === filters[0].value;
+              } else if (filters.length === 2) {
+                return (
+                  v[filters[0].position] === filters[0].value &&
+                  v[filters[1].position] === filters[1].value
+                );
+              }
+            });
+
+            $.getJSON(`/products/${handle}.js`).then(product => {
+              const matchedVariant = product.variants.find(
+                v => v.id === variant.id
+              );
+
+              if (matchedVariant.available) {
+                addVariantToStack(matchedVariant);
+              } else {
+                alert('This option is sold out :( Please try again.');
+              }
+            });
+          });
+        }
+      });
+    });
+
+    $('.quick-shop-popup .js-close-popup').on('click', () => {
+      $('.js-quick-shop-gallery').empty();
+    });
   });
 
-  $('.search-box').on('click', e => {
-    e.stopPropagation();
-  });
+  $('.customizer button').on('click', function() {
+    $(this)
+      .closest('.customizer__right')
+      .find('.customizer__right--slot')
+      .each(function() {
+        const id = $(this).data('id');
 
-  $(document).on('click', e => {
-    if ($('.search-box').hasClass('showing')) {
-      $('.search-box').removeClass('showing');
-    }
+        $body.addClass('cart-open');
+
+        createCartItem(`id=${id}&quantity=1`)
+          .done(response => {
+            appendCartItem(JSON.parse(response), id);
+          })
+          .fail(({ responseText }) => {
+            const { description } = JSON.parse(responseText);
+            console.log(description);
+          });
+      });
   });
 
   $(window).on('scroll', () => {

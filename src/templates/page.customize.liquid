@@ -1,1 +1,134 @@
-<h1>Customizer</h1>
+<div class="pink mb2 bg-light-pink py1 flex justify-center items-center">
+  <svg width="24" viewBox="0 0 24 24" style="margin-right: .5rem">
+    <g fill="none">
+      <path d="M17.598 4.303l-3.395.534-2.42-2.419-2.436 2.463-3.388-.56-.531 3.336-3.075 1.585 1.55 3.037-1.559 3.064L5.397 16.9 5.94 20.3l3.377-.56 2.438 2.456 2.42-2.412 3.404.534.534-3.379 3.102-1.568-1.555-3.059 1.549-3.063-3.076-1.569-.534-3.376z" stroke="currentColor" stroke-width="2"/>
+      <path d="m9.28 7.31a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0 -3zm5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0 -3zm-6.09 3l8.59-8.59-1.41-1.41-8.59 8.59z" fill="currentColor"/>
+    </g>
+  </svg>
+  <p class="m0 h5">Choose <span class="bold">3 items</span> for a stack that’s uniquely you, at a price you’ll love.</p>
+</div>
+<div class="grid">
+  {% for collection in collections %}
+    <div class="customizer black">
+      {% if collection.handle == 'rings' %}
+        <div class="customizer__left">
+          <div class="customizer__left--rings">
+            <div class="flex flex-wrap">
+              {% for product in collection.products %}
+                {% include 'collection'%}
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        <div class="customizer__right pl2">
+          <div class="sticky t5">
+            <h1 class="text-normal bold mb1">{{ collection.handle | capitalize }} Stack</h1>
+            <p>Choose 3 {{ collection.handle }} for 40% off</p>
+            <h4 class="text-normal bold mt0 mb1">3 for <span class="pink">$99</span></h4>
+            <div class="flex items-center">
+              <div class="visual overflow-hidden bg-white w100p">
+                <div class="customizer__right--slot rounded image bg-center bg-cover border border-smoke pb100p"></div>
+              </div>
+              <div class="width-3">
+                {% include 'plus-icon' %}
+              </div>
+              <div class="visual overflow-hidden bg-white w100p">
+                <div class="customizer__right--slot rounded image bg-center bg-cover border border-smoke pb100p"></div>
+              </div>
+              <div class="width-3">
+                {% include 'plus-icon' %}
+              </div>
+              <div class="visual overflow-hidden bg-white w100p">
+                <div class="customizer__right--slot rounded image bg-center bg-cover border border-smoke pb100p"></div>
+              </div>
+            </div>
+            <div class="flex items-center mt2">
+              <button disabled class="button bg-black white">
+                Add to jewel bag
+              </button>
+              <a class="sizing-chart-trigger h6 pink no-underline ml2" href="#">
+                See sizing chart
+              </a>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+      {% if collection.handle == 'bracelets' %}
+        <div class="customizer__left">
+          <div class="customizer__left--bracelets">
+            <div class="flex flex-wrap">
+              {% for product in collection.products %}
+                {% include 'collection'%}
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        <div class="customizer__right pl2">
+          <div class="sticky t5">
+            <h1 class="text-normal bold mb1">{{ collection.handle | capitalize }} Stack</h1>
+            <h4 class="text-normal bold mt0 mb1">3 for <span class="pink">$99</span></h4>
+            <div class="flex items-center">
+              <div class="visual overflow-hidden bg-white w100p">
+                <div class="customizer__right--slot rounded image bg-center bg-cover border border-smoke pb100p"></div>
+              </div>
+              <div class="width-3">
+                {% include 'plus-icon' %}
+              </div>
+              <div class="visual overflow-hidden bg-white w100p">
+                <div class="customizer__right--slot rounded image bg-center bg-cover border border-smoke pb100p"></div>
+              </div>
+              <div class="width-3">
+                {% include 'plus-icon' %}
+              </div>
+              <div class="visual overflow-hidden bg-white w100p">
+                <div class="customizer__right--slot rounded image bg-center bg-cover border border-smoke pb100p"></div>
+              </div>
+            </div>
+            <button disabled class="button bg-black white mt2">
+              Add to jewel bag
+            </button>
+          </div>
+        </div>
+      {% endif %}
+      {% if collection.handle == 'necklaces' %}
+        <div class="customizer__left">
+          <div class="customizer__left--necklaces">
+            <div class="flex flex-wrap">
+              {% for product in collection.products %}
+                {% include 'collection'%}
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        <div class="customizer__right pl2">
+          <div class="sticky t5">
+            <h1 class="text-normal bold mb1">{{ collection.handle | capitalize }} Stack</h1>
+            <h4 class="text-normal bold mt0 mb1">3 for <span class="pink">$99</span></h4>
+            <div class="flex items-center">
+              <div class="visual overflow-hidden bg-white w100p">
+                <div class="customizer__right--slot rounded image bg-center bg-cover border border-smoke pb100p"></div>
+              </div>
+              <div class="width-3">
+                {% include 'plus-icon' %}
+              </div>
+              <div class="visual overflow-hidden bg-white w100p">
+                <div class="customizer__right--slot rounded image bg-center bg-cover border border-smoke pb100p"></div>
+              </div>
+              <div class="width-3">
+                {% include 'plus-icon' %}
+              </div>
+              <div class="visual overflow-hidden bg-white w100p">
+                <div class="customizer__right--slot rounded image bg-center bg-cover border border-smoke pb100p"></div>
+              </div>
+            </div>
+            <button disabled class="button bg-black white mt2">
+              Add to jewel bag
+            </button>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  {% endfor %}
+</div>
+
+{% section 'insta-famous' %}
