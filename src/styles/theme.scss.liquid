@@ -136,6 +136,7 @@ input[type="password"],
 }
 .flex-column { flex-direction: column; }
 .flex-wrap { flex-wrap: wrap; }
+.items-start { align-items: flex-start; }
 .items-center { align-items: center; }
 .items-end { align-items: flex-end; }
 .justify-center { justify-content: center; }
@@ -684,8 +685,36 @@ pre a,
   }
 }
 
+.cart-items {
+  overflow: scroll;
+  height: calc(100vh - 300px);
+}
+
 .cart-item {
-  margin-bottom: 1.5rem;
+  strike {
+    margin: .2rem 0 0 .5rem;
+  }
+  &:first-child {
+    padding-top: 1.5rem;
+  }
+  &:last-child {
+    padding-bottom: 1rem;
+  }
+}
+
+.cart-totals {
+  position: relative;
+  &:before {
+    box-shadow: 0 -40px 40px -40px inset rgba(0,0,0,.8);
+    content: '';
+    width: calc(100% - 4rem);
+    margin: 0 auto;
+    height: 40px;
+    top: -40px;
+    position: absolute;
+    left: 0;
+    right: 0;
+  }
 }
 
 .append-cart-item {
@@ -798,28 +827,12 @@ footer {
   }
 }
 
-.cart-padding {
-  padding-left: 1rem;
-  padding-right: 1rem;
-  @media screen and (min-width: $break-md) {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-}
-
 .cart-image {
   width: 4rem;
   height: 4rem;
   @media screen and (min-width: $break-md) {
-    width: 5rem;
-    height: 5rem;
-  }
-}
-
-.pad-cart-close {
-  padding: 1rem;
-  @media screen and (min-width: $break-md) {
-    padding: 1.5rem;
+    width: 5.6rem;
+    height: 5.6rem;
   }
 }
 
@@ -970,25 +983,21 @@ input[type=number]::-webkit-outer-spin-button {
 
 .number-input {
   margin-top: .5rem;
-  height: 1.8rem;
+  height: 1.4rem;
   input {
     width: 1.2rem;
     font-family: inherit;
-    font-size: .875rem;
-    height: 100%;
+    font-size: .675rem;
     border: none;
     background: none;
-    height: 1.6rem;
+    height: 1.2rem;
     position: relative;
-    top: 1px;
   }
   button {
     outline:none;
     -webkit-appearance: none;
     background-color: transparent;
     border: none;
-    align-items: center;
-    justify-content: center;
     cursor: pointer;
     margin: 0;
     padding: 0 .4rem;
@@ -1101,10 +1110,6 @@ input[type=number]::-webkit-outer-spin-button {
       }
     }
   }
-}
-
-.remove-from-cart {
-  padding: .18rem;
 }
 
 .sizing-text {

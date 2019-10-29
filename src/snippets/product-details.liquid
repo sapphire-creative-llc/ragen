@@ -8,10 +8,10 @@
 {{collection.name}}
 <h2 class="bold mt0 mb1">{{ product.title }}</h2>
 {% if available %}
-  <span class="mt0 h5 mb1 dark-pink">
+  <span class="mt0 mb1 pink">
     {{ product.price | money_without_trailing_zeros }}
     {% if product.compare_at_price_max > 0 %}
-      <strike class="strike dark-pink">
+      <strike class="strike pink">
         <span class="mild-gray">{{ product.compare_at_price_max | money_without_trailing_zeros }}</span>
       </strike>
     {% endif %}
@@ -110,7 +110,7 @@
               {% if product_option.name == 'Size' %}
                 {% for collection in product.collections %}
                   {% if collection.title == 'Rings' %}
-                    <a class="sizing-chart-trigger h6 dark-pink no-underline" href="#">
+                    <a class="sizing-chart-trigger h6 pink no-underline" href="#">
                       See sizing chart
                     </a>
                   {% endif %}

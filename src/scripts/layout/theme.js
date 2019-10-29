@@ -20,7 +20,6 @@ import Siema from 'siema';
   const $cartShippingName = $('.js-shipping-name');
   const $cartShippingCost = $('.js-shipping-cost');
   const $cartForm = $('.js-cart-form');
-  const $cartError = $('.js-cart-error');
   const $mobileNavOpen = $('.js-mobile-nav-open');
   const $mobileNavClose = $('.js-mobile-nav-close');
   const $productDetails = $('.product-details');
@@ -48,10 +47,7 @@ import Siema from 'siema';
         .replace(/"/g, ' ')
         .trim();
 
-      if (bp === 'sm') {
-        $body.addClass('overflow-hidden');
-      }
-
+      $body.addClass('overflow-hidden');
       $body.addClass('cart-open');
     };
 
@@ -97,28 +93,41 @@ import Siema from 'siema';
     const variantTitle = variant_title || '';
 
     return `
-      <div class="cart-item w100p" data-id="${variant_id}">
+      <div class="cart-item w100p mb1" data-id="${variant_id}">
         <div class="flex w100p">
           <div class="cart-image bg-center bg-cover" style="background-image: url(${image})"></div>
           <div class="flex-1 px1">
             <p class="m0 h4">${product_title}</p>
-            <p class="m0 h5">${variantTitle} ${product_type} ${formattedPrice}</p>
+            <span class="block m0 h6 medium-gray">
+              ${item.options_with_values.map(
+                o => `<span>${o.name}: ${o.value}</span>`
+              )}
+            </span>
+            ${
+              item.line_level_discount_allocations.length > 0
+                ? `<span class="pink h6 block">${priceToCurrency(
+                    price - item.line_level_discount_allocations[0].amount
+                  )}<strike class="strike medium-gray h6">${formattedPrice}</strike></span>`
+                : `<p class="m0 h6 medium-gray">${formattedPrice}</p>`
+            }
             <div class="number-input inline-block rounded border border-charcoal">
-              <button class="decrement-cart-quantity" type="button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="13" viewBox="0 0 9 6" fill="#979797">
-                  <path d="M4.6 3.8L7.8 0.6 8.6 1.5 5.5 4.7 5.5 4.7 4.6 5.6 0.5 1.4 1.4 0.5 4.6 3.8Z"/>
-                </svg>
-              </button>
-              <input class="text-center white" min="1" name="quantity" value="${quantity}" type="number">
-              <button class="increment-cart-quantity plus" type="button">
-                <svg style="transform: rotate(180deg);" xmlns="http://www.w3.org/2000/svg" width="13" viewBox="0 0 9 6" fill="#979797">
-                  <path d="M4.6 3.8L7.8 0.6 8.6 1.5 5.5 4.7 5.5 4.7 4.6 5.6 0.5 1.4 1.4 0.5 4.6 3.8Z"/>
-                </svg>
-              </button>
+              <div class="flex items-center">
+                <button class="decrement-cart-quantity" type="button">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="13" viewBox="0 0 9 6" fill="#979797">
+                    <path d="M4.6 3.8L7.8 0.6 8.6 1.5 5.5 4.7 5.5 4.7 4.6 5.6 0.5 1.4 1.4 0.5 4.6 3.8Z"/>
+                  </svg>
+                </button>
+                <input class="text-center white" min="1" name="quantity" value="${quantity}" type="number">
+                <button class="increment-cart-quantity plus" type="button">
+                  <svg style="transform: rotate(180deg);" xmlns="http://www.w3.org/2000/svg" width="13" viewBox="0 0 9 6" fill="#979797">
+                    <path d="M4.6 3.8L7.8 0.6 8.6 1.5 5.5 4.7 5.5 4.7 4.6 5.6 0.5 1.4 1.4 0.5 4.6 3.8Z"/>
+                  </svg>
+                </button>
+              </div>
             </div>
           </div>
           <div>
-            <a class="h5 no-underline rounded border border-charcoal block remove-from-cart hover-opacity-5" href="#">
+            <a class="js-remove-from-cart h5 no-underline rounded block hover-opacity-5" href="#">
               <svg class="pointer medium-gray block" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 15 15">
                 <polygon points="7.5 8.5 1 14.9 0 13.9 6.5 7.5 0 1 1 0 7.5 6.5 14 0 15 1 8.5 7.5 15 14 14 15" fill="currentColor"/>
               </svg>
@@ -256,15 +265,7 @@ import Siema from 'siema';
     updateCartItem(id, e.target.value).done(updateCart);
   };
 
-  const hideError = () => {
-    $cartError.hide();
-  };
-
-  const showError = description => {
-    $cartError.show().text(description);
-  };
-
-  $cart.on('click', '.remove-from-cart', e => deleteItem(e));
+  $cart.on('click', '.js-remove-from-cart', e => deleteItem(e));
   $cart.on('change', "input[name='quantity']", e => updateQuantity(e));
 
   $cartForm.on('submit', e => {
@@ -279,18 +280,56 @@ import Siema from 'siema';
     const id = serializedJSON[0].value;
     const alreadyInCart = findItemById(id).length === 1;
 
-    if (!alreadyInCart) {
+    if (alreadyInCart) {
+      getCartItems().then(({ items }) => {
+        const item = items.find(item => item.id === Number(id));
+        updateCartItem(id, item.quantity + 1).then(updateCart);
+      });
+    } else {
       createCartItem(serializedData)
         .done(response => {
-          hideError();
           const item = JSON.parse(response);
           appendCartItem(item, id);
         })
         .fail(({ responseText }) => {
           const { description } = JSON.parse(responseText);
-          setTimeout(() => showError(description), 250);
+          alert(decription);
         });
     }
+  });
+
+  $('.js-add-stack-to-bag').on('click', e => {
+    e.preventDefault();
+
+    $body.addClass('cart-open');
+    $('.js-cart-loading').removeClass('hide');
+
+    let variantIds = [];
+    $('.customizer__right--slot-img').each(function() {
+      variantIds.push($(this).data('id'));
+    });
+
+    createCartItem({ id: variantIds[0], quantity: 1 })
+      .done(response => {
+        const item1 = JSON.parse(response);
+        createCartItem({ id: variantIds[1], quantity: 1 }).done(response => {
+          const item2 = JSON.parse(response);
+          createCartItem({ id: variantIds[2], quantity: 1 }).done(response => {
+            const item3 = JSON.parse(response);
+
+            appendCartItem(item1, variantIds[0]);
+            appendCartItem(item2, variantIds[1]);
+            appendCartItem(item3, variantIds[2]);
+
+            $('.js-cart-loading').addClass('hide');
+
+            setTimeout(updateCart, 50);
+          });
+        });
+      })
+      .fail(({ responseText }) => {
+        console.log('failed', response);
+      });
   });
 
   $("input[data-position='1'], input[data-position='2']").on('change', e => {
@@ -668,16 +707,66 @@ import Siema from 'siema';
       );
   });
 
+  let stackProduct;
+  let $stackProduct;
+  let variantsStack = [];
+  const defaultCustomizerCopy = $('.customizer__right--copy').html();
+
+  const addVariantToStack = (variant, selectedOptions) => {
+    variantsStack.push(variant);
+
+    const $slots = $stackProduct
+      .closest('.customizer__left')
+      .siblings('.customizer__right');
+
+    const $completed = $slots.find('.customizer__right--slot-img[style]');
+
+    const $nextSlot = $slots
+      .find('.customizer__right--slot-img:not([style])')
+      .first();
+
+    $nextSlot
+      .css('background-image', `url(${$stackProduct.data('img')})`)
+      .data('id', variant.id);
+
+    if (selectedOptions.length > 0) {
+      const $nextOption = $('.customizer__right--slot-options:empty').first();
+      selectedOptions.forEach(option => {
+        $nextOption.append(
+          `<span class="h6 block">${option.name}: ${option.value}</span>`
+        );
+      });
+    }
+
+    if ($completed.length === 2) {
+      $slots.find('button').prop('disabled', false);
+
+      const price = variantsStack.map(v => v.price).reduce((a, b) => a + b, 0);
+      const discount = price - price * 0.4;
+
+      $('.customizer__right--copy').html(`
+        <strike class="gray">${priceToCurrency(price)}</strike>
+        <span class="bold">3 for
+          <span class="pink">${priceToCurrency(discount)}</span>
+        </span>
+      `);
+    }
+
+    $('.js-close-popup').trigger('click');
+  };
+
   $('.customizer__left a').on('click', function(e) {
     e.preventDefault();
 
     const $product = $(this);
+    const handle = $product.data('handle');
+    $stackProduct = $product;
 
     $('.js-popup.quick-shop-popup').removeClass('hidden');
     $body.addClass('overflow-hidden');
 
-    const handle = $product.data('handle');
     $.getJSON(`/products/${handle}`).then(({ product }) => {
+      stackProduct = product;
       $('.js-quick-shop-options').empty();
       $('.js-quick-shop-title').text(product.title);
       $('.js-quick-shop-description').html(product.body_html);
@@ -701,28 +790,6 @@ import Siema from 'siema';
         gallery.next();
       });
 
-      const addVariantToStack = variant => {
-        const $slots = $product
-          .closest('.customizer__left')
-          .siblings('.customizer__right');
-
-        const $completed = $slots.find('.customizer__right--slot[style]');
-
-        const $nextSlot = $slots
-          .find('.customizer__right--slot:not([style])')
-          .first();
-
-        $nextSlot
-          .css('background-image', `url(${$product.data('img')})`)
-          .data('id', variant.id);
-
-        if ($completed.length === 2) {
-          $slots.find('button').prop('disabled', false);
-        }
-
-        $('.js-close-popup').trigger('click');
-      };
-
       product.options.forEach(option => {
         if (product.variants.length === 1) {
           addVariantToStack(product.variants[0]);
@@ -737,7 +804,8 @@ import Siema from 'siema';
 
           const $select = $('<select />')
             .addClass('pointer o0p absolute t0 l0 w100p h100p')
-            .data('position', `option${option.position}`);
+            .data('position', `option${option.position}`)
+            .data('name', option.name);
 
           const $activeValue = $('<div />')
             .addClass('select h6')
@@ -755,49 +823,13 @@ import Siema from 'siema';
               .append($label)
               .append($selectWrapper.append($select).append($activeValue))
           );
-
-          $('.js-quick-shop-options select').on('change', function(e) {
-            $(this)
-              .siblings('div')
-              .text(e.target.value);
-          });
-
-          $('.js-add-to-stack').on('click', () => {
-            let filters = [];
-            $('.js-quick-shop-options select').each(function() {
-              filters = [
-                ...filters,
-                {
-                  position: $(this).data('position'),
-                  value: $(this).val()
-                }
-              ];
-            });
-
-            const variant = product.variants.find(v => {
-              if (filters.length === 1) {
-                return v[filters[0].position] === filters[0].value;
-              } else if (filters.length === 2) {
-                return (
-                  v[filters[0].position] === filters[0].value &&
-                  v[filters[1].position] === filters[1].value
-                );
-              }
-            });
-
-            $.getJSON(`/products/${handle}.js`).then(product => {
-              const matchedVariant = product.variants.find(
-                v => v.id === variant.id
-              );
-
-              if (matchedVariant.available) {
-                addVariantToStack(matchedVariant);
-              } else {
-                alert('This option is sold out :( Please try again.');
-              }
-            });
-          });
         }
+      });
+
+      $('.js-quick-shop-options select').on('change', function(e) {
+        $(this)
+          .siblings('div')
+          .text(e.target.value);
       });
     });
 
@@ -806,24 +838,60 @@ import Siema from 'siema';
     });
   });
 
-  $('.customizer button').on('click', function() {
-    $(this)
-      .closest('.customizer__right')
-      .find('.customizer__right--slot')
-      .each(function() {
-        const id = $(this).data('id');
+  $('.js-add-to-stack').on('click', e => {
+    e.preventDefault();
 
-        $body.addClass('cart-open');
+    let filters = [];
+    let selectedOptions = [];
+    $('.js-quick-shop-options select').each(function() {
+      filters = [
+        ...filters,
+        {
+          position: $(this).data('position'),
+          value: $(this).val()
+        }
+      ];
+      selectedOptions = [
+        ...selectedOptions,
+        {
+          name: $(this).data('name'),
+          value: $(this).val()
+        }
+      ];
+    });
 
-        createCartItem(`id=${id}&quantity=1`)
-          .done(response => {
-            appendCartItem(JSON.parse(response), id);
-          })
-          .fail(({ responseText }) => {
-            const { description } = JSON.parse(responseText);
-            console.log(description);
-          });
-      });
+    const variant = stackProduct.variants.find(v => {
+      if (filters.length === 1) {
+        return v[filters[0].position] === filters[0].value;
+      } else if (filters.length === 2) {
+        return (
+          v[filters[0].position] === filters[0].value &&
+          v[filters[1].position] === filters[1].value
+        );
+      }
+    });
+
+    $.getJSON(`/products/${stackProduct.handle}.js`).then(product => {
+      const matchedVariant = product.variants.find(v => v.id === variant.id);
+
+      if (matchedVariant.available) {
+        addVariantToStack(matchedVariant, selectedOptions);
+      } else {
+        alert(
+          'This option is curently unavailable :( Please select different options'
+        );
+      }
+    });
+  });
+
+  $('.js-remove-stack-item').on('click', function() {
+    const $slot = $(this).closest('.customizer__right--slot-img');
+    const slot = $slot.data('slot-img');
+
+    $slot.removeAttr('style').removeData('id');
+    $('.customizer__right--copy').html(defaultCustomizerCopy);
+    $(`[data-slot-options=${slot}]`).empty();
+    $('.js-add-stack-to-bag').prop('disabled', true);
   });
 
   $(window).on('scroll', () => {
