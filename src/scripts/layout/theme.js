@@ -113,6 +113,7 @@ import Siema from 'siema';
     } = item;
     const formattedPrice = priceToCurrency(price);
     const variantTitle = variant_title || '';
+    console.log(item);
 
     return `
       <div class="cart-item w100p mb1" data-id="${variant_id}">
@@ -340,9 +341,9 @@ import Siema from 'siema';
             appendCartItem(item2, variantIds[1]);
             appendCartItem(item3, variantIds[2]);
 
-            ensableCheckout();
-
             setTimeout(updateCart, 50);
+
+            enableCheckout();
           });
         });
       })
