@@ -1,40 +1,95 @@
 {% style %}
+.quick-shop-column {
+  justify-content: center;
+}
+.quick-shop-column--left {
+  margin-bottom: 1rem;
+}
 .js-quick-shop-gallery {
-  height: 317px;
+  width: 150px;
+  height: 150px;
 }
 .js-quick-shop-gallery img {
   object-fit: cover;
-  height: 317px;
-  width: 317px;
+  height: 150px;
+  width: 150px;
+}
+.quick-shop-box {
+  padding: 1rem;
+}
+.quick-shop-prev svg,
+.quick-shop-next svg {
+  width: 24px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.quick-shop-button {
+  text-align: center;
+}
+@media screen and (min-width: 768px) {
+  .quick-shop-column {
+    width: 50%;
+  }
+  .quick-shop-column--left {
+    margin-bottom: 0;
+  }
+  .quick-shop-column--right {
+    padding-left: 2rem;
+  }
+  .js-quick-shop-gallery {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    height: 317px;
+    width: 100%;
+  }
+  .js-quick-shop-gallery img {
+    object-fit: cover;
+    height: 317px;
+    width: 317px;
+  }
+  .quick-shop-box {
+    padding: 2rem;
+  }
+  .quick-shop-prev svg,
+  .quick-shop-next svg {
+    width: 28px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .quick-shop-button {
+    text-align: left;
+  }
 }
 {% endstyle %}
-<div class="js-popup popup quick-shop-popup fixed t0 l0 r0 b0 flex items-center z10 hidden">
-  <div class="popup-box bg-white w100p flex-md z2 rounded p2">
-    <div class="w50p flex items-center">
-      <button class="js-quick-shop-prev pointer button-reset" type="button">
+<div class="js-popup popup quick-shop-popup fixed t0 l0 r0 b0 flex items-center z10 hidden px1">
+  <div class="popup-box quick-shop-box bg-white w100p flex-md z2 rounded border-box">
+    <div class="quick-shop-column quick-shop-column--left flex items-center">
+      <button class="js-quick-shop-prev quick-shop-prev pointer button-reset" type="button">
         <svg fill="currentColor" width="28" viewBox="0 0 24 24">
           <path d="M9.2 12L15.2 18 14.5 18.7 7.8 12 8.1 11.7 14.5 5.3 15.2 6 9.2 12ZM12 23.5C5.6 23.5 0.5 18.4 0.5 12 0.5 5.6 5.6 0.5 12 0.5 18.4 0.5 23.5 5.6 23.5 12 23.5 18.4 18.4 23.5 12 23.5ZM12 22.5C17.8 22.5 22.5 17.8 22.5 12 22.5 6.2 17.8 1.5 12 1.5 6.2 1.5 1.5 6.2 1.5 12 1.5 17.8 6.2 22.5 12 22.5Z"/>
         </svg>
       </button>
-      <div class="js-quick-shop-gallery w100p border border-light-gray rounded mx1">
+      <div class="js-quick-shop-gallery border border-light-gray rounded">
       </div>
-      <button class="js-quick-shop-next pointer button-reset" type="button">
+      <button class="js-quick-shop-next quick-shop-next pointer button-reset" type="button">
         <svg fill="currentColor" width="28" viewBox="0 0 24 24">
           <path d="M15.9 12.4L9.5 18.7 8.8 18 14.8 12 8.8 6 9.5 5.3 16.2 12 15.9 12.4ZM12 23.5C5.6 23.5 0.5 18.4 0.5 12 0.5 5.6 5.6 0.5 12 0.5 18.4 0.5 23.5 5.6 23.5 12 23.5 18.4 18.4 23.5 12 23.5ZM12 22.5C17.8 22.5 22.5 17.8 22.5 12 22.5 6.2 17.8 1.5 12 1.5 6.2 1.5 1.5 6.2 1.5 12 1.5 17.8 6.2 22.5 12 22.5Z"/>
         </svg>
       </button>
     </div>
-    <div class="w50p border-box relative pl2">
+    <div class="quick-shop-column quick-shop-column--right border-box relative">
       <svg class="js-close-popup close-icon pointer absolute r0 t0" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15">
         <polygon points="7.5 8.5 1 14.9 0 13.9 6.5 7.5 0 1 1 0 7.5 6.5 14 0 15 1 8.5 7.5 15 14 14 15" fill="currentColor"/>
       </svg>
       <h4 class="js-quick-shop-title mt0 mb1 text-normal bold"></h4>
-      <p class="js-quick-shop-description charcoal h6 mt0 mb1"></p>
+      <p class="js-quick-shop-description charcoal h6 mt0 mb1 show-md"></p>
       <div class="js-quick-shop-options">
       </div>
-      <button type="button" class="js-add-to-stack button bg-black white my1">
-        Add to stack
-      </button>
+      <div class="quick-shop-button">
+        <button type="button" class="js-add-to-stack button bg-black white my1">
+          Add to stack
+        </button>
+      </div>
     </div>
   </div>
   <div class="js-close-popup absolute t0 l0 r0 b0 z1"></div>

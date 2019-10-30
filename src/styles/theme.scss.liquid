@@ -105,7 +105,6 @@ input[type="password"],
 .button {
   border: 0;
   font: inherit;
-  font-size: 1rem;
   cursor: pointer;
   -webkit-appearance: none;
   background-color: transparent;
@@ -118,6 +117,11 @@ input[type="password"],
     background-color: #aaa!important;
     cursor: default;
   }
+}
+
+.button.button-small {
+  padding: .5rem .75rem;
+  font-size: .75rem;
 }
 
 .list-reset {
@@ -147,6 +151,7 @@ input[type="password"],
 .flex-3 { flex-grow: 3; }
 .flex-4 { flex-grow: 4; }
 .basis-0 { flex-basis: 0; }
+.shrink-0 { flex-shrink: 0; }
 
 .pointer { cursor: pointer; }
 .default { cursor: default; }
@@ -702,29 +707,12 @@ pre a,
   }
 }
 
-.cart-totals {
-  position: relative;
-  &:before {
-    box-shadow: 0 -40px 40px -40px inset rgba(0,0,0,.8);
-    content: '';
-    width: calc(100% - 4rem);
-    margin: 0 auto;
-    height: 40px;
-    top: -40px;
-    position: absolute;
-    left: 0;
-    right: 0;
+.checkout.loading {
+  span {
+    display: none;
   }
-}
-
-.append-cart-item {
-  overflow-y: hidden;
-  max-height: 0;
-  transition-property: all;
-  transition-duration: .5s;
-  transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
-  &.slide {
-    max-height: 100px;
+  svg {
+    display: block;
   }
 }
 
@@ -1215,4 +1203,17 @@ input[type=number]::-webkit-outer-spin-button {
       width: 40%;
     }
   }
+}
+
+.customizer__button {
+  margin-top: .5rem;
+  justify-content: center;
+  @media screen and (min-width: $break-md) {
+    margin-top: 1.5rem;
+    justify-content: left;
+  }
+}
+
+.mobile-customizer {
+  box-shadow: 0 0 10px rgba(0, 0, 0, .3);
 }

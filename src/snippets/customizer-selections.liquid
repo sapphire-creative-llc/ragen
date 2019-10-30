@@ -1,0 +1,56 @@
+<h2 class="customizer__right--title text-normal mt0 bold show-md">Build Your {{ category | capitalize }} Stack</h2>
+<p class="customizer__right--copy h5 mt0 show-md">
+  Get <span class="bold">40% off</span> any combination of 3 rings
+</p>
+<p class="customizer__right--copy h5 m0 text-center hide-md"></p>
+<div class="customizer__right--slots flex items-center">
+  <div class="visual overflow-hidden bg-white w100p">
+    <div class="customizer__right--slot-img rounded image bg-center bg-cover border border-smoke pb100p relative" data-slot-img="1">
+      <div class="js-remove-stack-item customizer__right--remove absolute t0 r0 b0 l0 flex items-center justify-center">
+        <svg class="pointer" width="15" height="15" viewBox="0 0 15 15">
+          <polygon points="7.5 8.5 1 14.9 0 13.9 6.5 7.5 0 1 1 0 7.5 6.5 14 0 15 1 8.5 7.5 15 14 14 15" fill="currentColor"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+  <div class="width-8">
+    {% include 'plus-icon' %}
+  </div>
+  <div class="visual overflow-hidden bg-white w100p">
+    <div class="customizer__right--slot-img rounded image bg-center bg-cover border border-smoke pb100p relative" data-slot-img="2">
+      <div class="js-remove-stack-item customizer__right--remove absolute t0 r0 b0 l0 flex items-center justify-center">
+        <svg class="pointer" width="15" height="15" viewBox="0 0 15 15">
+          <polygon points="7.5 8.5 1 14.9 0 13.9 6.5 7.5 0 1 1 0 7.5 6.5 14 0 15 1 8.5 7.5 15 14 14 15" fill="currentColor"/>
+        </svg>
+      </div></div>
+  </div>
+  <div class="width-8">
+    {% include 'plus-icon' %}
+  </div>
+  <div class="visual overflow-hidden bg-white w100p">
+    <div class="customizer__right--slot-img rounded image bg-center bg-cover border border-smoke pb100p relative" data-slot-img="3">
+      <div class="js-remove-stack-item customizer__right--remove absolute t0 r0 b0 l0 flex items-center justify-center">
+        <svg class="pointer" width="15" height="15" viewBox="0 0 15 15">
+          <polygon points="7.5 8.5 1 14.9 0 13.9 6.5 7.5 0 1 1 0 7.5 6.5 14 0 15 1 8.5 7.5 15 14 14 15" fill="currentColor"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="variant-stack-options flex">
+  <div class="customizer__right--slot-options w100p" data-slot-options="1"></div>
+  <div class="width-8"></div>
+  <div class="customizer__right--slot-options w100p" data-slot-options="2"></div>
+  <div class="width-8"></div>
+  <div class="customizer__right--slot-options w100p" data-slot-options="3"></div>
+</div>
+<div class="customizer__button flex items-center">
+  <button type="button" disabled class="js-add-stack-to-bag button bg-black white">
+    Add to jewel bag
+  </button>
+  {% if collection.title == 'Stack Rings' %}
+    <a class="sizing-chart-trigger h6 pink no-underline ml2 show-md" href="#">
+      See sizing chart
+    </a>
+  {% endif %}
+</div>

@@ -22,7 +22,7 @@
             {{ product.price | money_without_trailing_zeros }}
           </p>
           {% if product.compare_at_price_max > 0 %}
-            <strike class="strike dark-pink h6">
+            <strike class="strike pink h6">
               <span class="mild-gray">{{ product.compare_at_price_max | money_without_trailing_zeros }}</span>
             </strike>
           {% endif %}

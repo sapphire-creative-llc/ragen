@@ -14,6 +14,8 @@ import Siema from 'siema';
   const $trigger = $('.js-cart-trigger');
   const $headerCount = $('.js-header-count');
   const $sidebarCount = $('.js-sidebar-count');
+  const $checkout = $('.js-checkout');
+  const $cartTotals = $('.js-cart-totals');
   const $cartSubtotal = $('.js-subtotal');
   const $cartSubtotalCost = $('.js-subtotal-cost');
   const $cartShipping = $('.js-shipping');
@@ -34,19 +36,39 @@ import Siema from 'siema';
   const $shopCollection = $('.js-shop-collection');
   const $addToCartError = $('.add-to-cart-error');
 
-  const breakpoint = () => {
-    return window.getComputedStyle(document.querySelector('body'), ':before')
-      .content;
+  const checkout = $checkout.attr('href');
+  const disableCheckout = () => {
+    $checkout.addClass('loading');
+    $checkout.removeAttr('href');
   };
+
+  const enableCheckout = () => {
+    $checkout.removeClass('loading');
+    $checkout.attr('href', checkout);
+  };
+
+  let breakpoint;
+  let setBreakpoint = () => {
+    const bp = window.getComputedStyle(
+      document.querySelector('body'),
+      ':before'
+    ).content;
+
+    breakpoint = bp.replace(/"/g, ' ').trim();
+
+    if (breakpoint === 'sm' || breakpoint === 'md') {
+      $('.desktop-customizer').remove();
+    } else {
+      $('.mobile-customizer').remove();
+    }
+  };
+
+  setBreakpoint();
 
   $trigger.on('click', e => {
     e.preventDefault();
 
     const openCart = () => {
-      const bp = breakpoint()
-        .replace(/"/g, ' ')
-        .trim();
-
       $body.addClass('overflow-hidden');
       $body.addClass('cart-open');
     };
@@ -95,7 +117,7 @@ import Siema from 'siema';
     return `
       <div class="cart-item w100p mb1" data-id="${variant_id}">
         <div class="flex w100p">
-          <div class="cart-image bg-center bg-cover" style="background-image: url(${image})"></div>
+          <div class="cart-image bg-center bg-cover shrink-0" style="background-image: url(${image})"></div>
           <div class="flex-1 px1">
             <p class="m0 h4">${product_title}</p>
             <span class="block m0 h6 medium-gray">
@@ -183,16 +205,9 @@ import Siema from 'siema';
   };
 
   const appendCartItem = (item, id) => {
-    $('<div/>')
-      .addClass('append-cart-item')
-      .appendTo('.cart-items')
-      .html(cartItemToHtml(item))
-      .delay(250);
+    $('.cart-items').append(cartItemToHtml(item));
 
-    setTimeout(() => {
-      $('.append-cart-item').addClass('slide');
-      updateCart(false);
-    }, 300);
+    updateCart(false);
   };
 
   const updateCountUI = count => {
@@ -212,11 +227,9 @@ import Siema from 'siema';
 
   const updateTotalUI = total => {
     if (total === 0) {
-      $cartSubtotal.hide();
-      $cartShipping.hide();
+      $cartTotals.hide();
     } else {
-      $cartSubtotal.show();
-      $cartShipping.show();
+      $cartTotals.show();
       $cartSubtotalCost.text(priceToCurrency(total));
     }
   };
@@ -228,6 +241,8 @@ import Siema from 'siema';
   };
 
   const updateCart = (reorderItems = true) => {
+    disableCheckout();
+
     getCartItems().done(({ items, total_price }) => {
       if (reorderItems) {
         updateItemsUI(items);
@@ -235,6 +250,7 @@ import Siema from 'siema';
 
       updateTotalUI(total_price);
       updateCountUI(calculateCartCount(items));
+      enableCheckout();
 
       getShippingRates()
         .done(({ shipping_rates }) => {
@@ -270,6 +286,7 @@ import Siema from 'siema';
 
   $cartForm.on('submit', e => {
     e.preventDefault();
+    disableCheckout();
 
     $body.addClass('cart-open');
 
@@ -290,8 +307,10 @@ import Siema from 'siema';
         .done(response => {
           const item = JSON.parse(response);
           appendCartItem(item, id);
+          enableCheckout();
         })
         .fail(({ responseText }) => {
+          enableCheckout();
           const { description } = JSON.parse(responseText);
           alert(decription);
         });
@@ -302,7 +321,7 @@ import Siema from 'siema';
     e.preventDefault();
 
     $body.addClass('cart-open');
-    $('.js-cart-loading').removeClass('hide');
+    disableCheckout();
 
     let variantIds = [];
     $('.customizer__right--slot-img').each(function() {
@@ -321,7 +340,7 @@ import Siema from 'siema';
             appendCartItem(item2, variantIds[1]);
             appendCartItem(item3, variantIds[2]);
 
-            $('.js-cart-loading').addClass('hide');
+            ensableCheckout();
 
             setTimeout(updateCart, 50);
           });
@@ -715,15 +734,8 @@ import Siema from 'siema';
   const addVariantToStack = (variant, selectedOptions) => {
     variantsStack.push(variant);
 
-    const $slots = $stackProduct
-      .closest('.customizer__left')
-      .siblings('.customizer__right');
-
-    const $completed = $slots.find('.customizer__right--slot-img[style]');
-
-    const $nextSlot = $slots
-      .find('.customizer__right--slot-img:not([style])')
-      .first();
+    const $completed = $('.customizer__right--slot-img[style]');
+    const $nextSlot = $('.customizer__right--slot-img:not([style])').first();
 
     $nextSlot
       .css('background-image', `url(${$stackProduct.data('img')})`)
@@ -739,7 +751,7 @@ import Siema from 'siema';
     }
 
     if ($completed.length === 2) {
-      $slots.find('button').prop('disabled', false);
+      $('.customizer__button button').prop('disabled', false);
 
       const price = variantsStack.map(v => v.price).reduce((a, b) => a + b, 0);
       const discount = price - price * 0.4;
@@ -902,7 +914,7 @@ import Siema from 'siema';
     updateCart();
     fadeInImage();
 
-    if (breakpoint() === 'sm') {
+    if (breakpoint === 'sm') {
       return;
     }
 
@@ -911,7 +923,9 @@ import Siema from 'siema';
   });
 
   $(window).on('resize', () => {
-    if (breakpoint() === 'sm') {
+    setBreakpoint();
+
+    if (breakpoint === 'sm') {
       return;
     }
 
