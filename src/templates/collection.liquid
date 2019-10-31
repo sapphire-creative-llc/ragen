@@ -7,7 +7,7 @@
       {% if secondary.title == collection.title %}
         {% if secondary.links != blank %}
           {% for child_link in secondary.links %}
-            <a href="{{ child_link.url }}" class="inline-block no-underline collection-filter dark-pink border border-dark-pink rounded text-center">
+            <a href="{{ child_link.url }}" class="inline-block no-underline collection-filter pink bg-light-pink rounded text-center h5">
               {{ child_link.title }}
             </a>
           {% endfor %}
@@ -15,7 +15,7 @@
       {% endif %}
     {% endfor %}
   </div>
-  {% paginate collection.products by 36 %}
+  {% paginate collection.products by 44 %}
     <div class="grid flex flex-wrap pt2">
       {% for product in collection.products %}
         {% include 'collection' %}

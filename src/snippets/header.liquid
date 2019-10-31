@@ -3,40 +3,60 @@
     margin-top: -7px;
     margin-right: 4rem;
   }
-  .site-nav a {
-    padding: .75rem;
-    letter-spacing: .5px;
-  }
   .icon-text {
     padding-left: .35rem;
   }
 {% endstyle %}
 
 {% include 'announcement' %}
-<header class="js-header site-nav sticky t0 l0 r0 show-lg z9 h6 text-uppercase bg-black">
+<header class="js-header site-nav sticky t0 l0 r0 show-lg z9 h6 bg-black text-uppercase relative">
   <div class="flex items-center h100p px2">
-    <nav class="flex items-center w100p">
+    <nav class="flex items-center w100p h100p">
       <h1 class="logo m0 h0">
-        <a class="no-underline ragen-pink" href="/">
+        <a class="site-nav-link no-underline ragen-pink" href="/">
           {% assign logo_width = 123 %}
           {% include 'logo' %}
         </a>
       </h1>
-      <div class="flex items-center flex-1 basis-0">
+      <div class="flex items-center flex-1 basis-0 h100p">
         {% for main in linklists.main-menu.links %}
-          <a class="white no-underline hover-opacity-5" href="{{ main.url }}">{{ main.title }}</a>
+          <a class="site-nav-link white no-underline hover-opacity-5 {{ main.title | handleize }}" href="{{ main.url }}">
+            {{ main.title }}
+          </a>
         {% endfor %}
+        <div class="shop-nav absolute bg-white t4 l0 w100p py2 text-capitalize border-bottom border-light-gray">
+          <div class="grid">
+            <div class="flex justify-between">
+              {% for secondary in linklists.secondary-menu.links %}
+                <ul class="list-reset">
+                  <li>
+                    <a href="{{ secondary.url }}" class="hover-opacity-5 no-underline black h6 bold">
+                      {{ secondary.title }}
+                    </a>
+                  </li>
+                  {% for child_link in secondary.links %}
+                    <li>
+                      <a href="{{ child_link.url }}" class="hover-opacity-5 no-underline black h6">
+                        {{ child_link.title }}
+                      </a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
       </div>
       <div class="flex items-center justify-end flex-1 basis-0 text-right">
         <div class="site-search inline relative">
-          <a class="white no-underline hover-opacity-5 flex items-center" href="/search">
+          <a class="site-nav-link white no-underline hover-opacity-5 flex items-center" href="/search">
             {% assign search_width = 18 %}
             {% include 'icon-search' %}
             <span class="icon-text">Search</span>
           </a>
         </div>
         {% if shop.customer_accounts_enabled %}
-          <a class="white no-underline p1 hover-opacity-5 flex items-center" href="/account/login">
+          <a class="site-nav-link white no-underline p1 hover-opacity-5 flex items-center" href="/account/login">
             <svg width="18" viewBox="0 0 20 20">
               <g fill="none">
                 <path d="M0 0h20v20H0z"/>
@@ -46,7 +66,7 @@
             <span class="icon-text">Login&nbsp;&nbsp;|&nbsp;&nbsp;Register</span>
           </a>
         {% endif %}
-        <a class="js-cart-trigger no-underline white hover-opacity-5 relative" href="#">
+        <a class="js-cart-trigger site-nav-link no-underline white hover-opacity-5 relative" href="#">
           <svg width="18" viewBox="0 0 20 20">
             <path fill="none" stroke="currentColor" stroke-width="1.4" d="M15 8.333H5v-2.5a5 5 0 1 1 10 0v2.5zm-14.167 0v10.834h18.334V8.333H15v-2.5a5 5 0 0 0-10 0v2.5H.833z"/>
           </svg>
@@ -69,21 +89,21 @@
           <rect y="20.4" width="33" height="2.6"/>
         </g>
       </svg>
-      <a class="mobile-search white no-underline hover-opacity-5 flex items-center h6" href="/search">
+      <a class="mobile-search site-nav-link white no-underline hover-opacity-5 flex items-center h6" href="/search">
         {% assign search_width = 18 %}
         {% include 'icon-search' %}
       </a>
     </div>
     <div class="flex-1 w40p text-center">
       <h1 class="m0 h0" style="margin-top: -4px">
-        <a class="no-underline ragen-pink" href="/">
+        <a class="site-nav-link no-underline ragen-pink" href="/">
           {% assign logo_width = 100 %}
           {% include 'logo' %}
         </a>
       </h1>
     </div>
     <div class="flex-1 w30p flex justify-end">
-      <a class="js-cart-trigger no-underline white relative" href="#">
+      <a class="js-cart-trigger site-nav-link no-underline white relative" href="#">
         <svg width="18" viewBox="0 0 20 20">
           <path fill="none" stroke="currentColor" stroke-width="1.4" d="M15 8.333H5v-2.5a5 5 0 1 1 10 0v2.5zm-14.167 0v10.834h18.334V8.333H15v-2.5a5 5 0 0 0-10 0v2.5H.833z"/>
         </svg>
