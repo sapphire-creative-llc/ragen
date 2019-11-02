@@ -1,22 +1,77 @@
-<div class="mobile-nav z10 fixed t0 l0 b0 scroll-y w100p">
-  <div class="w70p bg-light-pink left h100p">
+{% style %}
+  .category-items {
+    margin-bottom: 1.5rem;
+  }
+  .category-item {
+    padding-bottom: .25rem;
+    margin-bottom: .75rem;
+    position: relative;
+  }
+  .category-item:not(:only-child):after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: .5rem;
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 4px solid #ccc;
+    clear: both;
+  }
+  .subcategory-item {
+    padding: .3rem 0 .3rem 1rem;
+  }
+  .subcategory-item:first-child {
+    margin-top: .75rem;
+  }
+  .subcategory-item:last-child {
+    margin-bottom: .75rem;
+  }
+{% endstyle %}
+
+<div class="mobile-nav z10 fixed t0 l0 b0 w100p">
+  <div class="w70p bg-white left h100p border-right border-light-gray scroll-y relative z2">
     <div class="js-mobile-nav-close text-left pt1 px1 pointer">
-      <svg class="inline-block v-middle" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15">
+      <svg class="inline-block v-middle" width="15" height="15" viewBox="0 0 15 15">
         <polygon points="7.5 8.5 1 14.9 0 13.9 6.5 7.5 0 1 1 0 7.5 6.5 14 0 15 1 8.5 7.5 15 14 14 15" fill="#6D6D6D"/>
       </svg>
     </div>
-    <nav class="py1 w60p mx-auto">
+    <nav class="py1 w70p mx-auto">
       {% for main in linklists.main-menu.links %}
-        <a class="dark-pink no-underline h2 block mb1" href="{{ main.url }}">
+        <a class="black no-underline h3 block bold mb1" href="{{ main.url }}">
           {{ main.title }}
         </a>
+        {% if main.title == 'Shop' %}
+          <div class="category-items">
+            {% for secondary in linklists.secondary-menu.links %}
+              <div>
+                <a href="{{ secondary.url }}" class="category-item black no-underline h4 block border-bottom border-smoke">
+                  {{ secondary.title }}
+                </a>
+                {% if secondary.links.size > 0 %}
+                  <div class="hide">
+                    <a href="{{ secondary.url }}" class="subcategory-item no-underline h6 block medium-gray">
+                      All {{ secondary.title }}
+                    </a>
+                    {% for child_link in secondary.links %}
+                      <a href="{{ child_link.url }}" class="subcategory-item no-underline h6 block medium-gray">
+                        {{ child_link.title }}
+                      </a>
+                    {% endfor %}
+                  </div>
+                {% endif %}
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
       {% endfor %}
       {% if shop.customer_accounts_enabled %}
         {% for right in linklists.header-right-menu.links %}
-          <a class="dark-pink no-underline h2 block mb1" href="{{ right.url }}">{{ right.title }}</a>
+          <a class="black no-underline h3 block bold mb1" href="{{ right.url }}">{{ right.title }}</a>
         {% endfor %}
       {% endif %}
     </nav>
   </div>
-  <div class="js-mobile-nav-close w30p h100p left"></div>
+  <div class="js-mobile-nav-close w100p h100p absolute t0 l0 r0 b0"></div>
 </div>

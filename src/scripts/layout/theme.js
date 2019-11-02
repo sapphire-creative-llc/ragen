@@ -9,7 +9,7 @@ import Siema from 'siema';
   const $body = $('body');
   const $siteNav = $('.site-nav');
   const $mobileNav = $('.mobile-nav');
-  const $mobileNavLink = $('.mobile-nav a');
+  const $mobileNavLink = $('.mobile-nav a:not(.category-item)');
   const $cart = $('.cart-items');
   const $trigger = $('.js-cart-trigger');
   const $headerCount = $('.js-header-count');
@@ -113,7 +113,6 @@ import Siema from 'siema';
     } = item;
     const formattedPrice = priceToCurrency(price);
     const variantTitle = variant_title || '';
-    console.log(item);
 
     return `
       <div class="cart-item w100p mb1" data-id="${variant_id}">
@@ -905,6 +904,15 @@ import Siema from 'siema';
     $('.customizer__right--copy').html(defaultCustomizerCopy);
     $(`[data-slot-options=${slot}]`).empty();
     $('.js-add-stack-to-bag').prop('disabled', true);
+  });
+
+  $('.category-item').on('click', function(e) {
+    if ($(this).siblings().length > 0) {
+      e.preventDefault();
+      $(this)
+        .siblings('div')
+        .toggleClass('hide');
+    }
   });
 
   $(window).on('scroll', () => {
