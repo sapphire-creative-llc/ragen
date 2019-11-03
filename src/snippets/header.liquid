@@ -20,7 +20,7 @@
       </h1>
       <div class="flex items-center flex-1 basis-0 h100p">
         {% for main in linklists.main-menu.links %}
-          <a class="site-nav-link white no-underline hover-opacity-5 {{ main.title | handleize }}" href="{{ main.url }}">
+          <a class="site-nav-link white no-underline hover-ragen-pink {{ main.title | handleize }}" href="{{ main.url }}">
             {{ main.title }}
           </a>
         {% endfor %}
@@ -30,13 +30,13 @@
               {% for secondary in linklists.secondary-menu.links %}
                 <ul class="list-reset">
                   <li>
-                    <a href="{{ secondary.url }}" class="hover-opacity-5 no-underline black h6 bold">
+                    <a href="{{ secondary.url }}" class="hover-ragen-pink no-underline black h6 bold">
                       {{ secondary.title }}
                     </a>
                   </li>
                   {% for child_link in secondary.links %}
                     <li>
-                      <a href="{{ child_link.url }}" class="hover-opacity-5 no-underline black h6">
+                      <a href="{{ child_link.url }}" class="hover-ragen-pink no-underline black h6">
                         {{ child_link.title }}
                       </a>
                     </li>
@@ -49,14 +49,14 @@
       </div>
       <div class="flex items-center justify-end flex-1 basis-0 text-right">
         <div class="site-search inline relative">
-          <a class="site-nav-link white no-underline hover-opacity-5 flex items-center" href="/search">
+          <a class="site-nav-link white no-underline hover-ragen-pink flex items-center" href="/search">
             {% assign search_width = 18 %}
             {% include 'icon-search' %}
             <span class="icon-text">Search</span>
           </a>
         </div>
         {% if shop.customer_accounts_enabled %}
-          <a class="site-nav-link white no-underline p1 hover-opacity-5 flex items-center" href="/account/login">
+          <a class="site-nav-link white no-underline p1 hover-ragen-pink flex items-center" href="/account/login">
             <svg width="18" viewBox="0 0 20 20">
               <g fill="none">
                 <path d="M0 0h20v20H0z"/>
@@ -66,7 +66,7 @@
             <span class="icon-text">Login&nbsp;&nbsp;|&nbsp;&nbsp;Register</span>
           </a>
         {% endif %}
-        <a class="js-cart-trigger site-nav-link no-underline white hover-opacity-5 relative" href="#">
+        <a class="js-cart-trigger site-nav-link no-underline white hover-ragen-pink relative" href="#">
           <svg width="18" viewBox="0 0 20 20">
             <path fill="none" stroke="currentColor" stroke-width="1.4" d="M15 8.333H5v-2.5a5 5 0 1 1 10 0v2.5zm-14.167 0v10.834h18.334V8.333H15v-2.5a5 5 0 0 0-10 0v2.5H.833z"/>
           </svg>

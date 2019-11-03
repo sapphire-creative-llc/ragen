@@ -340,6 +340,11 @@ $whitespace: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15;
   box-sizing: border-box;
   @media screen and (min-width: $break-md) {
     width: 100%;
+    padding-left: 35px;
+    padding-right: 35px;
+  }
+  @media screen and (min-width: $break-lg) {
+    width: 100%;
     max-width: 80rem;
     padding-left: 75px;
     padding-right: 75px;
@@ -361,7 +366,7 @@ $whitespace: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15;
   }
 }
 
-.white { color: #fff; }
+.white { color: #fff; transition: color .3s; }
 .bg-white { background-color: #fff; }
 .border-white { border-color: #fff; }
 .hover-border-white {
@@ -373,6 +378,7 @@ $whitespace: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15;
 
 .ragen-pink { color: #fabeb4; }
 .bg-ragen-pink { background-color: #fabeb4; }
+.hover-ragen-pink:hover { color: #fabeb4; transition: color .3s; }
 
 .pink { color: #f48884; }
 .bg-pink { background-color: #f48884; }
@@ -1079,13 +1085,16 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .image-module {
-  padding: 5rem 0 0;
+  padding: 3rem 0 0;
   flex-direction: column;
   @media screen and (min-width: $break-md) {
+    padding: 5rem 0 0;
     flex-direction: row;
   }
   .description {
+    padding: 0 1rem;
     @media screen and (min-width: $break-md) {
+      padding: 0;
       width: 50%;
     }
     button {
@@ -1132,8 +1141,7 @@ input[type=number]::-webkit-outer-spin-button {
       order: 3;
       @media screen and (min-width: $break-md) {
         order: 1;
-        text-align: right;
-        padding-left: 6rem;
+        padding-right: 6rem;
       }
     }
     .visual {
@@ -1264,4 +1272,73 @@ input[type=number]::-webkit-outer-spin-button {
 select,
 select:focus {
   font-size: 16px;
+}
+
+.homepage-categories {
+  margin-top: 3rem;
+  @media screen and (min-width: $break-md) {
+    margin-top: 4rem;
+  }
+
+  .image-wrapper {
+    width: calc(50% - .5rem);
+    &:nth-child(odd) {
+      margin-right: 1rem;
+    }
+
+    @media screen and (min-width: $break-md) {
+      width: calc(25% - .75rem);
+      &:not(:last-child) {
+        margin-right: 1rem;
+      }
+    }
+  }
+}
+
+.value-props {
+  margin-top: 3rem;
+  padding: 5rem 0;
+  .fine-metals {
+    width: 68px;
+  }
+  .fine-crystals {
+    width: 32px;
+  }
+  .hypoallergenic {
+    width: 58px;
+  }
+  .woman-owned {
+    width: 64px;
+  }
+
+  @media screen and (min-width: $break-md) {
+    margin-top: 5rem;
+    .fine-metals {
+      width: 104px;
+    }
+    .fine-crystals {
+      width: 50px;
+    }
+    .hypoallergenic {
+      width: 86px;
+    }
+    .woman-owned {
+      width: 96px;
+    }
+  }
+
+  .value-prop {
+    width: 50%;
+    padding: 0 .5rem;
+    box-sizing: border-box;
+    margin-bottom: 2rem;
+
+    @media screen and (min-width: $break-md) {
+      width: 25%;
+      margin-bottom: 0;
+    }
+  }
+  svg {
+    display: inline-block;
+  }
 }
