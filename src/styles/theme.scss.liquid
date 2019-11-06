@@ -490,9 +490,9 @@ pre a,
     height: calc(100vh - 9rem);
   }
   @media screen and (min-width: $break-md) {
-    height: calc(100vh - 8rem);
+    height: calc(100vh - 3rem);
     &.banner-showing {
-      height: calc(100vh - 10rem);
+      height: calc(100vh - 5rem);
     }
   }
 }
@@ -1277,7 +1277,7 @@ select:focus {
 .homepage-categories {
   margin-top: 3rem;
   @media screen and (min-width: $break-md) {
-    margin-top: 4rem;
+    margin-top: 5rem;
   }
 
   .image-wrapper {
@@ -1341,4 +1341,15 @@ select:focus {
   svg {
     display: inline-block;
   }
+}
+
+.pad-subheader {
+  padding: .25rem 0 1.25rem;
+}
+
+.home-hero-gradient {
+  background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(255,244,243,0.65) 100%);
+  background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(255,244,243,0.65) 100%);
+  background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(255,244,243,0.65) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6fff4f3',GradientType=0 );
 }

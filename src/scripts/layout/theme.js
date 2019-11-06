@@ -544,7 +544,7 @@ import Siema from 'siema';
 
       const $this = $(this);
       const $window = $(window);
-      const fadeInPoint = $window.scrollTop() + $window.height() - 100;
+      const fadeInPoint = $window.scrollTop() + $window.height();
       const imageOffset = $this.offset().top;
       const imageHref = $this.data('img');
 
