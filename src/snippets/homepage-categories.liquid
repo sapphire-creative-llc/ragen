@@ -1,11 +1,11 @@
 <div class="homepage-categories grid">
-  <h3 class="mt0 mb1 text-normal bold text-center mb2">Explore</h5>
-  <div class="negative-margin flex flex-wrap">
+  <div class="homepage-categories__content negative-margin flex flex-wrap">
     {% for collection in collections %}
       {% if collection.title == 'Necklaces' or collection.title == 'Rings' or collection.title == 'Earrings' or collection.title == 'Bracelets' %}
-        <a href="/collections/{{ collection.handle }}" class="image-wrapper inline-block black no-underline mb1">
+        <a class="image-wrapper inline-block black no-underline mb1" href="/collections/{{ collection.handle }}">
           <div class="image bg-center bg-cover fade-image rounded" style="padding-top: 100%;" data-img="{{ collection.image | img_url: '800x' }}"></div>
           <h4 class="bold mt1 mb0 bold">{{ collection.title }}</h4>
+          <p class="m0 h6">{{collection.description}}</p>
           <span class="h6 bold">Shop now &rarr;</span>
         </a>
       {% endif %}

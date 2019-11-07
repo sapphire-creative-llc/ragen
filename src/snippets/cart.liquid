@@ -3,18 +3,14 @@
     <div class="px2">
       <div class="flex items-center justify-between py1 text-right border-bottom border-charcoal">
         <p class="js-sidebar-count white m0">0 Items in Cart</p>
-        <svg class="js-cart-trigger pointer inline-block v-middle medium-gray hover-gray" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15">
-          <polygon points="7.5 8.5 1 14.9 0 13.9 6.5 7.5 0 1 1 0 7.5 6.5 14 0 15 1 8.5 7.5 15 14 14 15" fill="currentColor"/>
+        <svg class="js-cart-trigger pointer inline-block v-middle medium-gray hover-gray" height="15" viewbox="0 0 15 15" width="15" xmlns="http://www.w3.org/2000/svg">
+          <polygon fill="currentColor" points="7.5 8.5 1 14.9 0 13.9 6.5 7.5 0 1 1 0 7.5 6.5 14 0 15 1 8.5 7.5 15 14 14 15"/>
         </svg>
       </div>
     </div>
     <div class="flex-1">
       <div class="px2 cart-items"></div>
       <div class="js-cart-totals cart-totals px2">
-        <div class="js-shipping flex items-center justify-between pt1 border-top border-charcoal h4">
-          <span class="js-shipping-name"></span>
-          <span class="js-shipping-cost">{{ shipping_method.handle }}</span>
-        </div>
         <div class="js-subtotal flex items-center justify-between mt1 pt1 border-top border-charcoal h4">
           <span>Subtotal</span>
           <span class="js-subtotal-cost"></span>
@@ -22,19 +18,19 @@
       </div>
     </div>
     <div class="px2 pt1 pb2">
-      <a href="/checkout" class="js-checkout checkout js-view-cart flex justify-center pill bg-white hover-opacity-7 py1 px2 black no-underline">
+      <a class="js-checkout checkout js-view-cart flex justify-center pill bg-white hover-opacity-7 py1 px2 black no-underline" href="/checkout">
         <span>Checkout</span>
-        <svg class="hide" width="26" viewBox="0 0 50 50">
-          <path fill="black" d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z">
-            <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"/>
+        <svg class="hide" height="26" viewbox="0 0 50 50" width="26">
+          <path d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z" fill="black">
+            <animateTransform attributename="transform" attributetype="xml" dur="0.6s" from="0 25 25" repeatcount="indefinite" to="360 25 25" type="rotate"/>
           </path>
         </svg>
       </a>
-      <a href="/collections/shop" class="js-checkout checkout js-shop-collection pill flex justify-center border border-charcoal py1 px2 white no-underline hover-border-gray">
+      <a class="js-checkout checkout js-shop-collection pill flex justify-center border border-charcoal py1 px2 white no-underline hover-border-gray" href="/collections/shop">
         <span>Shop Ragen</span>
-        <svg class="hide" width="26" viewBox="0 0 50 50">
-          <path fill="white" d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z">
-            <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"/>
+        <svg class="hide" height="26" viewbox="0 0 50 50" width="26">
+          <path d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z" fill="white">
+            <animateTransform attributename="transform" attributetype="xml" dur="0.6s" from="0 25 25" repeatcount="indefinite" to="360 25 25" type="rotate"/>
           </path>
         </svg>
       </a>

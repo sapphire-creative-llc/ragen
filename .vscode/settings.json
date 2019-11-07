@@ -1,0 +1,7 @@
+{
+  "prettier.disableLanguages": [
+    "vue",
+    "liquid",
+    "shopify"
+  ]
+}

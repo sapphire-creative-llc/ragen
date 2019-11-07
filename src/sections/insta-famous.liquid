@@ -1,4 +1,4 @@
-<div class="insta-famous text-center py6">
+<div class="insta-famous text-center">
   <div class="grid">
     <h3 class="mt0 mb1 bold text-normal">Insta Famous</h5>
     <p class="mt0 h5 dark-gray mb3">Tag us on Instagram with @ragenjewels to be featured on our site!</p>
@@ -22,36 +22,35 @@
         <div class="image bg-center bg-cover fade-image rounded" style="padding-top: 100%;" data-img="{{ section.settings.image4 | img_url: '800x' }}"></div>
       </div>
     </div>
-    <a href="https://www.instagram.com/ragenjewels/" target="_blank" class="inline-block bold black no-underline h6 mt2">
+    <a class="inline-block bold black no-underline h6 mt2" href="https://www.instagram.com/ragenjewels/" target="_blank">
       See all photos &rarr;
     </a>
   </div>
 </div>
 
 {% schema %}
-  {
-    "name": "Instagram Photos",
-    "settings": [
-      {
-        "id": "image1",
-        "type": "image_picker",
-        "label": "Image 1"
-      },
-      {
-        "id": "image2",
-        "type": "image_picker",
-        "label": "Image 2"
-      },
-      {
-        "id": "image3",
-        "type": "image_picker",
-        "label": "Image 3"
-      },
-      {
-        "id": "image4",
-        "type": "image_picker",
-        "label": "Image 4"
-      }
-    ]
-  }
+
+{
+  "name": "Instagram Photos",
+  "settings": [
+    {
+      "id": "image1",
+      "type": "image_picker",
+      "label": "Image 1"
+    }, {
+      "id": "image2",
+      "type": "image_picker",
+      "label": "Image 2"
+    }, {
+      "id": "image3",
+      "type": "image_picker",
+      "label": "Image 3"
+    }, {
+      "id": "image4",
+      "type": "image_picker",
+      "label": "Image 4"
+    }
+  ]
+}
+
 {% endschema %}

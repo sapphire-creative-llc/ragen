@@ -1,49 +1,54 @@
 <div class="grid">
   <div class="image-module right-module flex items-center">
     <div class="description border-box">
-      <img width="22" mb1 src="https://bit.ly/2WDmidV" />
-      <h2 class="mt0 bold">{{ section.settings.title }}</h2>
+      <img mb1 src="https://bit.ly/2WDmidV" width="22"/>
+      <h2 class="mt0 bold">
+        <a href="{{ section.settings.button_url }}" class="inline-block black no-underline">
+          {{ section.settings.title }}
+        </a>
+      </h2>
       <p class="m0 charcoal h5">{{ section.settings.description }}</p>
       <a href="{{ section.settings.button_url }}" class="inline-block black no-underline bold mt1 h6">
-        {{ section.settings.button_text }} &rarr;
+        {{ section.settings.button_text }}
+        &rarr;
       </a>
     </div>
     <span class="space"></span>
     <div class="visual overflow-hidden bg-light-gray w100p">
-      <div class="rounded image bg-center bg-cover fade-image border border-smoke" style="padding-top: 65%;" data-img="{{ section.settings.image | img_url: '1440x768' }}"></div>
+      <a href="{{ section.settings.button_url }}" class="block no-underline">
+        <div class="rounded image bg-center bg-cover fade-image" style="padding-top: 65%;" data-img="{{ section.settings.image | img_url: '1440x768' }}"></div>
+      </a>
     </div>
   </div>
 </div>
 
 {% schema %}
-  {
-    "name": "Image Right",
-    "settings": [
-      {
-        "id": "title",
-        "type": "text",
-        "label": "Title"
-      },
-      {
-        "id": "description",
-        "type": "textarea",
-        "label": "Description"
-      },
-      {
-        "id": "image",
-        "type": "image_picker",
-        "label": "Image"
-      },
-      {
-        "id": "button_text",
-        "type": "text",
-        "label": "Button text"
-      },
-      {
-        "id": "button_url",
-        "type": "url",
-        "label": "Button link"
-      }
-    ]
-  }
+
+{
+  "name": "Image Right",
+  "settings": [
+    {
+      "id": "title",
+      "type": "text",
+      "label": "Title"
+    }, {
+      "id": "description",
+      "type": "textarea",
+      "label": "Description"
+    }, {
+      "id": "image",
+      "type": "image_picker",
+      "label": "Image"
+    }, {
+      "id": "button_text",
+      "type": "text",
+      "label": "Button text"
+    }, {
+      "id": "button_url",
+      "type": "url",
+      "label": "Button link"
+    }
+  ]
+}
+
 {% endschema %}

@@ -1,56 +1,57 @@
 {% style %}
-  .header-color { color: {{ section.settings.text_color }} }
-  .bg-header-color { background-color: {{ section.settings.text_color }} }
+
+.header-color {
+  color: {{section.settings.text_color}}}
+
+.bg-header-color {
+  background-color: {{section.settings.text_color}}}
+
 {% endstyle %}
-<div class="bg-light-pink home-hero {% if settings.display_announcement_banner %}banner-showing{% endif %} relative border-bottom border-smoke">
-  <div class="h100p w100p image bg-cover bg-center bg-no-repeat fade-image relative show-md" data-img="{{ section.settings.image_desktop | img_url: '2000x' }}">
+<div class="bg-light-pink home-hero {% if settings.display_announcement_banner %}banner-showing{% endif %} relative">
+  <div class="h100p w100p image bg-cover bg-center bg-no-repeat fade-image show-md relative" data-img="{{ section.settings.image_desktop | img_url: '2000x' }}">
     {% include 'homepage-header' %}
   </div>
-  <div class="h100p w100p image bg-cover bg-center bg-no-repeat fade-image relative hide-md" data-img="{{ section.settings.image_mobile | img_url: '1000x' }}">
+  <div class="h100p w100p image bg-cover bg-center bg-no-repeat fade-image hide-md relative" data-img="{{ section.settings.image_mobile | img_url: '1000x' }}">
     {% include 'homepage-header' %}
   </div>
 </div>
 
 {% schema %}
-  {
-    "name": "Header",
-    "settings": [
-      {
-        "id": "title",
-        "type": "text",
-        "label": "Title"
-      },
-      {
-        "id": "description",
-        "type": "textarea",
-        "label": "Description"
-      },
-      {
-        "id": "image_desktop",
-        "type": "image_picker",
-        "label": "Image on desktop (landscape)"
-      },
-      {
-        "id": "image_mobile",
-        "type": "image_picker",
-        "label": "Image on mobile (portrait)"
-      },
-      {
-        "id": "button_text",
-        "type": "text",
-        "label": "Button text"
-      },
-      {
-        "id": "button_url",
-        "type": "url",
-        "label": "Button link"
-      },
-      {
-        "id": "text_color",
-        "type": "color",
-        "label": "Text/button color",
-        "default": "#ffffff"
-      }
-    ]
-  }
+
+{
+  "name": "Header",
+  "settings": [
+    {
+      "id": "title",
+      "type": "text",
+      "label": "Title"
+    }, {
+      "id": "description",
+      "type": "textarea",
+      "label": "Description"
+    }, {
+      "id": "image_desktop",
+      "type": "image_picker",
+      "label": "Image on desktop (landscape)"
+    }, {
+      "id": "image_mobile",
+      "type": "image_picker",
+      "label": "Image on mobile (portrait)"
+    }, {
+      "id": "button_text",
+      "type": "text",
+      "label": "Button text"
+    }, {
+      "id": "button_url",
+      "type": "url",
+      "label": "Button link"
+    }, {
+      "id": "text_color",
+      "type": "color",
+      "label": "Text/button color",
+      "default": "#ffffff"
+    }
+  ]
+}
+
 {% endschema %}

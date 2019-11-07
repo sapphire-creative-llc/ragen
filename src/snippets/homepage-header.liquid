@@ -1,12 +1,9 @@
-<div class="absolute l0 b0 r0 z2">
-  <div class="grid black px2 pb4">
-    <h1 class="bold m0 text-normal">A New Kind of Heirloom</h2>
-    <p class="text-normal h5 pad-subheader m0">Refined luxury jewelry, made for every woman. Make it yours.</p>
-    <a href="{{ section.settings.button_url }}" class="button white no-underline bg-black">
+<div class="home-hero__content h100p flex items-center justify-center text-center">
+  <div class="grid black pb1">
+    <h1 class="bold m0 text-normal header-color">{{ section.settings.title }}</h2>
+    <p class="text-normal h5 pad-subheader m0 header-color">{{ section.settings.description}}</p>
+    <a href="{{ section.settings.button_url }}" class="button white no-underline bg-header-color">
       {{ section.settings.button_text }}
     </a>
-    <!-- <h1 class="m0 text-normal text-capitalize">{{ section.settings.title }}</h1>
-    <p class="m0 text-normal">{{ section.settings.description}}</p> -->
   </div>
 </div>
-<div class="home-hero-gradient absolute l0 r0 b0 h30p z1"></div>

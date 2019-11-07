@@ -1,118 +1,172 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="{{ shop.locale }}">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="canonical" href="{{ canonical_url }}">
-    <link rel="shortcut icon" href="https://bit.ly/2PxtuHi" />
+    <meta charset="utf-8"/>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="width=device-width,initial-scale=1" name="viewport"/>
+    <link rel="canonical" href="{{ canonical_url }}"/>
+    <link href="https://bit.ly/2PxtuHi" rel="shortcut icon"/>
 
-    {% assign featured_image = '//cdn.shopify.com/s/files/1/0055/8193/0563/files/Nov27-5_2000x.jpg?v=1543289160' %}
-
+    {% assign featured_image =
+    '//cdn.shopify.com/s/files/1/0055/8193/0563/files/Nov27-5_2000x.jpg?v=1543289160'
+    %}
     {%- capture seo_title -%}
-      {{ page_title }}
+      {{
+      page_title
+    }}
       {%- if current_tags -%}
-        {%- assign meta_tags = current_tags | join: ', ' -%} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags -}}
+        {%- assign meta_tags = current_tags | join: ', ' -%}
+        &ndash;
+        {{ 'general.meta.tags' | t: tags: meta_tags -}}
       {%- endif -%}
       {%- if current_page != 1 -%}
-        &ndash; {{ 'general.meta.page' | t: page: current_page }}
+        &ndash;
+        {{
+      'general.meta.page' | t: page:current_page
+    }}
       {%- endif -%}
       {%- assign escaped_page_title = page_title | escape -%}
-      {%- unless escaped_page_title contains shop.name -%}
-        &ndash; {{ shop.name }}
+      {%-
+    unless escaped_page_title contains shop.name -%}
+        &ndash;
+        {{
+      shop.name
+    }}
       {%- endunless -%}
     {%- endcapture -%}
     <title>{{ seo_title | strip }}</title>
 
     {% if template contains 'product' %}
-      <meta property="og:type" content="product">
-      <meta property="og:title" content="{{ product.title | strip_html | escape }}">
-      <meta property="og:category" content="{{ product.type }}" />
+      <meta content="product" property="og:type"/>
+      <meta property="og:title" content="{{ product.title | strip_html | escape }}"/>
+      <meta property="og:category" content="{{ product.type }}"/>
       {% for image in product.images limit:3 %}
-        <meta property="og:image" content="http:{{ image.src | product_img_url: 'master' }}">
-        <meta property="og:image:secure_url" content="https:{{ image.src | product_img_url: 'master' }}">
+        <meta content="http:{{ image.src | product_img_url: 'master' }}" property="og:image"/>
+        <meta content="https:{{ image.src | product_img_url: 'master' }}" property="og:image:secure_url"/>
       {% endfor %}
-      <meta property="og:price:amount" content="{{ product.price | money_without_currency | stip_html | escape | remove: ',' }}">
-      <meta property="og:price:currency" content="{{ shop.currency }}">
-      <meta property="og:availability" content="{% if product.available %}instock{% else %}oos{% endif %}" />
-      <meta property="og:description" content="{{ product.description | strip_newlines | strip_html | truncate: 300 | escape }}">
+      <meta property="og:price:amount" content="{{ product.price | money_without_currency | stip_html | escape | remove: ',' }}"/>
+      <meta property="og:price:currency" content="{{ shop.currency }}"/>
+      <meta property="og:availability" content="{% if product.available %}instock{% else %}oos{% endif %}"/>
+      <meta property="og:description" content="{{ product.description | strip_newlines | strip_html | truncate: 300 | escape }}"/>
     {% elsif template contains 'article' %}
-      <meta property="og:type" content="article">
-      <meta property="og:title" content="{{ article.title | strip_html | escape }}">
+      <meta content="article" property="og:type"/>
+      <meta property="og:title" content="{{ article.title | strip_html | escape }}"/>
       {% assign img_tag = '<' | append: 'img' %}
-      {% if article.content contains img_tag %}
+      {% if article.content contains
+    img_tag %}
         {% assign src = article.content | split: 'src="' %}
-        {% assign src = src[1] | split: '"' | first | remove: 'https:' | remove: 'http:' %}
-        {% if src %}
-          <meta property="og:image" content="http:{{ src }}">
-          <meta property="og:image:secure_url" content="https:{{ src }}">
+        {% assign src
+    = src[1] | split: '"' | first | remove: 'https:' | remove: 'http:' %}
+        {% if
+    src %}
+          <meta content="http:{{ src }}" property="og:image"/>
+          <meta content="https:{{ src }}" property="og:image:secure_url"/>
         {% endif %}
       {% endif %}
     {% else %}
-      <meta property="og:type" content="website">
-      <meta property="og:title" content="{{ page_title | escape }}">
-      <meta property="og:image" content="http:{{ featured_image }}">
-      <meta property="og:image:secure_url" content="https:{{ featured_image }}">
+      <meta content="website" property="og:type"/>
+      <meta property="og:title" content="{{ page_title | escape }}"/>
+      <meta content="http:{{ featured_image }}" property="og:image"/>
+      <meta content="https:{{ featured_image }}" property="og:image:secure_url"/>
     {% endif %}
     {% if page_description and template != 'product' %}
-      <meta property="og:description" content="{{ page_description | escape }}">
+      <meta property="og:description" content="{{ page_description | escape }}"/>
     {% endif %}
-      <meta property="og:url" content="{{ canonical_url }}">
-      <meta property="og:site_name" content="{{ shop.name }}">
+    <meta property="og:url" content="{{ canonical_url }}"/>
+    <meta property="og:site_name" content="{{ shop.name }}"/>
 
     {%- if page_description -%}
-      <meta name="description" content="{{ page_description | escape }}">
+      <meta name="description" content="{{ page_description | escape }}"/>
     {%- endif -%}
-
     {% include 'style-tags', layout: 'theme' %}
 
-    {{ '//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js' | script_tag }}
+    {{
+      '//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js' | script_tag
+    }}
 
     {% include 'script-tags', layout: 'theme' %}
 
-    {{ content_for_header }}
-
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-KFPSZCV');</script>
+    <!-- {{
+      content_for_header
+    }} -->
+    
+        <!-- Google Tag Manager -->
+    <script>
+      (function(w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-KFPSZCV');
+    </script>
 
     <!-- Affiliate program -->
     <script>
-      var shareasaleShopifySSCID=shareasaleShopifyGetParameterByName("sscid");
-      function shareasaleShopifySetCookie(e,a,o,i,r){if(e&&a){var s,S=i?"; path="+i:"",h=r?"; domain="+r:"",t="";o&&((s=new Date).setTime(s.getTime()+o),t="; expires="+s.toUTCString()),document.cookie=e+"="+a+t+S+h}}
-      function shareasaleShopifyGetParameterByName(e,a){a||(a=window.location.href),e=e.replace(/[\[\]]/g,"\\$&");var o=new RegExp("[?&]"+e+"(=([^&#]*)|&|#|$)").exec(a);return o?o[2]?decodeURIComponent(o[2].replace(/\+/g," ")):"":null}
-      shareasaleShopifySSCID&&shareasaleShopifySetCookie("shareasaleShopifySSCID",shareasaleShopifySSCID,94670778e4,"/");
+      var shareasaleShopifySSCID = shareasaleShopifyGetParameterByName('sscid');
+      function shareasaleShopifySetCookie(e, a, o, i, r) {
+        if (e && a) {
+          var s,
+            S = i ? '; path=' + i : '',
+            h = r ? '; domain=' + r : '',
+            t = '';
+          o &&
+            ((s = new Date()).setTime(s.getTime() + o),
+            (t = '; expires=' + s.toUTCString())),
+            (document.cookie = e + '=' + a + t + S + h);
+        }
+      }
+      function shareasaleShopifyGetParameterByName(e, a) {
+        a || (a = window.location.href), (e = e.replace(/[\[\]]/g, '\\$&'));
+        var o = new RegExp('[?&]' + e + '(=([^&#]*)|&|#|$)').exec(a);
+        return o
+          ? o[2]
+            ? decodeURIComponent(o[2].replace(/\+/g, ' '))
+            : ''
+          : null;
+      }
+      shareasaleShopifySSCID &&
+        shareasaleShopifySetCookie(
+          'shareasaleShopifySSCID',
+          shareasaleShopifySSCID,
+          94670778e4,
+          '/'
+        );
     </script>
 
     <!-- Global site tag (gtag.js) - Google Ads: 775499909 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-775499909"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
+      function gtag() {
+        dataLayer.push(arguments);
+      }
       gtag('js', new Date());
 
       gtag('config', 'AW-775499909');
     </script>
 
     <script>
-      gtag('event', 'page_view', {
-        'send_to': 'AW-775499909',
-        'items': [{
-          'id': 'replace with value',
-          'google_business_vertical': 'retail'
-        }]
-      });
+      gtag('event', 'page_view', {
+        send_to: 'AW-775499909',
+        items: [
+          {
+            id: 'replace with value',
+            google_business_vertical: 'retail'
+          }
+        ]
+      });
     </script>
-
   </head>
 
   <body>
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KFPSZCV"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <noscript>
+      <iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-KFPSZCV" style="display:none;visibility:hidden" width="0"></iframe>
+    </noscript>
     <!-- End Google Tag Manager (noscript) -->
     <div class="site flex flex-column items-between min-h100vh {% if settings.display_announcement_banner %}banner-showing{% endif %}">
       {% include 'header' %}
@@ -123,23 +177,27 @@
     </div>
     {% include 'cart' %}
     {% include 'mobile-nav' %}
-    {% include 'newsletter-popup' %}
+    {% include
+    'newsletter-popup' %}
     {% include 'sizing-chart-popup' %}
-    {% include 'ig-popup' %}
+    {% include
+    'ig-popup' %}
     {% include 'quick-shop-popup' %}
-    {% if template == 'collection.stack' %}
+    {% if template ==
+    'collection.stack' %}
       <div class="mobile-customizer fixed r0 l0 b0 bg-white p1">
         {% include 'customizer-selections' %}
       </div>
     {% endif %}
-
     {% comment %}<!-- QuadPay Learn More Modal -->{% endcomment %}
-    <script async src="https://widgets.quadpay.com/ragenjewels/quadpay-widget-1.1.0.js" id="qp-script" type="application/javascript"></script>
+    <script async id="qp-script" src="https://widgets.quadpay.com/ragenjewels/quadpay-widget-1.1.0.js" type="application/javascript"></script>
     <script>
-      window.addEventListener('load',function(){
-        $('#add').click(function(){
-          gtag('event', 'conversion', {'send_to': 'AW-775499909/J_3PCPOC8J8BEIXh5PEC'});
-        })
+      window.addEventListener('load', function() {
+        $('#add').click(function() {
+          gtag('event', 'conversion', {
+            send_to: 'AW-775499909/J_3PCPOC8J8BEIXh5PEC'
+          });
+        });
       });
     </script>
   </body>

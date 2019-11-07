@@ -18,9 +18,6 @@ import Siema from 'siema';
   const $cartTotals = $('.js-cart-totals');
   const $cartSubtotal = $('.js-subtotal');
   const $cartSubtotalCost = $('.js-subtotal-cost');
-  const $cartShipping = $('.js-shipping');
-  const $cartShippingName = $('.js-shipping-name');
-  const $cartShippingCost = $('.js-shipping-cost');
   const $cartForm = $('.js-cart-form');
   const $mobileNavOpen = $('.js-mobile-nav-open');
   const $mobileNavClose = $('.js-mobile-nav-close');
@@ -172,14 +169,6 @@ import Siema from 'siema';
     return items.reduce((acc, { quantity }) => acc + quantity, 0);
   };
 
-  const getShippingRates = () => {
-    const z = 'shipping_address%5Bzip%5D=67226';
-    const c = 'shipping_address%5Bcountry%5D=US';
-    const p = 'shipping_address%5Bprovince%5D=Kansas';
-
-    return $.getJSON(`/cart/shipping_rates.json?${z}&${c}&${p}`);
-  };
-
   const getCartItems = () => {
     return $.getJSON('/cart.js');
   };
@@ -234,12 +223,6 @@ import Siema from 'siema';
     }
   };
 
-  const updateShippingUI = (name, price, total) => {
-    $cartShippingName.text(name);
-    $cartShippingCost.text(priceToCurrency(price * 100));
-    $cartSubtotalCost.text(priceToCurrency(total + price * 100));
-  };
-
   const updateCart = (reorderItems = true) => {
     disableCheckout();
 
@@ -251,18 +234,6 @@ import Siema from 'siema';
       updateTotalUI(total_price);
       updateCountUI(calculateCartCount(items));
       enableCheckout();
-
-      getShippingRates()
-        .done(({ shipping_rates }) => {
-          const { name: shippingName, price: shippingPrice } = shipping_rates
-            ? shipping_rates[0]
-            : {};
-
-          updateShippingUI(shippingName, shippingPrice, total_price);
-        })
-        .fail(() => {
-          updateTotalUI(0);
-        });
     });
   };
 
