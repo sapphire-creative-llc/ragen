@@ -8,7 +8,7 @@
 
 {% assign available = product.first_available_variant.available %}
 {{collection.name}}
-<h2 class="mt0 mb1">{{ product.title }}</h2>
+<h2 class="mt0 mb1 text-normal">{{ product.title }}</h2>
 {% if available %}
   <span class="mt0 mb1 bold">
     {{ product.price | money_without_trailing_zeros }}
