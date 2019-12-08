@@ -886,6 +886,37 @@ import Siema from 'siema';
     }
   });
 
+  $('.js-test-ajax-product').click(function() {
+    const url = $(this).attr('href');
+
+    $.ajax({
+      url,
+      success: function(data) {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(data, 'text/html');
+        const nextProduct = doc.getElementById('product-wrapper').innerHTML;
+
+        $('#product-wrapper')
+          .empty()
+          .append(nextProduct);
+      }
+    });
+    if (pageurl != window.location) {
+      window.history.pushState({ path: pageurl }, '', pageurl);
+    }
+
+    return false;
+  });
+
+  $(window).bind('popstate', function() {
+    $.ajax({
+      url: location.pathname,
+      success: function(data) {
+        console.log(data);
+      }
+    });
+  });
+
   $(window).on('scroll', () => {
     fadeInImage();
   });
