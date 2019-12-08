@@ -1727,3 +1727,28 @@ select:focus {
     z-index: 2;
   }
 }
+
+.site-nav__search {
+  input[type='text'] {
+    background-color: #2b2b2b;
+    border: 1px solid #555;
+    padding: 0.5rem;
+    font-size: 0.75rem;
+    color: #fff;
+    &::-webkit-input-placeholder {
+      color: #fff;
+    }
+    &::-moz-placeholder {
+      color: #fff;
+    }
+    &:-ms-input-placeholder {
+      color: #fff;
+    }
+    &:-moz-placeholder {
+      color: #fff;
+    }
+    &:focus {
+      border: 1px solid #fabeb4;
+    }
+  }
+}
