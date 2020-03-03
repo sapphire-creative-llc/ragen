@@ -767,6 +767,14 @@ import Siema from 'siema';
         loop: true
       });
 
+      if (product.images.length === 1) {
+        $('.js-quick-shop-prev').hide();
+        $('.js-quick-shop-next').hide();
+      } else {
+        $('.js-quick-shop-prev').show();
+        $('.js-quick-shop-next').show();
+      }
+
       $('.js-quick-shop-prev').on('click', () => {
         gallery.prev();
       });
