@@ -738,7 +738,9 @@ import Siema from 'siema';
     $('.js-close-popup').trigger('click');
   };
 
-  $('.customizer__left a').on('click', function(e) {
+  let charmsVariantId;
+
+  $('.customizer__left a, .js-charms-necklace a').on('click', function(e) {
     e.preventDefault();
 
     const $product = $(this);
@@ -775,6 +777,7 @@ import Siema from 'siema';
 
       product.options.forEach(option => {
         if (product.variants.length === 1) {
+          charmsVariantId = product.variants[0].id;
           addVariantToStack(product.variants[0]);
         }
 
@@ -809,11 +812,19 @@ import Siema from 'siema';
         }
       });
 
-      $('.js-quick-shop-options select').on('change', function(e) {
-        $(this)
-          .siblings('div')
-          .text(e.target.value);
-      });
+      $('.js-quick-shop-options select')
+        .on('change', function(e) {
+          const selectedVariant = product.variants.find(
+            v => v.option1 === e.target.value
+          );
+          if (selectedVariant) {
+            charmsVariantId = selectedVariant.id;
+          }
+          $(this)
+            .siblings('div')
+            .text(e.target.value);
+        })
+        .trigger('change');
     });
 
     $('.quick-shop-popup .js-close-popup').on('click', () => {
@@ -822,6 +833,22 @@ import Siema from 'siema';
   });
 
   $('.js-add-to-stack').on('click', e => {
+    console.log(charmsVariantId);
+    if ($(this).closest('.js-charms-necklace')) {
+      createCartItem({ id: charmsVariantId, quantity: 1 })
+        .done(response => {
+          const item = JSON.parse(response);
+          $('.js-close-popup').trigger('click');
+          $body.addClass('cart-open');
+          appendCartItem(item, charmsVariantId);
+        })
+        .fail(({ responseText }) => {
+          const { description } = JSON.parse(responseText);
+          console.log(description);
+        });
+      return;
+    }
+
     e.preventDefault();
 
     let filters = [];

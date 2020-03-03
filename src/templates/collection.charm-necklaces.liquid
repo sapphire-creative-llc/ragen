@@ -1,7 +1,36 @@
 <div class="bg-light-pink">
-  <div class="grid">
-    <video width="100%">
-      <source src="{{ 'necklace-charms.mp4' | asset_url }}" type="video/mp4" />
-    </video>
+  <div class="grid py2 text-center">
+    <h2 class="charm-title bold mt0 mb1">Build Your Charm Necklace</h2>
+    <img class="charm-image" src="{{ 'charms-necklace_pink.gif' | asset_url }}"/>
   </div>
+</div>
+<div class="grid js-charms-necklace">
+  {% for collection in collections %}
+    {% if collection.title == 'Chains' %}
+      <div class="mt2 text-center">
+        <span class="charm-number circle bg-black white flex items-center justify-center h6 mx-auto bold">1</span>
+        <span class="h3 block">Select a chain</span>
+      </div>
+      <div id="{{ secondary.title | handleize }}" class="py3">
+        <div class="flex flex-wrap">
+          {% for product in collection.products %}
+            {% include 'collection'%}
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+    {% if collection.title == 'Charms' %}
+      <div class="text-center">
+        <span class="charm-number circle bg-black white flex items-center justify-center h6 mx-auto bold">2</span>
+        <span class="h3 block">Select your charms</span>
+      </div>
+      <div id="{{ secondary.title | handleize }}" class="py3">
+        <div class="flex flex-wrap">
+          {% for product in collection.products %}
+            {% include 'collection'%}
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+  {% endfor %}
 </div>

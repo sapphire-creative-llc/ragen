@@ -3,7 +3,7 @@
     <div class="relative">
       {% for image in product.images %}
         {% if forloop.first == true %}
-          <div class="overflow-hidden bg-light-gray relative z1 hover-hide">
+          <div class="overflow-hidden bg-light-gray relative z1 hover-hide" data-images-length="{{ product.images.size }}">
             <div class="image bg-center bg-cover fade-image" style="padding-top: 100%;" data-img="{{ image | img_url: '750x' }}"></div>
           </div>
         {% endif %}
@@ -31,8 +31,8 @@
         {% endif %}
       </div>
       <div class="plus-sign">
-        <svg width="14" viewBox="0 0 24 24">
-          <path fill="currentColor" d="M13 11h11v2H13v11h-2V13H0v-2h11V0h2v11z"/>
+        <svg viewbox="0 0 24 24" width="14">
+          <path d="M13 11h11v2H13v11h-2V13H0v-2h11V0h2v11z" fill="currentColor"/>
         </svg>
       </div>
     </div>
