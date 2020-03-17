@@ -767,10 +767,10 @@ $whitespace: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15;
 p a,
 pre a,
 .page a {
-  color: #ce9a88;
+  color: #000;
   -webkit-transform: translate3d(0, 0, 0);
   &:hover {
-    border-bottom-color: #222;
+    border-bottom-color: #000;
   }
 }
 
@@ -1001,7 +1001,7 @@ pre a,
       visibility: visible;
       transition: all 0.3s;
     }
-    &.build-your-stack {
+    &.new-badge {
       &:after {
         content: 'new';
         text-transform: uppercase;
@@ -1719,6 +1719,9 @@ select:focus {
 .pdp-description {
   font-size: 0.75rem;
   line-height: 1.6;
+  .p1 {
+    padding: 0;
+  }
 }
 
 .homepage-header {

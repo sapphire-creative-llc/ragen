@@ -921,6 +921,9 @@ import Siema from 'siema';
     }
   });
 
+  const $el = $('.site-nav-link:contains("Charm Necklaces")');
+  $el.addClass('new-badge');
+
   $(window).on('scroll', () => {
     fadeInImage();
   });

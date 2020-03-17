@@ -7,27 +7,20 @@
 {% endstyle %}
 
 {% assign available = product.first_available_variant.available %}
-{{collection.name}}
 <h2 class="mt0 mb1 text-normal">{{ product.title }}</h2>
 {% if available %}
-  <span class="mt0 mb1 bold">
+  <span class="mt0 bold">
     {{ product.price | money_without_trailing_zeros }}
     {% if product.compare_at_price_max > 0 %}
-      <strike class="strike pink">
+      <strike class="strike">
         <span class="mild-gray">{{ product.compare_at_price_max | money_without_trailing_zeros }}</span>
       </strike>
     {% endif %}
   </span>
-  <div class="mb1">
-    {% include 'product-quadpay' %}
-  </div>
+  {% include 'product-quadpay' %}
 {% else %}
   <p class="mt0 mb1 medium-gray">Sold Out</p>
 {% endif %}
-<div class="pdp-description charcoal h5">
-  {{ product.description }}
-</div>
-<span class="pb1 block"></span>
 <form action="/cart/add" class="js-cart-form" enctype="multipart/form-data" method="post">
   <div class="relative black">
     {% if available %}
@@ -116,9 +109,21 @@
         {% endif %}
 
         {% if product_option.name != 'Title' %}
-          <label class="h5 block mb1">
-            <span class="block">Select a
-              {{ product_option.name | downcase }}</span>
+          <label class="h6 block mb1">
+            <div class="flex">
+              <span class="block dark-gray">Select a
+                {{ product_option.name | downcase }}</span>
+              {% if product_option.name == 'Size' %}
+                {% for collection in product.collections %}
+                  {% if collection.title == 'Rings' %}
+                    &nbsp;&nbsp;-&nbsp;&nbsp;
+                    <a class="sizing-chart-trigger h6 black" href="#">
+                      view fit guide
+                    </a>
+                  {% endif %}
+                {% endfor %}
+              {% endif %}
+            </div>
             <div class="flex flex-wrap">
               {% for value in product_option.values %}
                 <div class="product-input relative">
@@ -132,21 +137,15 @@
                 </div>
               {% endfor %}
             </div>
-            <div>
-              {% if product_option.name == 'Size' %}
-                {% for collection in product.collections %}
-                  {% if collection.title == 'Rings' %}
-                    <a class="sizing-chart-trigger h6 pink no-underline" href="#">
-                      See sizing chart
-                    </a>
-                  {% endif %}
-                {% endfor %}
-              {% endif %}
-            </div>
           </label>
         {% endif %}
       {% endfor %}
-      <input class="button mt1 bg-black white" id="add" name="add" type="submit" value="Add to Jewel Bag"/>
+      <div class="border-bottom border-smoke" style="margin: 1.5rem 0 1.25rem;padding-bottom: .5rem;">
+        <input class="button mb1 bg-black white w100p" id="add" name="add" type="submit" value="Add to Jewel Bag"/>
+      </div>
     {% endif %}
   </div>
 </form>
+<div class="pdp-description charcoal h5">
+  {{ product.description }}
+</div>
