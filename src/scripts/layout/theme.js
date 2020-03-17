@@ -348,6 +348,14 @@ import Siema from 'siema';
             .change();
         }
 
+        if (!selectedVariant[0].available) {
+          $('.js-cart-form input[type="submit"]').hide();
+          $('#BIS_trigger').hide();
+        } else {
+          $('.js-cart-form input[type="submit"]').show();
+          $('#BIS_trigger').show();
+        }
+
         disableUnavailableVariants(variants);
       });
     });
