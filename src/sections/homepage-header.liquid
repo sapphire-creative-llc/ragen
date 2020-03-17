@@ -6,6 +6,12 @@
 .bg-header-color {
   background-color: {{section.settings.text_color}}}
 
+.button-bg-color {
+  background-color: {{section.settings.button_bg_color}}}
+
+.button-text-color {
+  color: {{section.settings.button_text_color}}}
+
 {% endstyle %}
 <div class="bg-light-pink home-hero {% if settings.display_announcement_banner %}banner-showing{% endif %} relative">
   <div class="h100p w100p image bg-cover bg-center bg-no-repeat fade-image show-md relative" data-img="{{ section.settings.image_desktop | img_url: '2000x' }}">
@@ -48,7 +54,17 @@
     }, {
       "id": "text_color",
       "type": "color",
-      "label": "Text/button color",
+      "label": "Text color",
+      "default": "#ffffff"
+    }, {
+      "id": "button_bg_color",
+      "type": "color",
+      "label": "Button background color",
+      "default": "#000"
+    }, {
+      "id": "button_text_color",
+      "type": "color",
+      "label": "Button text color",
       "default": "#ffffff"
     }
   ]
