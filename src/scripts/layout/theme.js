@@ -349,15 +349,15 @@ import Siema from 'siema';
         }
 
         if (!selectedVariant[0].available) {
-          $('.js-cart-form input[type="submit"]').hide();
+          $('.js-cart-form:nth-child(1)').hide();
           $(document)
             .find('#BIS_trigger')
-            .hide();
+            .show();
         } else {
           $('.js-cart-form input[type="submit"]').show();
           $(document)
             .find('#BIS_trigger')
-            .show();
+            .hide();
         }
 
         disableUnavailableVariants(variants);
