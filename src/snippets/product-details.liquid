@@ -8,39 +8,34 @@
 
 {% assign available = product.first_available_variant.available %}
 <h2 class="mt0 mb1 text-normal">{{ product.title }}</h2>
-{% if available %}
-  <span class="mt0 bold">
-    {{ product.price | money_without_trailing_zeros }}
-    {% if product.compare_at_price_max > 0 %}
-      <strike class="strike">
-        <span class="mild-gray">{{ product.compare_at_price_max | money_without_trailing_zeros }}</span>
-      </strike>
-    {% endif %}
-  </span>
-  {% include 'product-quadpay' %}
-{% else %}
-  <p class="mt0 mb1 medium-gray">Sold Out</p>
-{% endif %}
+<span class="mt0 bold">
+  {{ product.price | money_without_trailing_zeros }}
+  {% if product.compare_at_price_max > 0 %}
+    <strike class="strike">
+      <span class="mild-gray">{{ product.compare_at_price_max | money_without_trailing_zeros }}</span>
+    </strike>
+  {% endif %}
+</span>
+{% include 'product-quadpay' %}
 <form action="/cart/add" class="js-cart-form" enctype="multipart/form-data" method="post">
   <div class="relative black">
-    {% if available %}
-      <select name="id" type="hidden">
-        {% for variant in product.variants %}
-          {% if variant.available == true %}
-            <option value="{{ variant.id }}" data-variants-length="{{ variant.inventory_quantity }}">
-              {{ variant.title }}
-            </option>
-          {% else %}
-            <option disabled="disabled">
-              {{ variant.title }}
-              - sold out!
-            </option>
-          {% endif %}
-        {% endfor %}
-      </select>
-      {% for product_option in product.options_with_values %}
-        {% if product_option.name == 'Color' %}
-          {% style %}
+    <select name="id" type="hidden">
+      {% for variant in product.variants %}
+        {% if variant.available == true %}
+          <option value="{{ variant.id }}" data-variants-length="{{ variant.inventory_quantity }}">
+            {{ variant.title }}
+          </option>
+        {% else %}
+          <option disabled="disabled">
+            {{ variant.title }}
+            - sold out!
+          </option>
+        {% endif %}
+      {% endfor %}
+    </select>
+    {% for product_option in product.options_with_values %}
+      {% if product_option.name == 'Color' %}
+        {% style %}
 
 .option-color::before {
   content: '';
@@ -106,44 +101,43 @@
 {% endfor %}
 
 {% endstyle %}
-        {% endif %}
+      {% endif %}
 
-        {% if product_option.name != 'Title' %}
-          <label class="h6 block mb1">
-            <div class="flex">
-              <span class="block dark-gray">Select a
-                {{ product_option.name | downcase }}</span>
-              {% if product_option.name == 'Size' %}
-                {% for collection in product.collections %}
-                  {% if collection.title == 'Rings' %}
-                    &nbsp;&nbsp;-&nbsp;&nbsp;
-                    <a class="sizing-chart-trigger h6 black" href="#">
-                      view fit guide
-                    </a>
-                  {% endif %}
-                {% endfor %}
-              {% endif %}
-            </div>
-            <div class="flex flex-wrap">
-              {% for value in product_option.values %}
-                <div class="product-input relative">
-                  <input data-option-value="{{ value }}" data-position="{{ product_option.position }}" class="absolute t0 l0 r0 b0 w100p h100p pointer m0 o0p z1" type="radio" name="{{ product_option.name }}" value="{{ value }}" {% if product_option.selected_value == value %} checked {% endif %}/>
-                  <button class="product-option medium-gray product-{{ product_option.name }} border border-mild-gray rounded m0 flex items-center justify-center bg-white {% if product_option.selected_value == value %}black border-black{% endif %}" type="button">
-                    {% if product_option.name == 'Color' %}
-                      <div class="option-color bg-option-{{ value | handleize }}"></div>
-                    {% endif %}
-                    <span class="h5 relative">{{ value }}</span>
-                  </button>
-                </div>
+      {% if product_option.name != 'Title' %}
+        <label class="h6 block mb1">
+          <div class="flex">
+            <span class="block dark-gray">Select a
+              {{ product_option.name | downcase }}</span>
+            {% if product_option.name == 'Size' %}
+              {% for collection in product.collections %}
+                {% if collection.title == 'Rings' %}
+                  &nbsp;&nbsp;-&nbsp;&nbsp;
+                  <a class="sizing-chart-trigger h6 black" href="#">
+                    view fit guide
+                  </a>
+                {% endif %}
               {% endfor %}
-            </div>
-          </label>
-        {% endif %}
-      {% endfor %}
-      <div class="relative border-bottom border-smoke" id="product-submit" style="margin: 1.5rem 0 1.25rem;padding-bottom: .5rem;">
-        <input class="button mb1 bg-black white w100p relative z2" id="add" name="add" type="submit" value="Add to Jewel Bag"/>
-      </div>
-    {% endif %}
+            {% endif %}
+          </div>
+          <div class="flex flex-wrap">
+            {% for value in product_option.values %}
+              <div class="product-input relative">
+                <input data-option-value="{{ value }}" data-position="{{ product_option.position }}" class="absolute t0 l0 r0 b0 w100p h100p pointer m0 o0p z1" type="radio" name="{{ product_option.name }}" value="{{ value }}" {% if product_option.selected_value == value %} checked {% endif %}/>
+                <button class="product-option medium-gray product-{{ product_option.name }} border border-mild-gray rounded m0 flex items-center justify-center bg-white {% if product_option.selected_value == value %}black border-black{% endif %}" type="button">
+                  {% if product_option.name == 'Color' %}
+                    <div class="option-color bg-option-{{ value | handleize }}"></div>
+                  {% endif %}
+                  <span class="h5 relative">{{ value }}</span>
+                </button>
+              </div>
+            {% endfor %}
+          </div>
+        </label>
+      {% endif %}
+    {% endfor %}
+    <div class="relative border-bottom border-smoke" id="product-submit" style="margin: 1.5rem 0 1.25rem;padding-bottom: .5rem;">
+      <input class="button mb1 bg-black white w100p relative z2" id="add" name="add" type="submit" value="Add to Jewel Bag"/>
+    </div>
   </div>
 </form>
 <div class="pdp-description charcoal h5">

@@ -412,11 +412,20 @@ import Siema from 'siema';
   };
 
   getProductData().then(({ product }) => {
+    console.log('product');
     $.getJSON(`/products/${product.handle}.js`).then(({ variants }) => {
       /**
        * Set the first available variant on load
        */
       const firstAvailableVariant = variants.filter(v => v.available)[0];
+
+      if (!firstAvailableVariant) {
+        $('.js-cart-form input[type="submit"]').hide();
+        $('#BIS_trigger').show();
+      } else {
+        $('.js-cart-form input[type="submit"]').show();
+        $('#BIS_trigger').hide();
+      }
 
       $('select[name="id"]')
         .val(firstAvailableVariant.id)
