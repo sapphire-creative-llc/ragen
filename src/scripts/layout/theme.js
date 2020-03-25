@@ -412,7 +412,6 @@ import Siema from 'siema';
   };
 
   getProductData().then(({ product }) => {
-    console.log('product');
     $.getJSON(`/products/${product.handle}.js`).then(({ variants }) => {
       /**
        * Set the first available variant on load
