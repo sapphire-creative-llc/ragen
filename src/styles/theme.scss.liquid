@@ -544,7 +544,7 @@ $whitespace: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15;
 }
 
 .grid {
-  width: 94%;
+  width: 90%;
   margin: 0 auto;
   box-sizing: border-box;
   @media screen and (min-width: $break-md) {
@@ -1228,20 +1228,37 @@ footer {
 }
 
 .product-images {
-  width: 50%;
-  @media screen and (min-width: $break-lg) {
+  width: 100%;
+  @media screen and (min-width: $break-md) {
     width: 60%;
+    float: left;
   }
 }
 
+.product-wrapper {
+  padding-top: 1rem;
+  @media screen and (min-width: $break-md) {
+    padding-top: 2rem;
+  }
+}
 .product-details {
   width: 100%;
   @media screen and (min-width: $break-md) {
+    position: sticky;
+    float: right;
     width: 50%;
   }
   @media screen and (min-width: $break-lg) {
     width: 30%;
   }
+
+  .product-details-wrapper {
+    @media screen and (min-width: $break-md) {
+      margin: auto;
+      width: 80%;
+    }
+  }
+
   .product-input {
     margin: 0.5rem 0.65rem 0.5rem 0;
     &:hover input:not([disabled]):not(:checked) + button {
@@ -1388,7 +1405,6 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 .insta-famous {
-  overflow: hidden;
   padding: 3rem 0;
 
   @media screen and (min-width: $break-md) {
@@ -1863,4 +1879,33 @@ select:focus {
 
 #product-submit {
   height: 68px;
+}
+
+.product-image-gallery {
+  position: relative;
+  margin-bottom: 48px;
+
+  .pager {
+    position: absolute;
+    bottom: -14px;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .pager-dot {
+      width: 7px;
+      height: 7px;
+      transition: background-color 0.3s ease;
+      background-color: #ddd;
+      border-radius: 50%;
+      margin: 0 8px;
+      display: block;
+
+      &.dot-active {
+        background-color: #000;
+      }
+    }
+  }
 }

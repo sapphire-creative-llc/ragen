@@ -1,13 +1,17 @@
 {% style %}
-  .footer nav  {
-    margin-top: .25rem;
-  }
-  .footer nav * {
-    margin-bottom: .5rem;
-  }
-  .footer .social {
-    margin-top: .25rem;
-  }
+
+.footer nav {
+  margin-top: 0.25rem;
+}
+
+.footer nav * {
+  margin-bottom: 0.5rem;
+}
+
+.footer .social {
+  margin-top: 0.25rem;
+}
+
 {% endstyle %}
 <div class="border-top border-smoke">
   <footer class="footer grid hide show-lg">
@@ -16,7 +20,9 @@
         {% assign logo_width = 123 %}
         {% include 'logo' %}
         <p class="medium-gray h6 mb0">
-          © {{ 'now' | date: "%Y" }} Ragen Jewels.<br />All rights reserved.
+          ©
+          {{ 'now' | date: "%Y" }}
+          Ragen Jewels.<br/>All rights reserved.
         </p>
       </div>
       <div class="overflow-hidden w50p left mb1 h6">
@@ -25,7 +31,7 @@
           {% for ragen in linklists.ragen-menu.links %}
             <a class="inline-block no-underline black hover-opacity-5" href="{{ ragen.url }}">
               {{ ragen.title }}
-            </a><br />
+            </a><br/>
           {% endfor %}
         </nav>
         <nav class="w30p left">
@@ -33,7 +39,7 @@
           {% for help in linklists.help-menu.links %}
             <a class="inline-block no-underline black hover-opacity-5" href="{{ help.url }}">
               {{ help.title }}
-            </a><br />
+            </a><br/>
           {% endfor %}
         </nav>
         <nav class="w30p left">
@@ -41,7 +47,7 @@
           {% for account in linklists.account-menu.links %}
             <a class="inline-block no-underline black hover-opacity-5" href="{{ account.url }}">
               {{ account.title }}
-            </a><br />
+            </a><br/>
           {% endfor %}
         </nav>
       </div>
@@ -68,27 +74,27 @@
     </div>
   </footer>
 
-  <footer class="footer grid grid hide-lg black px1">
+  <footer class="footer grid grid hide-lg black">
     <nav class="py1 h6">
       <p class="m0 bold">Ragen</p>
       {% for ragen in linklists.ragen-menu.links %}
         <a class="inline-block no-underline black hover-opacity-5" href="{{ ragen.url }}">
           {{ ragen.title }}
-        </a><br />
+        </a><br/>
       {% endfor %}
       <span class="pb1 block"></span>
       <p class="m0 bold">Help</p>
       {% for help in linklists.help-menu.links %}
         <a class="h5 inline-block no-underline black hover-opacity-5" href="{{ help.url }}">
           {{ help.title }}
-        </a><br />
+        </a><br/>
       {% endfor %}
       <span class="pb1 block"></span>
       <p class="m0 bold">Account</p>
       {% for account in linklists.account-menu.links %}
         <a class="h5 inline-block no-underline black hover-opacity-5" href="{{ account.url }}">
           {{ account.title }}
-        </a><br />
+        </a><br/>
       {% endfor %}
     </nav>
     <div class="overflow-hidden pt1 pb2">
@@ -115,7 +121,9 @@
       {% assign logo_width = 123 %}
       {% include 'logo' %}
       <p class="medium-gray h6 pb2 mb0">
-        &copy; {{ 'now' | date: "%Y" }} Ragen Jewels.<br />All rights reserved.
+        &copy;
+        {{ 'now' | date: "%Y" }}
+        Ragen Jewels.<br/>All rights reserved.
       </p>
     </div>
   </footer>

@@ -856,8 +856,20 @@ import Siema from 'siema';
     });
   });
 
+  const productImageGallery = new Siema({
+    selector: '.js-product-image-gallery',
+    onChange: function() {
+      $('.pager-dot').each(function() {
+        $(this).removeClass('dot-active');
+      });
+      $('.pager-dot')
+        .eq(this.currentSlide)
+        .addClass('dot-active');
+    },
+    loop: true
+  });
+
   $('.js-add-to-stack').on('click', e => {
-    console.log(charmsVariantId);
     if ($(this).closest('.js-charms-necklace')) {
       createCartItem({ id: charmsVariantId, quantity: 1 })
         .done(response => {
@@ -868,7 +880,6 @@ import Siema from 'siema';
         })
         .fail(({ responseText }) => {
           const { description } = JSON.parse(responseText);
-          console.log(description);
         });
       return;
     }
