@@ -856,18 +856,20 @@ import Siema from 'siema';
     });
   });
 
-  const productImageGallery = new Siema({
-    selector: '.js-product-image-gallery',
-    onChange: function() {
-      $('.pager-dot').each(function() {
-        $(this).removeClass('dot-active');
-      });
-      $('.pager-dot')
-        .eq(this.currentSlide)
-        .addClass('dot-active');
-    },
-    loop: true
-  });
+  if ($('.js-product-image-gallery').length > 0) {
+    new Siema({
+      selector: '.js-product-image-gallery',
+      onChange: function() {
+        $('.pager-dot').each(function() {
+          $(this).removeClass('dot-active');
+        });
+        $('.pager-dot')
+          .eq(this.currentSlide)
+          .addClass('dot-active');
+      },
+      loop: true
+    });
+  }
 
   $('.js-add-to-stack').on('click', e => {
     if ($(this).closest('.js-charms-necklace')) {
