@@ -106,8 +106,7 @@
       {% if product_option.name != 'Title' %}
         <label class="h6 block mb1">
           <div class="flex">
-            <span class="block dark-gray">Select a
-              {{ product_option.name | downcase }}</span>
+            <span class="block dark-gray">{{ product_option.name }}</span>
             {% if product_option.name == 'Size' %}
               {% for collection in product.collections %}
                 {% if collection.title == 'Rings' %}
