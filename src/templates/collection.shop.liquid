@@ -1,7 +1,7 @@
 <div>
   <div class="text-center pt4 hide-lg">
     {% for secondary in linklists.secondary-menu.links %}
-      <a href="#" data-id="{{ secondary.title | handleize }}" class="thumbnail inline-block no-underline collection-filter pink bg-light-pink rounded text-center h5">
+      <a href="#" data-id="{{ secondary.title | handleize }}" class="inline-block no-underline collection-filter pink bg-light-pink rounded text-center h5">
         {{ secondary.title }}
       </a>
     {% endfor %}

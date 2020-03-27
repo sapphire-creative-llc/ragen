@@ -469,18 +469,6 @@ import Siema from 'siema';
     $mobileNav.removeClass('open');
   });
 
-  const positionProductDetails = () => {
-    const isOverflowing =
-      $productDetails.outerHeight() + $desktopHeader.height() >
-      $(window).height();
-
-    if (isOverflowing) {
-      $productDetails.removeClass('sticky');
-    } else {
-      $productDetails.addClass('sticky');
-    }
-  };
-
   const setProductImagesHeight = () => {
     $productWrapper.css('height', $('.product-images').height());
   };
@@ -518,7 +506,7 @@ import Siema from 'siema';
   $('.thumbnail').on('click', e => {
     e.preventDefault();
     const id = $(e.currentTarget).data('id');
-    const offset = $(`#${id}`).offset().top - 135;
+    const offset = $(`#${id}`).offset().top - 91;
 
     $('html, body').animate({ scrollTop: offset }, 300);
   });
@@ -966,7 +954,6 @@ import Siema from 'siema';
     }
 
     setProductImagesHeight();
-    positionProductDetails();
   });
 
   $(window).on('resize', () => {
@@ -977,6 +964,5 @@ import Siema from 'siema';
     }
 
     setProductImagesHeight();
-    positionProductDetails();
   });
 })(jQuery);
