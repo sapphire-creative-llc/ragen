@@ -134,6 +134,12 @@
         </label>
       {% endif %}
     {% endfor %}
+    {% if product.metafields.global.customizable != blank %}
+      <label class="h6 block mb1">
+        <span class="block dark-gray">Customization (max of 10 letters)</span>
+        <input class="input-customization border border-smoke focus-border-black w100p p0_5 h4 border-box" maxlength="10" name="properties[Name]" required type="text"/>
+      </label>
+    {% endif %}
     <div class="relative border-bottom border-smoke" id="product-submit" style="margin: 1.5rem 0 1.25rem;padding-bottom: .5rem;">
       <input class="button mb1 bg-black white w100p relative z2" id="add" name="add" type="submit" value="Add to Jewel Bag"/>
     </div>
