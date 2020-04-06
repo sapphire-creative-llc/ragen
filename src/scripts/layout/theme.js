@@ -119,8 +119,10 @@ import Siema from 'siema';
           <div class="flex-1 px1">
             <p class="m0 h4">${product_title}</p>
             <span class="block m0 h6 medium-gray">
-              ${item.options_with_values.map(
-                o => `<span>${o.name}: ${o.value}</span>`
+              ${item.options_with_values.map(o =>
+                o.value !== 'Default Title'
+                  ? `<span>${o.name}: ${o.value}</span>`
+                  : ''
               )}
             </span>
             ${
