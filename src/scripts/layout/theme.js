@@ -123,9 +123,11 @@ import Siema from 'siema';
                 o => `<span>${o.name}: ${o.value}</span>`
               )}
             </span>
-            ${properties &&
-              properties.Name &&
-              `<span class="block m0 h6 medium-gray">Name: ${properties.Name}</span>`}
+            ${
+              Boolean(properties && properties.Name)
+                ? `<span class="block m0 h6 medium-gray">Name: ${properties.Name}</span>`
+                : ''
+            }
             ${
               item.line_level_discount_allocations.length > 0
                 ? `<span class="pink h6 block">${priceToCurrency(
