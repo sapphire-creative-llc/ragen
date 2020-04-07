@@ -1916,3 +1916,19 @@ select:focus {
 .input-customization {
   margin: 8px 0;
 }
+
+.related-products-section {
+  margin-top: 48px;
+  @media screen and(min-width: 768px) {
+    margin-top: 80px;
+  }
+  .related-products {
+    flex-wrap: wrap;
+    a {
+      width: 50%;
+      @media screen and(min-width: 768px) {
+        width: 25%;
+      }
+    }
+  }
+}

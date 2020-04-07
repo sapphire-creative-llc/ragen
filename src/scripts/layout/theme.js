@@ -946,6 +946,23 @@ import Siema from 'siema';
     }
   });
 
+  const $recs = $('.js-related-products');
+  const limit = $recs.data('limit');
+  const product = $recs.data('product-id');
+  $.ajax({
+    url:
+      '/recommendations/products?section_id=related-products&limit=' +
+      limit +
+      '&product_id=' +
+      product,
+    success: function(data) {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(data, 'text/html');
+      const related = doc.querySelectorAll('.js-related-products')[0].children;
+      $('.related-products').html(related);
+    }
+  });
+
   const $el = $('.site-nav-link:contains("Charm Necklaces")');
   $el.addClass('new-badge');
 

@@ -1,0 +1,10 @@
+<div class="related-products-section w100p overflow-hidden">
+  <h3 class="mt0 mb1 bold text-normal text-center">You’ll Also Love</h5>
+  <div class="grid">
+    <div class="js-related-products related-products flex" data-product-id="{{ product.id }}" data-limit="4">
+      {% for product in recommendations.products %}
+        {% include 'collection' %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
