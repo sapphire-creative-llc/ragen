@@ -363,8 +363,6 @@ import Siema from 'siema';
           $('.js-cart-form input[type="submit"]').show();
           $('#BIS_trigger').hide();
         }
-
-        disableUnavailableVariants(variants);
       });
     });
 
@@ -375,49 +373,6 @@ import Siema from 'siema';
 
     $this.siblings().addClass('black border-black');
   });
-
-  const disableUnavailableVariants = variants => {
-    const selectedOption1 = $('form')
-      .find("input[data-position='1']:checked")
-      .val();
-
-    const selectedOption2 = $('form')
-      .find("input[data-position='2']:checked")
-      .val();
-
-    $(`input[data-option-value]`)
-      .prop('disabled', false)
-      .css('cursor', 'pointer')
-      .siblings('button')
-      .find('span')
-      .removeClass('strike');
-
-    variants
-      .filter(v => v.option1 === selectedOption1)
-      .map(v => {
-        if (!v.available) {
-          $(`input[data-option-value='${v.option2}']`)
-            .prop('disabled', true)
-            .css('cursor', 'default')
-            .siblings('button')
-            .find('span')
-            .addClass('strike');
-        }
-      });
-
-    variants
-      .filter(v => v.option2 === selectedOption2)
-      .map(v => {
-        if (!v.available) {
-          $(`input[data-option-value='${v.option1}']`)
-            .prop('disabled', true)
-            .css('cursor', 'default')
-            .siblings('button')
-            .find('span')
-            .addClass('strike');
-        }
-      });
-  };
 
   getProductData().then(({ product }) => {
     $.getJSON(`/products/${product.handle}.js`).then(({ variants }) => {
@@ -445,8 +400,6 @@ import Siema from 'siema';
       $(`input[data-option-value='${firstAvailableVariant.option2}']`)
         .siblings()
         .addClass('black border-black');
-
-      disableUnavailableVariants(variants);
     });
   });
 
