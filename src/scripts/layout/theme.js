@@ -7,7 +7,6 @@ import Siema from 'siema';
 
 ($ => {
   const $body = $('body');
-  const $siteNav = $('.site-nav');
   const $mobileNav = $('.mobile-nav');
   const $mobileNavLink = $('.mobile-nav a:not(.category-item)');
   const $cart = $('.cart-items');
@@ -21,17 +20,9 @@ import Siema from 'siema';
   const $cartForm = $('.js-cart-form');
   const $mobileNavOpen = $('.js-mobile-nav-open');
   const $mobileNavClose = $('.js-mobile-nav-close');
-  const $productDetails = $('.product-details');
   const $productWrapper = $('.js-product-wrapper');
-  const $detailsTab = $('.js-details-tab');
-  const $mobileHeader = $('.js-header.hide-md');
-  const $desktopHeader = $('.js-header.show-md');
-  const $footer = $('.js-footer');
-  const $productTabs = $('.product-tabs');
-  const $productTab = $('.product-tab');
   const $viewCart = $('.js-view-cart');
   const $shopCollection = $('.js-shop-collection');
-  const $addToCartError = $('.add-to-cart-error');
 
   const checkout = $checkout.attr('href');
   const disableCheckout = () => {
@@ -354,6 +345,9 @@ import Siema from 'siema';
           $('select[name="id"]')
             .val(selectedVariant[0].id)
             .change();
+          $('.product-details-price').text(
+            `$${selectedVariant[0].price / 100}`
+          );
         }
 
         if (!selectedVariant[0].available) {

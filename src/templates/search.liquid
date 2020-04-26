@@ -1,23 +1,24 @@
-<div class="py4">
+<div class="grid py4">
   {% if search.performed %}
     <h3 class="m0 text-normal text-center">
       {% if search.results_count == 0 %}
         No results for '{{ search.terms | escape }}'
       {% else %}
-        {{ search.results_count }} results for '{{ search.terms | escape }}'
+        {{ search.results_count }}
+        results for '{{ search.terms | escape }}'
       {% endif %}
     </h3>
   {% else %}
     <div class="site-search">
       <h3 class="mt0 mb1 text-normal text-center">Search Ragen Jewels</h3>
       <div class="width-15 mx-auto">
-        <form class="search" action="/search" autocomplete="off">
-          <input type="hidden" name="type" value="product" />
+        <form action="/search" autocomplete="off" class="search">
+          <input name="type" type="hidden" value="product"/>
           <label class="hide">Search:</label>
           <div class="relative">
-            <input type="text" placeholder="e.g. charms" required name="q" value="{{ search.terms | escape }}" class="required email w100p border-box" />
+            <input type="text" placeholder="e.g. charms" required name="q" value="{{ search.terms | escape }}" class="required email w100p border-box"/>
             <div class="absolute flex items-center t0 r0 b0 r0">
-              <input type="submit" value="→" class="h3 dark-pink">
+              <input class="h3 dark-pink" type="submit" value="→">
             </div>
           </div>
         </form>
