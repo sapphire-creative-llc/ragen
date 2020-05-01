@@ -123,7 +123,7 @@
               <div class="product-input relative">
                 <input data-option-value="{{ value }}" data-position="{{ product_option.position }}" class="absolute t0 l0 r0 b0 w100p h100p pointer m0 o0p z1" type="radio" name="{{ product_option.name }}" value="{{ value }}" {% if product_option.selected_value == value %} checked {% endif %}/>
                 <button class="product-option medium-gray product-{{ product_option.name }} border border-mild-gray rounded m0 flex items-center justify-center bg-white {% if product_option.selected_value == value %}black border-black{% endif %}" type="button">
-                  {% if product_option.name == 'Color' %}
+                  {% if product_option.name == 'Metal' %}
                     <div class="option-color bg-option-{{ value | handleize }}"></div>
                   {% endif %}
                   <span class="h5 relative">{{ value }}</span>
