@@ -148,8 +148,10 @@
         <p class="h6 m0" style="margin-left: 8px">{{ product.metafields.global.customizable_text }}</p>
       </div>
     {% endif %}
-    <div class="relative border-bottom border-smoke" id="product-submit" style="margin: 1.5rem 0 1.25rem;padding-bottom: .5rem;">
-      <input class="button mb1 bg-black white w100p relative z2" id="add" name="add" type="submit" value="Add to Jewel Bag"/>
+    <div class="border-bottom border-smoke" style="margin: 1.5rem 0 1.25rem;padding-bottom: .5rem;">
+      <div class="relative" id="product-submit">
+        <input class="button mb1 bg-black white w100p relative z2" id="add" name="add" type="submit" value="Add to Jewel Bag"/>
+      </div>
       {% if product.metafields.global.notification_text != blank %}
         <div class="flex items-center">
           <svg fill="currentColor" viewbox="0 0 330 330" width="14" xmlns="http://www.w3.org/2000/svg">
