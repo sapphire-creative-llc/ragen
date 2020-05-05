@@ -136,19 +136,19 @@
     {% endfor %}
     {% if product.metafields.global.customizable != blank %}
       <label class="h6 block">
-        <span class="block dark-gray">Customization (max of 10 letters)</span>
-        <input class="input-customization border border-smoke focus-border-black w100p p0_5 h4 border-box" maxlength="10" name="properties[Name]" required type="text"/>
+        <span class="block dark-gray">Customization (max of 10 characters)</span>
+        <input autocomplete="off" class="input-customization border border-smoke focus-border-black w100p p0_5 h4 border-box text-uppercase" data-max="10" name="properties[Name]" required type="text"/>
       </label>
-      <div class="flex items-center dark-gray">
-        <svg fill="currentColor" viewbox="0 0 330 330" width="18" xmlns="http://www.w3.org/2000/svg">
-          <path d="M165 0C74 0 0 74 0 165 0 256 74 330 165 330s165-74 165-165C330 74 256 0 165 0zM165 300c-74.4 0-135-60.6-135-135C30 90.6 90.6 30 165 30s135 60.6 135 135C300 239.4 239.4 300 165 300z"/>
-          <path d="M165 70c-11 0-20 9-20 20 0 11 9 20 20 20 11 0 20-9 20-20C185 79 176 70 165 70z"/>
-          <path d="M165 140c-8.3 0-15 6.7-15 15v90c0 8.3 6.7 15 15 15 8.3 0 15-6.7 15-15v-90C180 146.7 173.3 140 165 140z"/>
-        </svg>
-        <p class="h6 m0" style="margin-left: 8px">{{ product.metafields.global.customizable_text }}</p>
+      <div class="flex items-center relative z10">
+        <span class="h6 dark-gray" style="margin-right: .5rem">Available symbols:</span>
+        <button class="button-reset button-emoji" type="button">&#x2764;&#xfe0f;</button>
+        <button class="button-reset button-emoji" type="button">&#x2b50;</button>
+        <button class="button-reset button-emoji" type="button">&#x26a1;</button>
       </div>
+      <div class="customization-key"></div>
     {% endif %}
-    <div class="border-bottom border-smoke" style="margin: 1.5rem 0 1.25rem;padding-bottom: .5rem;">
+
+    <div class="border-bottom border-smoke" style="margin: 1.25rem 0 1.25rem;padding-bottom: .5rem;">
       <div class="relative" id="product-submit">
         <input class="button mb1 bg-black white w100p relative z2" id="add" name="add" type="submit" value="Add to Jewel Bag"/>
       </div>
@@ -160,6 +160,16 @@
             <path d="M165 140c-8.3 0-15 6.7-15 15v90c0 8.3 6.7 15 15 15 8.3 0 15-6.7 15-15v-90C180 146.7 173.3 140 165 140z"/>
           </svg>
           <p class="h6 m0" style="margin-left: 8px">{{ product.metafields.global.notification_text }}</p>
+        </div>
+      {% endif %}
+      {% if product.metafields.global.customizable_text != blank %}
+        <div class="flex items-center dark-gray">
+          <svg fill="currentColor" viewbox="0 0 330 330" width="14" xmlns="http://www.w3.org/2000/svg">
+            <path d="M165 0C74 0 0 74 0 165 0 256 74 330 165 330s165-74 165-165C330 74 256 0 165 0zM165 300c-74.4 0-135-60.6-135-135C30 90.6 90.6 30 165 30s135 60.6 135 135C300 239.4 239.4 300 165 300z"/>
+            <path d="M165 70c-11 0-20 9-20 20 0 11 9 20 20 20 11 0 20-9 20-20C185 79 176 70 165 70z"/>
+            <path d="M165 140c-8.3 0-15 6.7-15 15v90c0 8.3 6.7 15 15 15 8.3 0 15-6.7 15-15v-90C180 146.7 173.3 140 165 140z"/>
+          </svg>
+          <p class="h6 m0" style="margin-left: 8px">{{ product.metafields.global.customizable_text }}</p>
         </div>
       {% endif %}
     </div>

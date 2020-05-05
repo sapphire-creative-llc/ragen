@@ -913,6 +913,52 @@ import Siema from 'siema';
   const $el = $('.site-nav-link:contains("Charm Necklaces")');
   $el.addClass('new-badge');
 
+  $('.button-emoji').on('click', function() {
+    const $input = $('.input-customization');
+    const max = $input.data('max');
+    const $button = $(this);
+    const val = $input.val();
+    const chars = $input
+      .val()
+      .split('')
+      .filter(letter => letter.charCodeAt(0) !== 65039).length;
+    if (chars < max) {
+      $input.val(val + $button.html()).trigger('input');
+    }
+  });
+
+  $('.input-customization').on('input', function(e) {
+    const val = $(this).val();
+    const max = $(this).data('max');
+    const arr = $(this)
+      .val()
+      .split('')
+      .filter(letter => letter.charCodeAt(0) !== 65039);
+    const hearts = $(this)
+      .val()
+      .split('')
+      .reduce((a, b) => {
+        return b.charCodeAt(0) === 65039 ? a + 1 : a;
+      }, 0);
+    const chars = arr.length;
+    $(this).val(
+      $(this)
+        .val()
+        .replace(new RegExp('[0-9]', 'g'), '')
+        .replace(new RegExp('[@#$%^&*)(+=._-]+$', 'g'), '')
+        .replace(';', '')
+    );
+    if (chars > max) {
+      $(this).val(
+        $(this)
+          .val()
+          .split('')
+          .slice(0, max + hearts)
+          .join('')
+      );
+    }
+  });
+
   $(window).on('scroll', () => {
     fadeInImage();
   });

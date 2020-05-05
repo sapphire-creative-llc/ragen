@@ -1914,7 +1914,7 @@ select:focus {
 }
 
 .input-customization {
-  margin: 8px 0;
+  margin: 8px 0 0;
 }
 
 .related-products-section {
@@ -1945,5 +1945,41 @@ div[id^='webyze-product-colors'] {
   }
   .currentSwatch {
     border: 2px solid #222 !important;
+  }
+}
+
+.button-emoji {
+  padding: 0;
+  margin: 0 6px;
+  font-size: 0.8125rem;
+  letter-spacing: -5px;
+  font-family: inherit;
+  position: relative;
+  cursor: pointer !important;
+  &:before {
+    content: 'Click to add';
+    letter-spacing: normal;
+    font-size: 0.6875rem;
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    transform: translateX(calc(-50% + 8px));
+    background-color: white;
+    border: 1px solid #eee;
+    border-radius: 3px;
+    padding: 4px 10px;
+    color: #666;
+    white-space: nowrap;
+    z-index: 2;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+  }
+  &:hover {
+    &:before {
+      opacity: 1;
+      visibility: visible;
+    }
   }
 }
