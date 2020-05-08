@@ -352,10 +352,10 @@ import Siema from 'siema';
 
         if (!selectedVariant[0].available) {
           $('.js-cart-form input[type="submit"]').hide();
-          $('#BIS_trigger').show();
+          $('.klaviyo-bis-trigger').show();
         } else {
           $('.js-cart-form input[type="submit"]').show();
-          $('#BIS_trigger').hide();
+          $('.klaviyo-bis-trigger').hide();
         }
       });
     });
