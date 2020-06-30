@@ -145,12 +145,14 @@
           characters)</span>
         <input autocomplete="off" class="input-customization border border-smoke focus-border-black w100p p0_5 h4 border-box text-uppercase" data-max="{{ max_chars }}" name="properties[Name]" required type="text"/>
       </label>
-      <div class="flex items-center relative z10">
-        <span class="h6 dark-gray" style="margin-right: .5rem">Available symbols:</span>
-        <button class="button-reset button-emoji" type="button">&#x2764;&#xfe0f;</button>
-        <button class="button-reset button-emoji" type="button">&#x2b50;</button>
-        <button class="button-reset button-emoji" type="button">&#x26a1;</button>
-      </div>
+      {% if product.handle != 'custom-curb-chain-bracelet' %}
+        <div class="flex items-center relative z10">
+          <span class="h6 dark-gray" style="margin-right: .5rem">Available symbols:</span>
+          <button class="button-reset button-emoji" type="button">&#x2764;&#xfe0f;</button>
+          <button class="button-reset button-emoji" type="button">&#x2b50;</button>
+          <button class="button-reset button-emoji" type="button">&#x26a1;</button>
+        </div>
+      {% endif %}
     {% endif %}
 
     <div class="border-bottom border-smoke" style="margin: 1.25rem 0 1.25rem;padding-bottom: .5rem;">
